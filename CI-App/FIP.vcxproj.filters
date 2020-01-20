@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\controller">
+      <UniqueIdentifier>{8d5677c0-329c-475d-98ab-3325056fe2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\view">
+      <UniqueIdentifier>{fe0f0df5-d345-474c-bf23-7dec65aa3028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{dae134d8-dc5f-43a2-a33f-919430b07fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{e3c8b943-9ba0-4c3c-a81d-c9906237cd3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\view\init">
+      <UniqueIdentifier>{9e66d2d0-d4b5-4fa0-9d7d-72ce467428df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\view\my_cat">
+      <UniqueIdentifier>{ae3de99f-24f1-4d1f-8c59-0c436e16d210}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app\Controllers\Cat.php">
+      <Filter>Source Files\controller</Filter>
+    </None>
+    <None Include="app\Config\App.php">
+      <Filter>Source Files\config</Filter>
+    </None>
+    <None Include="app\Config\Routes.php">
+      <Filter>Source Files\config</Filter>
+    </None>
+    <None Include="app\Models\BloodModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Models\ValidationModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Models\TmpCatModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Models\CatModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Models\UserModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Views\cat_form1.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_review1.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_review2.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_review3.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_review4.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_review5.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Models\SymptomsModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Models\MetricsModel.php">
+      <Filter>Source Files\model</Filter>
+    </None>
+    <None Include="app\Controllers\MyCat.php">
+      <Filter>Source Files\controller</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_bloods.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_echos.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_eyes.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_infos.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_symptoms.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\cat_xrays.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\login.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\my_cat.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\my_cats.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\my_infos.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\mycat\my_new_blood.php">
+      <Filter>Source Files\view\my_cat</Filter>
+    </None>
+    <None Include="app\Views\prevalidate.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+    <None Include="app\Views\cat_register.php">
+      <Filter>Source Files\view\init</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="questions.txt">
+      <Filter>Source Files\view</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,71 @@
+So there the things i have in mind
+
+There would be 3 types of users for the app
+
+Cat owner
+Producers/suppliers
+Funding participants
+Admins
+
+
+Cat owner are attributed an ID for their cat (would be the public key if using blockchain-like system, with the private key stored in the app, or login/pw/facebook + database ID otherwise).
+
+Then entering the invariant information for the cat (name, age, breed, eventually pictures). 
+
+Cat history can also be relevant ( living alone, history of disease, drugs used at the moment)
+
+Localization information can also be useful such as timezone, location, unit for weight (pound/kilo), temperature (celsius/faroneight).
+
+Then they enter the disease specific information which can include
+
+Weight
+activity
+appetite
+urination/defection
+ocular signs
+wobbling/balance
+temperature
+posterior ataxia and incoordination
+abdominal effusion
+packed cell volume (PCV)
+total white blood cells
+coronavirus antibody titer
+absolute lymphocyte count
+total serum protein
+serum globulin
+serum albumin and albumin:globulin (A:G) ratio.
+ascites samples tested for levels of viral RNA by qRT-PCR
+
+Some of them are purely quantitative, in that case it's just the number (Weight,temperature, blood/fluid analysis)
+
+Blood sample or lab analysis can be uploaded as a picture, and associated values entered separately (allow to have lab reference, and avoid typo/mistake)
+
+Some are not purely quantitative ( appetite, urination/defection,ocular signs,wobbling/balance), so maybe a scale from 1 to 10 can be used with some explanatory text for each ( eats none, forced eating, eat treat, etc).
+Photo can be uploaded for ocular signs, or abdominal effusion.
+
+Need to see how to make it easy to enter only some of the values, maybe entering them one / one with a skip button.
+
+A comment field can be added for adding more information that is not anticipated.
+
+From there, need to select a brand, compute dosage and price based on disease related infos, which lead to a treatment course.
+
+The application need to accommodate with possible planning with different brands at different time, and evaluate funding options for all or part of the treatment, following brand availability and finance.
+
+When at least a part of the treatment is selected, the application show the supplier/producers that have available products, and a way to contact them. A way to signal emergency situation could also be integrated, and signaled to other users who register as having potential emergency doses available, or willing to share some of their stock for this case.
+
+Payment to supplier/producer is made, and the supplier/producer then register the product transfer to the user in the application.
+
+A possible payment option could be directly using blockchain tokenization, that's already more involved, but it could go as users wanting to participate in a funding or buy a product would buy tokens, transfer token to supplier/producers, or to the fund riser address, which would sell them back. Would be far stretched but putting the option on the table.
+
+
+Privacy for cat information is a concern, but in case of inter user interaction such as crowd funding, or user to user vial transfer, it would imply some cross user information sharing, i have seen on the group that users participating in funding select the users based on the brand used, and giving more information about the brand used and the treatment course, cat, personal situation could increase the chance of successful funding.
+
+For user to user product transfer like in case of emergency, a solution could be centralizing the offer/request to a trusted intermediate who will centralize the available stocks for emergency situation and the requests. Require someone available 24/7.
+
+Some rating for producer/supplier could also be possible to make a review, ( did the package ship well, how long it took and other things of the like ).
+
+Then the user receive the package, eventually notify of the reception, and start giving it to the cat. Each time a dose is given, it should be entered in the application, with the time of injection/intake, brand and dose used, and the application could include some counter of remaining product, remaining day, remaining doses, how much more need to be shipped and some planning information.Eventually also ability to account for doses loss ( bad injection, spilled pills etc) to keep the count accurate.
+
+Disease related information should also be entered at regular interval, as well as symptoms evolution. When new information is entered, the dose calculator should also reflect if some changes need to be made, or if a the situation require some attention (appearance of new symptoms, weight evolution).
+
+For the front end user interface, i would go for a web solution, like this the application is available on all platforms, just need a web browser, bootstrap/materialdesign can make user/mobile friendly pages. Advantage of using web based front end is that the code and pages can be easily modified, doesn't require to install some SDK or compilers, the source can be just opened with a text editor and modified, if the critical function to compute formulas or other are well isolated it should be easy enough for non developpers to make change to it, compared to having to download developpers specific tools and SDK. Specific application for android/iphone/PC/mac can be made in parallel, or added latter, provided the API to access the data is documented and open.
