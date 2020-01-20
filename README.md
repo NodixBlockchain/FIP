@@ -4,7 +4,7 @@ git clone https://github.com/NodixBlockchain/FIP
 
 copy 'public, 'app', 'system', 'writable', from CI-App/ to the site location in HTTP server folder
 
-change write permission to 'writable' folder
+set write permission for 'writable' folder
 
 set baseUrl in app/Config/App.php to the folder's URL
 
