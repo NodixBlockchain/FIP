@@ -2,7 +2,7 @@ install instruction :
 
 git clone https://github.com/NodixBlockchain/FIP
 
-copy CI-App/* to destination folder in HTTP server folder
+copy 'public, 'app', 'system', 'writable', from CI-App/ to the site location in HTTP server folder
 
 set HTTP server DocumentRoot to the 'public/' folder
 
