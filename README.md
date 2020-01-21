@@ -1,3 +1,5 @@
+demo at http://nodix.eu:81/
+
 install instruction :
 
 git clone https://github.com/NodixBlockchain/FIP
