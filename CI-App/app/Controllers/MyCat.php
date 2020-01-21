@@ -255,10 +255,10 @@ class MyCat extends BaseController
 		{
 			$result = $user->doupdate ($userHash, [	'email' => $this->request->getPost('user-email'),
 													'pwhash' => $userInfos['pwhash'],
-													'weight-unit' => $this->request->getPost('user-weight-unit'),
-													'temp-unit' => $this->request->getPost('user-temp-unit'),
+													'weight_unit' => $this->request->getPost('user-weight-unit'),
+													'temp_unit' => $this->request->getPost('user-temp-unit'),
 													'timezone' => $this->request->getPost('user-timezone'),
-													'creation-time'=> $userInfos['creation-time']]);
+													'creation_time'=> $userInfos['creation-time']]);
 
 			return redirect()->to(site_url('MyCat/my_infos'));
 
