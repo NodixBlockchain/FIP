@@ -625,7 +625,7 @@ class MyCat extends BaseController
 			}
 		}
 
-		$Blood = ['blood-date' => bloodDate, 'blood-date-url' => str_replace('/','_',$bloodDate), 'values' => $values, 'pictures' => $pictures];
+		$Blood = ['blood-date' => $bloodDate, 'blood-date-url' => str_replace('/','_',$bloodDate), 'values' => $values, 'pictures' => $pictures];
 
 		$theCat['cat-hash'] = $catHash;
 
