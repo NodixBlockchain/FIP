@@ -477,7 +477,7 @@ class TmpCatModel extends Model
 		$src =	$catFile;
 		$dst =	$catDir.'/catinfos.csv';
 
-		file_put_contents($dst, $newCatHash.';'.$userhash.';'.$data['created-time'].';'.$data['parent-first-name'].';'.$data['parent-last-name'].';'.$data['fb-name'].';'.$data['cat-name'].';'.$data['cat-birthdate'].';'.$data['cat-birthdate-exact'].';'.$data['cat-gender'].';'.$data['cat-fixed'].';'.$data['cat-breed'].$this->save_diag($data['cat-diagnosis']).';'.$data['cat-diagnosis-date']."\n");
+		file_put_contents($dst, $newCatHash.';'.$userhash.';'.$data['created-time'].';'.$data['parent-first-name'].';'.$data['parent-last-name'].';'.$data['fb-name'].';'.$data['cat-name'].';'.$data['cat-birthdate'].';'.$data['cat-birthdate-exact'].';'.$data['cat-gender'].';'.$data['cat-fixed'].';'.$data['cat-breed'].';'.$this->save_diag($data['cat-diagnosis']).';'.$data['cat-diagnosis-date']."\n");
 
 
 		$pics = $this->doloadpicstmp($catHash);

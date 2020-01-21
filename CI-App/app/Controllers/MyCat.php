@@ -382,12 +382,12 @@ class MyCat extends BaseController
 		else
 		{
 			$metrics = new MetricsModel();
-			$result = $metrics->dosave ($userHash, $catHash, [	'cat_hash' => $catHash,
-																'date' => $date,
-																'cat_weight' => $this->request->getPost('cat-weight'),
-																'cat_temperature' => $this->request->getPost('cat-temperature'),
-																'cat_activity' => $this->request->getPost('cat-activity'),
-																'cat_appetite' => $this->request->getPost('cat-appetite')]);
+			$result = $metrics->dosave ($userHash,[	'cat_hash' => $catHash,
+													'date' => $date,
+													'cat_weight' => $this->request->getPost('cat-weight'),
+													'cat_temperature' => $this->request->getPost('cat-temperature'),
+													'cat_activity' => $this->request->getPost('cat-activity'),
+													'cat_appetite' => $this->request->getPost('cat-appetite')]);
 
 			return redirect()->to(site_url('MyCat/my_cat_infos/'.$catHash));
 		}
