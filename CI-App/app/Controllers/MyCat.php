@@ -457,7 +457,7 @@ class MyCat extends BaseController
 
 		$theCat['cat-hash'] = $catHash;
 
-		return view('MyCat/cat_infos',['cat' => $theCat, 'cat' => $theCat, 'catinfos' => $catinfos, 'metrics' => $Metrics, 'userinfos '=> $userInfos, 'errors' =>[]]);
+		return view('MyCat/cat_infos',['cat' => $theCat, 'catinfos' => $catinfos, 'metrics' => $Metrics, 'userinfos' => $userInfos, 'errors' =>[]]);
 	}
 
 	
