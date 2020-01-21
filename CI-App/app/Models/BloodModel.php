@@ -53,7 +53,7 @@ class BloodModel extends Model
 	{
 		$hash=$this->getHash($fields);
 
-		$path = $this->TEMP_PATH.'/blood_'.$fields['cat-hash'];
+		$path = $this->TEMP_PATH.'/blood_'.$fields['cat_hash'];
 
 		if(!is_dir($path))
 		{
