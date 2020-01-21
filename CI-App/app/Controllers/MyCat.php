@@ -52,8 +52,7 @@ class MyCat extends BaseController
 				$theCat['picture'] = base_url().'assets/img/cat_default.png';
 			}
 
-			$theCat['cat-hash'] = $my_cat;
-			
+		
 			array_push($MyCats, $theCat);
 		}
 		return view('MyCat/my_cats',['cats' => $MyCats]);
@@ -188,7 +187,6 @@ class MyCat extends BaseController
 			array_push($theCat['pictures'], ['url' => site_url('MyCat/catpic/'.$catHash.'/'.$image)]);
 		}
 
-		$theCat['cat-hash'] = $catHash;
 
 		return view('MyCat/my_cat',['cat' => $theCat]);
 	}
@@ -322,7 +320,6 @@ class MyCat extends BaseController
 			array_push($Symptoms, ['symptoms-date' => $symDate, 'symptoms' => $values]);
 		}
 
-		$theCat['cat-hash'] = $catHash;
 		
 		return view('MyCat/cat_symptoms',['cat' => $theCat, 'symptomsDates' => $Symptoms]);
 	}
@@ -369,8 +366,6 @@ class MyCat extends BaseController
 				$values = $metrics->doloaddate($userHash,$catHash,$metricsDate);
 				array_push($Metrics, ['metrics-date' => $metricsDate,'values'=>$values]);
 			}
-
-			$theCat['cat-hash'] = $catHash;
 
 			$errors = $this->validator->getErrors();
 			
@@ -455,7 +450,6 @@ class MyCat extends BaseController
 
 		$catinfos['metrics-date-url'] = str_replace('/','_',$mDate);
 
-		$theCat['cat-hash'] = $catHash;
 
 		return view('MyCat/cat_infos',['cat' => $theCat, 'catinfos' => $catinfos, 'metrics' => $Metrics, 'userinfos' => $userInfos, 'errors' =>[]]);
 	}
@@ -627,8 +621,6 @@ class MyCat extends BaseController
 
 		$Blood = ['blood-date' => $bloodDate, 'blood-date-url' => str_replace('/','_',$bloodDate), 'values' => $values, 'pictures' => $pictures];
 
-		$theCat['cat-hash'] = $catHash;
-
 		$errors = [];
 
 		if($error)
@@ -665,8 +657,6 @@ class MyCat extends BaseController
 			}
 			array_push($Bloods, ['blood-date' => $bloodDate, 'blood-date-url' => str_replace("/","_",$bloodDate), 'values' => $values, 'pictures' => $pictures]);
 		}
-
-		$theCat['cat-hash'] = $catHash;
 
 		return view('MyCat/cat_bloods', ['cat' => $theCat, 'bloods' => $Bloods]);
 	}
@@ -743,7 +733,7 @@ class MyCat extends BaseController
 			}
 			array_push($Eyes,['eye-date' => $eyeDate,'eye-date-url' => str_replace('/','_',$eyeDate), 'pictures' => $pictures]);
 		}
-		$theCat['cat-hash'] = $catHash;
+	
 		return view('MyCat/cat_eyes',['cat' => $theCat,'currentdate'=>date('m/d/Y') ,'eyes' => $Eyes, 'error' => urldecode($error)]);
 	}
 
@@ -821,8 +811,6 @@ class MyCat extends BaseController
 			array_push($Xrays,['xray-date' => $XrayDate, 'xray-date-url' => str_replace('/','_',$XrayDate), 'pictures' => $pictures]);
 		}
 
-		$theCat['cat-hash'] = $catHash;
-
 		return view('MyCat/cat_xrays',['cat' => $theCat, 'xrays' => $Xrays, 'xrayDate' => date('m/d/Y'), 'error' => urldecode($error)]);
 	}
 
@@ -898,8 +886,6 @@ class MyCat extends BaseController
 			}
 			array_push($Echos,['echography-date' => $EchoDate, 'echography-date-url' => str_replace('/','_',$EchoDate), 'pictures' => $pictures]);
 		}
-
-		$theCat['cat-hash'] = $catHash;
 
 		return view('MyCat/cat_echos',['cat' => $theCat, 'echographies' => $Echos, 'currentdate' => date('m/d/Y'), 'error' => urldecode($error)]);
 	}
