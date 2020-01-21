@@ -232,7 +232,7 @@ class MyCat extends BaseController
 
 		$mailUsed = FALSE;
 
-		if(($isValid)&&(($userInfos['email'])!=$this->request->getPost('user-email')))
+		if(($isValid)&&(($userInfos['user-email'])!=$this->request->getPost('user-email')))
 		{
 			if($user->findbymail($this->request->getPost('user-email')))
 			{
