@@ -310,8 +310,5 @@ class BloodModel extends Model
 								 'cat_ag_ratio' => $vals['cat-ag-ratio'],
 								 'cat_total_bilirubin' => $vals['cat-total-bilirubin']]);
 
-		rename($src,$dst);
-
-	
 	}
 }
