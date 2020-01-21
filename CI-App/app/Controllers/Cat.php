@@ -7,7 +7,6 @@ use App\Models\SymptomsModel;
 use App\Models\BloodModel;
 use App\Models\ValidationModel;
 use App\Models\UserModel;
-use App\Models\MetricsModel;
 
 class Cat extends BaseController
 {
@@ -46,7 +45,7 @@ class Cat extends BaseController
 		else
 		{
 			$inputs	  = ['parent-first-name' => '','parent-last-name' => '','fb-name' => '','cat-name' => '','cat-birthdate' =>'','cat-birthdate-exact' => '', 'cat-gender' => '','cat-fixed' => '','cat-breed' => '','cat-diagnosis'=>'','cat-diagnosis-date' => $currentDate];
-			$syminfos = ['symptoms-misc'=>[],'symptoms-misc-other'=>'','symptoms-wet'=>[],'symptoms-neuro'=>[],'symptoms-ocular'=>[],'symptoms-FIP'=>[],'symptoms-effusion'=>[]];
+			$syminfos = ['symptoms-misc' => [], 'symptoms-misc-other '=> '', 'symptoms-wet' => [], 'symptoms-neuro' => [], 'symptoms-ocular' => [], 'symptoms-FIP' => [], 'symptoms-effusion' => []];
 		}
 
 		return view('cat_form1',['errors'=>[],'inputs' => $inputs,'symptoms' => $syminfos]);
@@ -63,17 +62,17 @@ class Cat extends BaseController
 		$birthError = FALSE;
 		$diagDateError = FALSE;
 
-		$isValid = $this->validate([	'parent-first-name' => 'alpha_numeric_space|max_length[64]',
-										'parent-last-name' => 'alpha_numeric_space|max_length[64]',
-										'fb-name' => 'alpha_numeric_space|max_length[128]',
-										'cat-name' => 'required|alpha_numeric_space|max_length[32]',
-										'cat-birthdate-exact' =>'in_list[exact,approx]',
-										'cat-gender' => 'in_list[male,female]',
-										'cat-fixed' => 'in_list[fixed,intact]',
-										'cat-breed' => 'alpha_numeric_space|max_length[32]',
-										'symptoms-misc-other' => 'alpha_numeric_space|max_length[64]',
-										'cat-diagnosis'=> 'max_length[256]',
-										'symptoms-FIP'  => "required"]);
+		$isValid = $this->validate(['parent-first-name' => 'alpha_numeric_space|max_length[64]',
+									'parent-last-name' => 'alpha_numeric_space|max_length[64]',
+									'fb-name' => 'alpha_numeric_space|max_length[128]',
+									'cat-name' => 'required|alpha_numeric_space|max_length[32]',
+									'cat-birthdate-exact' =>'in_list[exact,approx]',
+									'cat-gender' => 'in_list[male,female]',
+									'cat-fixed' => 'in_list[fixed,intact]',
+									'cat-breed' => 'alpha_numeric_space|max_length[32]',
+									'symptoms-misc-other' => 'alpha_numeric_space|max_length[64]',
+									'cat-diagnosis'=> 'max_length[256]',
+									'symptoms-FIP'  => "required"]);
 
 		if($this->request->getPost('cat-birthdate'))
 		{
@@ -95,19 +94,17 @@ class Cat extends BaseController
 		
 		if (!$isValid )
 		{
-
-			$inputs	  = ['parent-first-name' => $this->request->getPost('parent-first-name'),
-						 'parent-last-name' => $this->request->getPost('parent-last-name'),
-						 'fb-name' => $this->request->getPost('fb-name'),
-						 'cat-name' => $this->request->getPost('cat-name'),
-						 'cat-birthdate' => $this->request->getPost('cat-birthdate'),
-						 'cat-birthdate-exact' => $this->request->getPost('cat-birthdate-exact'),
-						 'cat-gender' => $this->request->getPost('cat-gender'),
-						 'cat-fixed' => $this->request->getPost('cat-fixed'),
-						 'cat-breed' => $this->request->getPost('cat-breed'),
-						 'cat-diagnosis'=> $this->request->getPost('cat-diagnosis'),
-						 'cat-diagnosis-date'=> $this->request->getPost('cat-diagnosis-date')
-						 ];
+			$inputs	= [	'parent-first-name' => $this->request->getPost('parent-first-name'),
+						'parent-last-name' => $this->request->getPost('parent-last-name'),
+						'fb-name' => $this->request->getPost('fb-name'),
+						'cat-name' => $this->request->getPost('cat-name'),
+						'cat-birthdate' => $this->request->getPost('cat-birthdate'),
+						'cat-birthdate-exact' => $this->request->getPost('cat-birthdate-exact'),
+						'cat-gender' => $this->request->getPost('cat-gender'),
+						'cat-fixed' => $this->request->getPost('cat-fixed'),
+						'cat-breed' => $this->request->getPost('cat-breed'),
+						'cat-diagnosis'=> $this->request->getPost('cat-diagnosis'),
+						'cat-diagnosis-date'=> $this->request->getPost('cat-diagnosis-date')];
 
 			if($this->request->getPost('cat-hash'))
 				$inputs['cat-hash'] = $this->request->getPost('cat-hash');
@@ -119,14 +116,13 @@ class Cat extends BaseController
 			$symOcular = $this->request->getPost('symptoms-ocular');
 			$symEffusion = $this->request->getPost('symptoms-effusion');
 
-			$syminfos = ['symptoms-misc'=>$symMisc?$symMisc:[],
-						 'symptoms-misc-other'=>$this->request->getPost('symptoms-misc-other'),
-						 'symptoms-wet'=>$symWet?$symWet:[],
-						 'symptoms-neuro'=>$symNeuro?$symNeuro:[],
-						 'symptoms-ocular'=>$symOcular?$symOcular:[],
-						 'symptoms-FIP'=> $symFip?$symFip:[],
-						 'symptoms-effusion'=>$symEffusion?$symEffusion:[]
-						];
+			$syminfos = ['symptoms-misc' => $symMisc?$symMisc:[],
+						 'symptoms-misc-other' => $this->request->getPost('symptoms-misc-other'),
+						 'symptoms-wet' => $symWet?$symWet:[],
+						 'symptoms-neuro' => $symNeuro?$symNeuro:[],
+						 'symptoms-ocular' = >$symOcular?$symOcular:[],
+						 'symptoms-FIP' => $symFip?$symFip:[],
+						 'symptoms-effusion' => $symEffusion?$symEffusion:[]];
 
 
 			$errors = $this->validator->getErrors();
@@ -138,23 +134,22 @@ class Cat extends BaseController
 				$errors['cat-diagnosis-date'] = 'invalid date';
 				
 
-			return view('cat_form1',['inputs' =>$inputs, 'errors' => $errors,'symptoms' => $syminfos]);
+			return view('cat_form1', ['inputs' => $inputs,'symptoms' => $syminfos, 'errors' => $errors]);
 		}
 		else
 		{
-
-			$catFields=['created_time' => time(),
-						'parent_first_name' => $this->request->getPost('parent-first-name'),
-						'parent_last_name' => $this->request->getPost('parent-last-name'),
-						'fb_name' => $this->request->getPost('fb-name'),
-						'cat_name' => $this->request->getPost('cat-name'),
-						'cat_birthdate' => $this->request->getPost('cat-birthdate'),
-						'cat_birthdate_exact' => $this->request->getPost('cat-birthdate-exact'),
-						'cat_gender' => $this->request->getPost('cat-gender'),
-						'cat_fixed' => $this->request->getPost('cat-fixed'),
-						'cat_breed' => $this->request->getPost('cat-breed'),
-						'cat_diagnosis' => $this->request->getPost('cat-diagnosis'),
-						'cat_diagnosis_date' => $this->request->getPost('cat-diagnosis-date')];
+			$catFields = [	'created_time' => time(),
+							'parent_first_name' => $this->request->getPost('parent-first-name'),
+							'parent_last_name' => $this->request->getPost('parent-last-name'),
+							'fb_name' => $this->request->getPost('fb-name'),
+							'cat_name' => $this->request->getPost('cat-name'),
+							'cat_birthdate' => $this->request->getPost('cat-birthdate'),
+							'cat_birthdate_exact' => $this->request->getPost('cat-birthdate-exact'),
+							'cat_gender' => $this->request->getPost('cat-gender'),
+							'cat_fixed' => $this->request->getPost('cat-fixed'),
+							'cat_breed' => $this->request->getPost('cat-breed'),
+							'cat_diagnosis' => $this->request->getPost('cat-diagnosis'),
+							'cat_diagnosis_date' => $this->request->getPost('cat-diagnosis-date')];
 
 			if($this->request->getPost('cat-hash'))
 				$catFields['cat_hash'] = $this->request->getPost('cat-hash');
@@ -172,15 +167,14 @@ class Cat extends BaseController
 			$symEffusion = $this->request->getPost('symptoms-effusion');
 
 			$symptoms->dosavetmp(['cat_hash'=> $catFields['cat_hash'],
-								  'date'=>date("m/d/Y"),
-								  'symptoms_misc'=>$symMisc?$symMisc:[],
-								  'symptoms_misc_other'=>$this->request->getPost('symptoms-misc-other'),
-								  'symptoms_wet'=>$symWet?$symWet:[],
-								  'symptoms_neuro'=>$symNeuro?$symNeuro:[],
-								  'symptoms_ocular'=>$symOcular?$symOcular:[],
-								  'symptoms_FIP'=> $symFip?$symFip:[],
-								  'symptoms_effusion'=>$symEffusion?$symEffusion:[]
-								  ]);
+								  'date' => date("m/d/Y"),
+								  'symptoms_misc' => $symMisc?$symMisc:[],
+								  'symptoms_misc_other' => $this->request->getPost('symptoms-misc-other'),
+								  'symptoms_wet' => $symWet?$symWet:[],
+								  'symptoms_neuro' => $symNeuro?$symNeuro:[],
+								  'symptoms_ocular' => $symOcular?$symOcular:[],
+								  'symptoms_FIP' => $symFip?$symFip:[],
+								  'symptoms_effusion' => $symEffusion?$symEffusion:[]]);
 
 			return redirect()->to(site_url('cat/review_step2/'.$catFields['cat_hash']));
 		}
@@ -210,8 +204,7 @@ class Cat extends BaseController
 		$model = new TmpCatModel();
 
 		$file = $this->request->getFile('cat-picture');
-		
-		$result = $model->dosavepictmp($catHash,$file,$error);
+		$result = $model->dosavepictmp($catHash, $file, $error);
 				
 		if($result === FALSE)
 			return redirect()->to(site_url('cat/review_step2/'.$catHash.'/'.$error));
@@ -235,23 +228,19 @@ class Cat extends BaseController
 
 	public function add_tmp_eyes($catHash)
 	{
-
 		helper('form');
 
 		if(!$this->validate(['cat-eyes' => 'is_image[cat-eyes]']))
 			return redirect()->to(site_url('cat/review_step2/'.$catHash.'/upload+a+valid+image'));
 
-		$model = new TmpCatModel();
-			   
 		$file = $this->request->getFile('cat-eyes');
 		$date = $this->request->getPost('eye-date');
 		
 		if(!$this->checkDate($date))
 			return redirect()->to(site_url('cat/review_step2/'.$catHash.'/invalid+picture+date'));
 
-		$date = str_replace("/","_",$date);
-		
-		$result = $model->dosaveeyestmp($catHash,$file,$date,$error);
+		$model = new TmpCatModel();
+		$result = $model->dosaveeyestmp($catHash, $file, $date, $error);
 	
 		if($result === FALSE)
 			return redirect()->to(site_url('cat/review_step2/'.$catHash.'/'.$error));
@@ -265,7 +254,6 @@ class Cat extends BaseController
 		$symptoms = new SymptomsModel();
 		
 		$catData = $cat->doloadtmp($catHash);
-
 		if($catData === FALSE)
 		{
 			echo "cat not found $catHash \n";
@@ -275,27 +263,25 @@ class Cat extends BaseController
 		$syminfos = $symptoms->doloadtmp($catHash);
 
 		$images = $cat->doloadpicstmp($catHash);
-		$pictures=[];
-
+		$pictures = [];
 		foreach($images as $image)
 		{
-			array_push($pictures,['file'=>$image,'url'=> site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
+			array_push($pictures, ['file' => $image, 'url' => site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
 		}
 
 		$images = $cat->doloadeyestmp($catHash);
-		$eyes	= [];
-
+		$eyes = [];
 		foreach($images as $image)
 		{
-			array_push($eyes,['file'=>$image,'url'=>site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
+			array_push($eyes, ['file' => $image, 'url' => site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$eyeDate = $cat->dogeteyesdate($catHash);
 
 		if($eyeDate===FALSE)
-			$eyeDate= date("m/d/Y");
+			$eyeDate = date("m/d/Y");
 
-		echo view('cat_review1',['catHash'=>$catHash,'currentdate' =>$eyeDate, 'inputs' =>$catData ,'symptoms' => $syminfos, 'pictures' => $pictures, 'eyes' => $eyes,'error' => urldecode($error)]);
+		echo view('cat_review1',['catHash' => $catHash, 'inputs' =>$catData, 'symptoms' => $syminfos, 'pictures' => $pictures, 'eyes' => $eyes, 'currentdate' => $eyeDate, 'error' => urldecode($error)]);
 	}
 	
 	public function tmpxray($catHash,$pic)
@@ -328,7 +314,6 @@ class Cat extends BaseController
 
 	public function add_tmp_xray($catHash)
 	{
-
 		helper('form');
 
 		if(!$this->validate(['cat-xray' => 'is_image[cat-xray]']))
@@ -341,8 +326,7 @@ class Cat extends BaseController
 		if(!$this->checkDate($date))
 			return redirect()->to(site_url('cat/review_step3/'.$catHash.'/invalid+picture+date'));
 
-		$date = str_replace("/","_",$date);
-		$result = $model->dosavexraytmp($catHash,$file,$date,$error);
+		$result = $model->dosavexraytmp($catHash, $file, $date, $error);
 
 		if($result === FALSE )
 			return redirect()->to(site_url('cat/review_step3/'.$catHash.'/'.$error));
@@ -364,9 +348,7 @@ class Cat extends BaseController
 		if(!$this->checkDate($date))
 			return redirect()->to(site_url('cat/review_step3/'.$catHash.'/invalid+picture+date'));
 
-		$date = str_replace("/","_",$date);
-
-		$result = $model->dosaveechographytmp($catHash,$file,$date,$error);
+		$result = $model->dosaveechographytmp($catHash, $file, $date, $error);
 					
 		if($result === FALSE )
 			return redirect()->to(site_url('cat/review_step3/'.$catHash.'/'.$error));
@@ -383,33 +365,32 @@ class Cat extends BaseController
 		$syminfos = $symptoms->doloadtmp($catHash);
 
 		$images = $cat->doloadpicstmp($catHash);
-		$pictures=[];
+		$pictures = [];
 		foreach($images as $image)
 		{
-			array_push($pictures,['url'=>site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
+			array_push($pictures,['url' => site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
 		}
 
 		$images = $cat->doloadeyestmp($catHash);
-		$eyes=[];
+		$eyes = [];
 		foreach($images as $image)
 		{
-			array_push($eyes,['url'=>site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
+			array_push($eyes,['url' => site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadxraystmp($catHash);
-		$xrays=[];
+		$xrays = [];
 		foreach($images as $image)
 		{
-			array_push($xrays,['file'=>$image,'url' =>site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
+			array_push($xrays,['file' => $image, 'url' => site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadechographytmp($catHash);
-		$echographies=[];
+		$echographies = [];
 		foreach($images as $image)
 		{
-			array_push($echographies,['file'=>$image,'url'=>site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($echographies,['file' => $image, 'url' => site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
-
 
 		$xrayDate = $cat->dogetxraydate($catHash);
 
@@ -421,7 +402,7 @@ class Cat extends BaseController
 		if($echoDate===FALSE)
 			$echoDate= date("m/d/Y");
 
-		echo view('cat_review2',['catHash'=>$catHash,'xrayDate' => $xrayDate,'echoDate' => $echoDate ,'symptoms' => $syminfos,'error'=>urldecode($error), 'inputs' =>$catData , 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies]);
+		echo view('cat_review2',['catHash' => $catHash, 'symptoms' => $syminfos, 'inputs' => $catData , 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies,'xrayDate' => $xrayDate,'echoDate' => $echoDate, 'error'=>urldecode($error)]);
 	}
 
 	public function tmpblood($catHash,$pic)
@@ -440,7 +421,6 @@ class Cat extends BaseController
 	
 	public function add_tmp_blood($catHash)
 	{
-
 		helper('form');
 
 		if(!$this->validate(['cat-blood' => 'is_image[cat-blood]']))
@@ -448,15 +428,12 @@ class Cat extends BaseController
 
 		$model = new BloodModel();
 		$file = $this->request->getFile('cat-blood');
-
 		$date = $this->request->getPost('blood-date');
 
 		if(!$this->checkDate($date))
 			return redirect()->to(site_url('cat/review_step4/'.$catHash.'/invalid+picture+date'));
-
-		$date = str_replace("/","_",$date);
-		
-		$result = $model->dosavebloodtmp($catHash,$file,$date,$error);
+	
+		$result = $model->dosavebloodtmp($catHash, $file, $date, $error);
 			
 		if($result === FALSE)
 			return redirect()->to(site_url('cat/review_step4/'.$catHash.'/'.$error));
@@ -475,48 +452,48 @@ class Cat extends BaseController
 		$syminfos = $symptoms->doloadtmp($catHash);
 
 		$images = $cat->doloadpicstmp($catHash);
-		$pictures=[];
+		$pictures = [];
 		foreach($images as $image)
 		{
-			array_push($pictures,['url'=>site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
+			array_push($pictures,['url' => site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
 		}
 
 		$images = $cat->doloadeyestmp($catHash);
-		$eyes=[];
+		$eyes = [];
 		foreach($images as $image)
 		{
-			array_push($eyes,['url'=>site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($eyes,['url' => site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadxraystmp($catHash);
-		$xrays=[];
+		$xrays = [];
 		foreach($images as $image)
 		{
-			array_push($xrays,['url'=>site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($xrays,['url' => site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadechographytmp($catHash);
-		$echographies=[];
+		$echographies = [];
 		foreach($images as $image)
 		{
-			array_push($echographies,['url'=>site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($echographies,['url' => site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $blood->doloadbloodtmp($catHash);
-		$blood=[];
+		$blood = [];
 		foreach($images as $image)
 		{
-			array_push($blood,['file'=>$image,'url'=>site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($blood,['file' => $image, 'url' => site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$bloodDate = $cat->dogetblooddate($catHash);
 
-		if($bloodDate===FALSE)
-			$bloodDate= date("m/d/Y");
+		if($bloodDate === FALSE)
+			$bloodDate = date("m/d/Y");
 
 		$echoDate = $cat->dogetechodate($catHash);
 
-		return view('cat_review3',['catHash'=>$catHash,'symptoms' => $syminfos,'bloodDate' => $bloodDate,'error'=>urldecode($error), 'inputs' =>$catData , 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies, 'blood' => $blood]);
+		return view('cat_review3',['catHash' => $catHash, 'symptoms' => $syminfos, 'bloodDate' => $bloodDate, 'blood' => $blood, 'inputs' => $catData, 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies, 'error' => urldecode($error)]);
 	}
 
 
@@ -534,15 +511,15 @@ class Cat extends BaseController
 		$syminfos = $symptoms->doloadtmp($catHash);
 
 		$images = $blood->doloadbloodtmp($catHash);
-		$bloods=[];
+		$bloods = [];
 		foreach($images as $image)
 		{
-			array_push($bloods,['url'=>site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($bloods,['url' => site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$blood_vals = $blood->doloadtmp($catHash);
 
-		return view('cat_review4',['catHash'=>$catHash,'symptoms' => $syminfos, 'inputs' =>$catData , 'blood' => $bloods,'blood_vals' => $blood_vals,'errors'=>[]]);
+		return view('cat_review4',['catHash' => $catHash, 'inputs' => $catData , 'symptoms' => $syminfos, 'blood' => $bloods, 'blood_vals' => $blood_vals, 'errors'=>[]]);
 	}
 
 	public function check_step5($catHash)
@@ -553,12 +530,12 @@ class Cat extends BaseController
 		$symptoms = new SymptomsModel();
 
 		$images = $blood->doloadbloodtmp($catHash);
-		$bloods=[];
+		$bloods = [];
 		foreach($images as $image)
 		{
-			$bloodDate=str_replace("_","/",substr($image,41));
+			$bloodDate = str_replace("_","/",substr($image,41));
 
-			array_push($bloods,['url'=>site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date'=>$bloodDate]);
+			array_push($bloods, ['url' => site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date' => $bloodDate]);
 		}
 
 		if (! $this->validate([	'cat-red-cells' => "greater_than_equal_to[0]",
@@ -568,10 +545,10 @@ class Cat extends BaseController
 								'cat-lymphocytes' => "greater_than_equal_to[0]",
 								'cat-neutrophils' => "greater_than_equal_to[0]",
 								'cat-total-protein' =>"greater_than_equal_to[0]",
-								'cat-albumin' =>"greater_than_equal_to[0]",
-								'cat-globulin' =>"greater_than_equal_to[0]",
-								'cat-ag-ratio' =>"greater_than_equal_to[0]",
-								'cat-total-bilirubin' =>"greater_than_equal_to[0]"]))
+								'cat-albumin' => "greater_than_equal_to[0]",
+								'cat-globulin' => "greater_than_equal_to[0]",
+								'cat-ag-ratio' => "greater_than_equal_to[0]",
+								'cat-total-bilirubin' => "greater_than_equal_to[0]"]))
 		{
 
 			$catData = $cat->doloadtmp($catHash);
@@ -582,29 +559,27 @@ class Cat extends BaseController
 
 			foreach($blood_vals as $key => $input)
 			{
-				if(array_key_exists($key,$errors))
+				if(array_key_exists($key, $errors))
 					$blood_vals[$key]=0;
 			}
 
-			return view('cat_review4',['catHash'=>$catHash,'symptoms' => $syminfos, 'inputs' => $catData, 'blood' => $bloods,'blood_vals' => $blood_vals, 'errors' => $errors]);
+			return view('cat_review4', ['catHash' => $catHash, 'inputs' => $catData, 'symptoms' => $syminfos, 'blood' => $bloods, 'blood_vals' => $blood_vals, 'errors' => $errors]);
 		}
 		else
 		{
-			$bloodHash=$blood->dosavetmp([
-				'cat-hash' => $catHash,
-				'cat-blood-date' => $bloodDate,
-				'cat-red-cells' => $this->request->getPost('cat-red-cells'),
-				'cat-hematocrit' => $this->request->getPost('cat-hematocrit'),
-				'cat-hemaglobin' => $this->request->getPost('cat-hemaglobin'),
-				'cat-white-cells' => $this->request->getPost('cat-white-cells'),
-				'cat-lymphocytes' => $this->request->getPost('cat-lymphocytes'),
-				'cat-neutrophils' => $this->request->getPost('cat-neutrophils'),
-				'cat-total-protein' =>$this->request->getPost('cat-total-protein'),
-				'cat-albumin' =>$this->request->getPost('cat-albumin'),
-				'cat-globulin' =>$this->request->getPost('cat-globulin'),
-				'cat-ag-ratio' =>$this->request->getPost('cat-ag-ratio'),
-				'cat-total-bilirubin' =>$this->request->getPost('cat-total-bilirubin')
-			]);
+			$blood->dosavetmp([ 'cat_hash' => $catHash,
+								'cat_blood_date' => $bloodDate,
+								'cat_red_cells' => $this->request->getPost('cat-red-cells'),
+								'cat_hematocrit' => $this->request->getPost('cat-hematocrit'),
+								'cat_hemaglobin' => $this->request->getPost('cat-hemaglobin'),
+								'cat_white_cells' => $this->request->getPost('cat-white-cells'),
+								'cat_lymphocytes' => $this->request->getPost('cat-lymphocytes'),
+								'cat_neutrophils' => $this->request->getPost('cat-neutrophils'),
+								'cat_total_protein' => $this->request->getPost('cat-total-protein'),
+								'cat_albumin' => $this->request->getPost('cat-albumin'),
+								'cat_globulin' => $this->request->getPost('cat-globulin'),
+								'cat_ag_ratio' => $this->request->getPost('cat-ag-ratio'),
+								'cat_total_bilirubin' => $this->request->getPost('cat-total-bilirubin')]);
 
 			return redirect()->to(site_url('cat/review_step6/'.$catHash));
 		}
@@ -624,28 +599,28 @@ class Cat extends BaseController
 		$pictures=[];
 		foreach($images as $image)
 		{
-			array_push($pictures,['url'=>site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
+			array_push($pictures, ['url' => site_url('cat/tmpcatpic/'.$catHash.'/'.$image)]);
 		}
 
 		$images = $cat->doloadeyestmp($catHash);
 		$eyes=[];
 		foreach($images as $image)
 		{
-			array_push($eyes,['url'=>site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($eyes, ['url' => site_url('cat/tmpeyespic/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadxraystmp($catHash);
 		$xrays=[];
 		foreach($images as $image)
 		{
-			array_push($xrays,['url'=>site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($xrays, ['url' => site_url('cat/tmpxray/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		$images = $cat->doloadechographytmp($catHash);
 		$echographies=[];
 		foreach($images as $image)
 		{
-			array_push($echographies,['url'=>site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+			array_push($echographies, ['url' => site_url('cat/tmpechography/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 		}
 
 		if($cat->hastmpBlood($catHash))
@@ -654,20 +629,19 @@ class Cat extends BaseController
 			$bloods=[];
 			foreach($images as $image)
 			{
-				array_push($bloods,['url'=>site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date'=>str_replace("_","/",substr($image,41))]);
+				array_push($bloods, ['url' => site_url('cat/tmpblood/'.$catHash.'/'.$image), 'date' => str_replace("_","/",substr($image,41))]);
 			}
-
 			$blood_vals = $blood->doloadtmp($catHash);
 			$has_blood = TRUE;
 		}
 		else
 		{
-			$bloods=[];
+			$bloods = [];
 			$blood_vals = [];
 			$has_blood = FALSE;
 		}
 
-		return view('cat_review5',['catHash'=>$catHash,'symptoms' => $syminfos,'has_blood'=>$has_blood, 'inputs' =>$catData , 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies, 'blood' => $bloods,'blood_vals' => $blood_vals,'errors'=>[]]);
+		return view('cat_review5',['catHash' => $catHash, 'symptoms' => $syminfos, 'inputs' => $catData, 'pictures' => $pictures, 'eyes' => $eyes, 'xrays' => $xrays, 'echographies' => $echographies, 'has_blood' => $has_blood, 'blood' => $bloods, 'blood_vals' => $blood_vals, 'errors' => []]);
 	}
 
 
@@ -683,18 +657,19 @@ class Cat extends BaseController
 		{
 			$blood = new BloodModel();
 
-			$cat->validate_tmp_cat($catHash, $userHash);
-			$blood->validate_tmp_cat($catHash, $userHash);
-			$symptoms->validate_tmp_cat($catHash, $userHash);
+			$newCatHash = $cat->validate_tmp_cat ($catHash, $userHash);
+			$blood->validate_tmp_cat			 ($catHash, $newCatHash, $userHash);
+			$symptoms->validate_tmp_cat			 ($catHash, $newCatHash, $userHash);
+
 			return redirect()->to(site_url('MyCat/index'));
 		}
 		
 		$catData = $cat->doloadtmp($catHash);
 		$syminfos = $symptoms->doloadtmp($catHash);
 
-		$infos = ['user-email' => "",'user-pw' => "",'user-pw2' => "",'user-weight-unit'=>'kg','user-temp-unit'=>'celsius'];
+		$infos = ['user-email' => "", 'user-pw' => "", 'user-pw2' => "", 'user-weight-unit' => 'kg', 'user-temp-unit' => 'celsius'];
 
-		return view('cat_register', ['catHash'=>$catHash,'symptoms' => $syminfos,'infos'=>$infos,'inputs' =>$catData,'errors'=>[]]);
+		return view('cat_register', ['catHash' => $catHash, 'symptoms' => $syminfos, 'infos' => $infos, 'inputs' => $catData, 'errors' => []]);
 	}
 
 	public function do_register($catHash)
@@ -702,7 +677,6 @@ class Cat extends BaseController
 		helper('form');
 		$cat = new TmpCatModel();
 		$symptoms = new SymptomsModel();
-		
 		
 		$catData = $cat->doloadtmp($catHash);
 		$syminfos = $symptoms->doloadtmp($catHash);
@@ -715,21 +689,21 @@ class Cat extends BaseController
 								'user-timezone' => 'timezone',
 								'user-pw2' => "matches[user-pw]"]))
 		{
-			return view('cat_register', ['catHash'=>$catHash,'symptoms' => $syminfos,'infos'=>$this->request->getPost(),'inputs' =>$catData, 'errors' => $this->validator->getErrors()]);
+			return view('cat_register', ['catHash' => $catHash, 'symptoms' => $syminfos, 'infos' => $this->request->getPost(), 'inputs' => $catData, 'errors' => $this->validator->getErrors()]);
 		}
 		else
 		{
 			$user = new UserModel();
 
-			$infos = $user->checkId(['email'=>$this->request->getPost('user-email'),'pw'=>$this->request->getPost('user-pw')]);
+			$infos = $user->checkId(['email' => $this->request->getPost('user-email'), 'pw' => $this->request->getPost('user-pw')]);
 
 			if($infos !== FALSE)
 			{
 				$blood = new BloodModel();
 
-				$cat->validate_tmp_cat($catHash, $infos['user-hash']);
-				$blood->validate_tmp_cat($catHash, $infos['user-hash']);
-				$symptoms->validate_tmp_cat($catHash, $infos['user-hash']);
+				$newCatHash = $cat->validate_tmp_cat($catHash, $infos['user-hash']);
+				$blood->validate_tmp_cat			($catHash ,$newCatHash, $infos['user-hash']);
+				$symptoms->validate_tmp_cat			($catHash, $newCatHash, $infos['user-hash']);
 
 				return redirect()->to(site_url('MyCat/index'));
 			}
@@ -739,13 +713,12 @@ class Cat extends BaseController
 				{
 					$errors['user-email'] = 'email already used';
 					$errors['user-pw'] = 'wrong password';
-					return view('cat_register', ['catHash'=>$catHash,'symptoms' => $syminfos,'infos'=>$this->request->getPost(),'inputs' =>$catData, 'errors' => $errors]);
+					return view('cat_register', ['catHash' => $catHash, 'inputs'  => $catData, 'symptoms' => $syminfos, 'infos' => $this->request->getPost(), 'errors' => $errors]);
 				}
 				else
 				{
 					$valid = new ValidationModel();
-					$validationCode  = $valid->create_code($catHash,$this->request->getPost('user-email'),$this->request->getPost('user-pw'),$this->request->getPost('user-weight-unit'),$this->request->getPost('user-temp-unit'),$this->request->getPost('user-timezone'));
-
+					$validationCode = $valid->create_code($catHash, $this->request->getPost('user-email'), $this->request->getPost('user-pw'), $this->request->getPost('user-weight-unit'), $this->request->getPost('user-temp-unit'), $this->request->getPost('user-timezone'));
 					return redirect()->to(site_url('cat/prevalidate_cat/'.$validationCode));
 				}
 			}
@@ -755,10 +728,8 @@ class Cat extends BaseController
 
 	public function prevalidate_cat($validationCode)
 	{
-		return view('prevalidate',['valCode'=>$validationCode]);
+		return view('prevalidate',['valCode' => $validationCode]);
 	}
-
-
 
 	public function validate_cat($validationCode)
 	{
@@ -774,19 +745,24 @@ class Cat extends BaseController
 		{
 			$result = $user->dosave(['email' => $infos['user-email'],
 									 'pwhash' => $infos['user-pw-hash'],
-									 'weight-unit' => $infos['user-weight-unit'],
-									 'temp-unit' => $infos['user-temp-unit'],
+									 'weight_unit' => $infos['user-weight-unit'],
+									 'temp_unit' => $infos['user-temp-unit'],
 									 'timezone' => $infos['user-timezone'],
-									 'creation-time'=>$infos['user-creation-time']]);
+									 'creation_time'=>$infos['user-creation-time']]);
 
 			if($result !== FALSE)
 			{
-				$cat->validate_tmp_cat($infos['cat-hash'], $result);
-				$blood->validate_tmp_cat($infos['cat-hash'], $result);
-				$symptoms->validate_tmp_cat($infos['cat-hash'], $result);
+				$newCatHash = $cat->validate_tmp_cat($infos['cat-hash'], $result);
+
+				$blood->validate_tmp_cat			($infos['cat-hash'], $newCatHash, $result);
+				$symptoms->validate_tmp_cat			($infos['cat-hash'], $newCatHash, $result);
 
 				return redirect()->to(site_url('MyCat/signin'));
 			}
+		}
+		else
+		{
+			echo 'validation code invalid';
 		}
 	}
 	

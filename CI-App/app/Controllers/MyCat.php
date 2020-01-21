@@ -40,10 +40,8 @@ class MyCat extends BaseController
 
 		foreach($my_cats as $my_cat)
 		{
-			$theCat = $cat->doget($userHash,$my_cat);
-			$pics = $cat->dogetpics($userHash,$my_cat);
-
-			$theCat['cat-hash'] = $my_cat;
+			$theCat = $cat->doget($userHash, $my_cat);
+			$pics = $cat->dogetpics($userHash, $my_cat);
 
 			if(count($pics)>0)
 			{
@@ -53,10 +51,12 @@ class MyCat extends BaseController
 			{
 				$theCat['picture'] = base_url().'assets/img/cat_default.png';
 			}
+
+			$theCat['cat-hash'] = $my_cat;
 			
-			array_push($MyCats,$theCat);
+			array_push($MyCats, $theCat);
 		}
-		return view('MyCat/my_cats',['cats'=>$MyCats]);
+		return view('MyCat/my_cats',['cats' => $MyCats]);
 	}
 
 
@@ -68,10 +68,9 @@ class MyCat extends BaseController
 		if($userHash)
 			return redirect()->to(site_url('MyCat/index'));
 
-		$infos=['user-email'=>'','user-pw'=>''];
+		$infos=['user-email' => '', 'user-pw' => ''];
 
-		return view('MyCat/login', ['errors'=>[],'loginError'=>FALSE,'infos'=>$infos]);
-
+		return view('MyCat/login', ['infos' => $infos, 'loginError' => FALSE, 'errors' => []]);
 	}
 
 	public function signout()
@@ -84,20 +83,21 @@ class MyCat extends BaseController
 	public function do_login()
 	{
 		$user = new UserModel();
-		$email = $this->request->getPost('user-email');
-		$pw	   = $this->request->getPost('user-pw');
 
-		$userInfos = $user->checkId(['email'=>$email,'pw'=>$pw]);
+		$email = $this->request->getPost('user-email');
+		$pw	= $this->request->getPost('user-pw');
+
+		$userInfos = $user->checkId(['email' => $email, 'pw' => $pw]);
 
 		if($userInfos === FALSE)
 		{
-			return view('MyCat/login', ['errors'=>[],'loginError'=>TRUE,'infos'=>['user-email'=>$email,'user-pw'=>'']]);
+			return view('MyCat/login', [ 'infos' => ['user-email' => $email, 'user-pw' => ''], 'loginError' => TRUE, 'errors' => []]);
 		}
 		else
 		{
 			$session = \Config\Services::session();
 			$session->start();
-			$session->set(['user-hash'=>$userInfos['user-hash']]);
+			$session->set(['user-hash' => $userInfos['user-hash']]);
 
 			return redirect()->to(site_url('MyCat/index'));
 		}
@@ -128,6 +128,7 @@ class MyCat extends BaseController
 		$this->response->setHeader('cache-control',"public, max-age=3600");
 		readfile(WRITEPATH.'/data/users/'.$userHash.'/'.$catHash.'/eyes/'.urldecode($date).'/'.urldecode($pic));
 	}
+
 	public function bloodpic($catHash,$date,$pic)
 	{
 		$session = \Config\Services::session();
@@ -140,6 +141,7 @@ class MyCat extends BaseController
 		$this->response->setHeader('cache-control',"public, max-age=3600");
 		readfile(WRITEPATH.'/data/users/'.$userHash.'/'.$catHash.'/bloods/'.urldecode($date).'/'.urldecode($pic));
 	}
+
 	public function xrayspic($catHash,$date,$pic)
 	{
 		$session = \Config\Services::session();
@@ -152,6 +154,7 @@ class MyCat extends BaseController
 		$this->response->setHeader('cache-control',"public, max-age=3600");
 		readfile(WRITEPATH.'/data/users/'.$userHash.'/'.$catHash.'/xrays/'.urldecode($date).'/'.urldecode($pic));
 	}
+
 	public function echographypic($catHash,$date,$pic)
 	{
 		$session = \Config\Services::session();
@@ -164,7 +167,6 @@ class MyCat extends BaseController
 		$this->response->setHeader('cache-control',"public, max-age=3600");
 		readfile(WRITEPATH.'/data/users/'.$userHash.'/'.$catHash.'/echos/'.urldecode($date).'/'.urldecode($pic));
 	}
-	
 
 	public function my_cat($catHash)
 	{
@@ -180,16 +182,15 @@ class MyCat extends BaseController
 		$theCat = $cat->doget($userHash,$catHash);
 		$pics = $cat->dogetpics($userHash,$catHash);
 
-		$pictures=[];
-
-		$theCat['cat-hash'] = $catHash;
-
 		$theCat['pictures'] = [];
 		foreach($pics as $image)
 		{
-			array_push($theCat['pictures'],['url'=>site_url('MyCat/catpic/'.$catHash.'/'.$image)]);
+			array_push($theCat['pictures'], ['url' => site_url('MyCat/catpic/'.$catHash.'/'.$image)]);
 		}
-		return view('MyCat/my_cat',['cat'=>$theCat]);
+
+		$theCat['cat-hash'] = $catHash;
+
+		return view('MyCat/my_cat',['cat' => $theCat]);
 	}
 
 	public function my_infos()
@@ -247,22 +248,19 @@ class MyCat extends BaseController
 			$errors = $this->validator->getErrors();
 
 			if($mailUsed)
-				$errors['user-email']='email already used';
+				$errors['user-email'] = 'email already used';
 
 
-			return view('MyCat/my_infos',['infos'=>$userInfos, 'errors' => $errors]);
+			return view('MyCat/my_infos',['infos' => $userInfos, 'errors' => $errors]);
 		}
 		else
 		{
-			
-
-			$result = $user->doupdate ($userHash, 
-										['email' => $this->request->getPost('user-email'),
-										 'pwhash' => $userInfos['pwhash'],
-										 'weight-unit' => $this->request->getPost('user-weight-unit'),
-										 'temp-unit' => $this->request->getPost('user-temp-unit'),
-										 'timezone' => $this->request->getPost('user-timezone'),
-										 'creation-time'=> $userInfos['creation-time']]);
+			$result = $user->doupdate ($userHash, [	'email' => $this->request->getPost('user-email'),
+													'pwhash' => $userInfos['pwhash'],
+													'weight-unit' => $this->request->getPost('user-weight-unit'),
+													'temp-unit' => $this->request->getPost('user-temp-unit'),
+													'timezone' => $this->request->getPost('user-timezone'),
+													'creation-time'=> $userInfos['creation-time']]);
 
 			return redirect()->to(site_url('MyCat/my_infos'));
 
@@ -272,7 +270,6 @@ class MyCat extends BaseController
 	public function set_my_pw()
 	{	
 		$session = \Config\Services::session();
-		
 		$userHash = $session->get('user-hash');
 
 		if(($userHash === FALSE)||($userHash === NULL))
@@ -281,7 +278,6 @@ class MyCat extends BaseController
 		helper('form');
 
 		$user = new UserModel();
-
 		$userInfos = $user->doget($userHash);
 
 		if(!$userInfos)
@@ -294,7 +290,7 @@ class MyCat extends BaseController
 								'user-pw2' => "matches[user-pw]"]))
 		{
 			
-			return view('MyCat/my_infos',['infos'=>$userInfos, 'errors' => $this->validator->getErrors()]);
+			return view('MyCat/my_infos',['infos' => $userInfos, 'errors' => $this->validator->getErrors()]);
 		}
 		else
 		{
@@ -315,20 +311,20 @@ class MyCat extends BaseController
 		$cat = new CatModel();
 		$symptoms = new SymptomsModel();
 				
-		$theCat = $cat->doget($userHash,$catHash);
+		$theCat = $cat->doget($userHash, $catHash);
 		
-		$symDates = $symptoms->doloaddates($userHash,$catHash);
+		$symDates = $symptoms->doloaddates($userHash, $catHash);
 		$Symptoms = [];
 
 		foreach($symDates as $symDate)
 		{
-			$values= $symptoms->doloaddate($userHash,$catHash,$symDate);
-			array_push($Symptoms,['symptoms-date' => $symDate,'symptoms'=>$values]);
+			$values = $symptoms->doloaddate($userHash,$catHash,$symDate);
+			array_push($Symptoms, ['symptoms-date' => $symDate, 'symptoms' => $values]);
 		}
 
 		$theCat['cat-hash'] = $catHash;
 		
-		return view('MyCat/cat_symptoms',['cat'=>$theCat,'symptomsDates'=>$Symptoms]);
+		return view('MyCat/cat_symptoms',['cat' => $theCat, 'symptomsDates' => $Symptoms]);
 	}
 	
 
@@ -343,19 +339,18 @@ class MyCat extends BaseController
 		helper('form');
 
 		$isValid=$this->validate([	'cat-weight' => 'greater_than[0]',
-								'cat-temperature' => 'greater_than[0]',
-								'cat-activity' => 'greater_than_equal_to[0]|less_than_equal_to[5]',
-								'cat-appetite' => 'greater_than_equal_to[0]|less_than_equal_to[5]']);
+									'cat-temperature' => 'greater_than[0]',
+									'cat-activity' => 'greater_than_equal_to[0]|less_than_equal_to[5]',
+									'cat-appetite' => 'greater_than_equal_to[0]|less_than_equal_to[5]']);
 
-		$idate=str_replace('_','/',$date);
+		$date = str_replace('_','/',$date);
 
+		$dateError = FALSE;
 
-		$dateError=FALSE;
-
-		if(!$this->checkDate($idate))
+		if(!$this->checkDate($date))
 		{
-			$dateError=TRUE;
-			$isValid=FALSE;
+			$dateError = TRUE;
+			$isValid = FALSE;
 		}
 		
 		if(!$isValid)
@@ -371,8 +366,8 @@ class MyCat extends BaseController
 
 			foreach($metricsDates as $metricsDate)
 			{
-				$values= $metrics->doloaddate($userHash,$catHash,$metricsDate);
-				array_push($Metrics,['metrics-date' => $metricsDate,'values'=>$values]);
+				$values = $metrics->doloaddate($userHash,$catHash,$metricsDate);
+				array_push($Metrics, ['metrics-date' => $metricsDate,'values'=>$values]);
 			}
 
 			$theCat['cat-hash'] = $catHash;
@@ -380,23 +375,22 @@ class MyCat extends BaseController
 			$errors = $this->validator->getErrors();
 			
 			if($dateError)
-				$errors['date']='invalid date';
+				$errors['date'] = 'invalid date';
 
-			return  view('MyCat/cat_infos',['cat'=>$theCat,'catinfos'=> $this->request->getPost(),'metrics'=>$Metrics,'userinfos'=> $userInfos, 'errors' => $errors]);
+			return  view('MyCat/cat_infos',['cat' => $theCat, 'catinfos' => $this->request->getPost(), 'metrics' => $Metrics, 'userinfos' => $userInfos, 'errors' => $errors]);
 		}
 		else
 		{
 			$metrics = new MetricsModel();
-			$result = $metrics->dosave ($userHash,$catHash,['cat-hash'=>$catHash,
-															'date'=>$idate,
-															'cat-weight'=>$this->request->getPost('cat-weight'),
-															'cat-temperature'=>$this->request->getPost('cat-temperature'),
-															'cat-activity'=>$this->request->getPost('cat-activity'),
-															'cat-appetite'=>$this->request->getPost('cat-appetite')]);
+			$result = $metrics->dosave ($userHash, $catHash, [	'cat_hash' => $catHash,
+																'date' => $date,
+																'cat_weight' => $this->request->getPost('cat-weight'),
+																'cat_temperature' => $this->request->getPost('cat-temperature'),
+																'cat_activity' => $this->request->getPost('cat-activity'),
+																'cat_appetite' => $this->request->getPost('cat-appetite')]);
 
 			return redirect()->to(site_url('MyCat/my_cat_infos/'.$catHash));
 		}
-		
 	}
 
 	public function my_cat_del_metrics_date($catHash, $metricsDate)
@@ -407,10 +401,12 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-		if($this->checkDate(str_replace('_','/',$metricsDate)))
+		$metricsDate = str_replace('_', '/', $metricsDate);
+
+		if($this->checkDate($metricsDate))
 		{
 			$metrics = new MetricsModel();
-			$metrics->delmetricsdate($userHash,$catHash, $metricsDate);
+			$metrics->delmetricsdate($userHash, $catHash, $metricsDate);
 		}
 
 		return redirect()->to(site_url('MyCat/my_cat_infos/'.$catHash));
@@ -436,13 +432,13 @@ class MyCat extends BaseController
 
 		foreach($metricsDates as $metricsDate)
 		{
-			$values= $metrics->doloaddate($userHash,$catHash,$metricsDate);
-			array_push($Metrics,['metrics-date' => $metricsDate,'metrics-date-url' => str_replace('/','_',$metricsDate),'values'=>$values]);
+			$values = $metrics->doloaddate($userHash,$catHash,$metricsDate);
+			array_push($Metrics,['metrics-date' => $metricsDate, 'metrics-date-url' => str_replace('/','_',$metricsDate), 'values' => $values]);
 		}
 
 		if($date !== NULL)
 		{
-			$idate=str_replace('_','/',$date);
+			$idate = str_replace('_','/',$date);
 
 			if($this->checkDate($idate))
 				$mDate = $date;
@@ -450,18 +446,18 @@ class MyCat extends BaseController
 				$mDate = date('m/d/Y');
 		}
 		else
-			$mDate=date('m/d/Y');
+			$mDate = date('m/d/Y');
 
 		$catinfos = $metrics->doloaddate($userHash,$catHash,$mDate);
 
 		if($catinfos === FALSE)
-			$catinfos = ['date'=>$mDate,'cat-weight'=>'','cat-temperature'=>'','cat-activity'=>0,'cat-appetite'=>0];
+			$catinfos = ['date' => $mDate, 'cat-weight' => '', 'cat-temperature' => '', 'cat-activity' => 0, 'cat-appetite' => 0];
 
 		$catinfos['metrics-date-url'] = str_replace('/','_',$mDate);
 
 		$theCat['cat-hash'] = $catHash;
 
-		return view('MyCat/cat_infos',['cat'=>$theCat,'cat'=> $theCat,'catinfos'=> $catinfos,'metrics'=>$Metrics,'userinfos'=> $userInfos,'errors'=>[]]);
+		return view('MyCat/cat_infos',['cat' => $theCat, 'cat' => $theCat, 'catinfos' => $catinfos, 'metrics' => $Metrics, 'userinfos '=> $userInfos, 'errors' =>[]]);
 	}
 
 	
@@ -475,12 +471,11 @@ class MyCat extends BaseController
 
 		helper('form');
 
-
 		$date = $this->request->getPost('blood-date');
 
 		if(!$this->checkDate($date))
 		{
-			$date=date('m/d/Y');
+			$date = date('m/d/Y');
 			return redirect()->to(site_url('MyCat/my_cat_edit_blood/'.$catHash.'/'.$date.'/invalid+picture+date'));
 		}
 
@@ -507,7 +502,6 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-
 		helper('form');
 
 		$blood = new BloodModel();
@@ -518,14 +512,12 @@ class MyCat extends BaseController
 								'cat-white-cells' => "greater_than_equal_to[0]",
 								'cat-lymphocytes' => "greater_than_equal_to[0]",
 								'cat-neutrophils' => "greater_than_equal_to[0]",
-								'cat-total-protein' =>"greater_than_equal_to[0]",
-								'cat-albumin' =>"greater_than_equal_to[0]",
-								'cat-globulin' =>"greater_than_equal_to[0]",
-								'cat-ag-ratio' =>"greater_than_equal_to[0]",
-								'cat-total-bilirubin' =>"greater_than_equal_to[0]"]))
+								'cat-total-protein' => "greater_than_equal_to[0]",
+								'cat-albumin' => "greater_than_equal_to[0]",
+								'cat-globulin' => "greater_than_equal_to[0]",
+								'cat-ag-ratio' => "greater_than_equal_to[0]",
+								'cat-total-bilirubin' => "greater_than_equal_to[0]"]))
 		{
-
-			
 			$cat = new CatModel();
 			$user = new UserModel();
 
@@ -533,42 +525,39 @@ class MyCat extends BaseController
 			$userInfos = $user->doget($userHash);	
 
 			$blood_vals = $this->request->getPost();
-			$bloodDate = str_replace('/','_',$blood_vals['blood-date']);
 
 			$pictures = [];
-			$images = $blood->doloaddatepics($userHash,$catHash,$bloodDate);
+			$images = $blood->doloaddatepics($userHash, $catHash, $blood_vals['blood-date']);
 
 			if($images !== FALSE)
 			{
 				foreach($images as $image)
 				{
-					array_push($pictures,['file'=>$image,'url'=>site_url('MyCat/bloodpic/'.$catHash.'/'.$bloodDate.'/'.$image),'date'=>$bloodDate]);
+					array_push($pictures,['file' => $image, 'url' => site_url('MyCat/bloodpic/'.$catHash.'/'.str_replace('/','_',$blood_vals['blood-date']).'/'.$image), 'date' => $blood_vals['blood-date']]);
 				}
 			}
 
 			$errors = $this->validator->getErrors();
 
-			$Blood = ['blood-date' => str_replace('_','/',$bloodDate),'blood-date-url' => $bloodDate,'values'=>$values,'pictures'=> $pictures];
+			$Blood = ['blood-date' => $blood_vals['blood-date'], 'blood-date-url' =>  str_replace('/','_',$blood_vals['blood-date'], 'values' => $values, 'pictures' => $pictures];
 
-			return view('MyCat/my_new_blood',['infos'=>$userInfos,'cat'=>$theCat,'blood'=> $Blood,'errors'=>$errors]);
+			return view('MyCat/my_new_blood',['infos' => $userInfos, 'cat' => $theCat, 'blood' => $Blood, 'errors' => $errors]);
 		}
 		else
 		{
-			$bloodHash=$blood->dosave($userHash,$catHash,[
-				'cat-hash' => $catHash,
-				'cat-blood-date' => $this->request->getPost('blood-date'),
-				'cat-red-cells' => $this->request->getPost('cat-red-cells'),
-				'cat-hematocrit' => $this->request->getPost('cat-hematocrit'),
-				'cat-hemaglobin' => $this->request->getPost('cat-hemaglobin'),
-				'cat-white-cells' => $this->request->getPost('cat-white-cells'),
-				'cat-lymphocytes' => $this->request->getPost('cat-lymphocytes'),
-				'cat-neutrophils' => $this->request->getPost('cat-neutrophils'),
-				'cat-total-protein' =>$this->request->getPost('cat-total-protein'),
-				'cat-albumin' =>$this->request->getPost('cat-albumin'),
-				'cat-globulin' =>$this->request->getPost('cat-globulin'),
-				'cat-ag-ratio' =>$this->request->getPost('cat-ag-ratio'),
-				'cat-total-bilirubin' =>$this->request->getPost('cat-total-bilirubin')
-			]);
+			$blood->dosave($userHash, $catHash,	[	'cat_hash' => $catHash,
+													'cat_blood_date' => $this->request->getPost('blood-date'),
+													'cat_red_cells' => $this->request->getPost('cat-red-cells'),
+													'cat_hematocrit' => $this->request->getPost('cat-hematocrit'),
+													'cat_hemaglobin' => $this->request->getPost('cat-hemaglobin'),
+													'cat_white_cells' => $this->request->getPost('cat-white-cells'),
+													'cat_lymphocytes' => $this->request->getPost('cat-lymphocytes'),
+													'cat_neutrophils' => $this->request->getPost('cat-neutrophils'),
+													'cat_total_protein' =>$this->request->getPost('cat-total-protein'),
+													'cat_albumin' => $this->request->getPost('cat-albumin'),
+													'cat_globulin' => $this->request->getPost('cat-globulin'),
+													'cat_ag_ratio' => $this->request->getPost('cat-ag-ratio'),
+													'cat_total_bilirubin' => $this->request->getPost('cat-total-bilirubin')]);
 
 			return redirect()->to(site_url('MyCat/my_cat_blood/'.$catHash));
 		}
@@ -582,10 +571,12 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-		if($this->checkDate(str_replace('_','/',$bloodDate)))
+		$bloodDate=str_replace('_','/',$bloodDate);
+
+		if($this->checkDate($bloodDate))
 		{
 			$blood = new BloodModel();
-			$blood->delblooddate($userHash,$catHash, $bloodDate);
+			$blood->delblooddate($userHash, $catHash, $bloodDate);
 		}
 
 		return redirect()->to(site_url('MyCat/my_cat_blood/'.$catHash));
@@ -599,6 +590,18 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
+		if($date !== NULL)
+		{
+			$date = str_replace('_','/',$date);
+
+			if($this->checkDate($date))
+				$bloodDate = $date;
+			else
+				$bloodDate = date('m/d/Y');
+		}
+		else
+			$bloodDate = date('m/d/Y');
+
 		$blood = new BloodModel();
 		$cat = new CatModel();
 		$user = new UserModel();
@@ -606,34 +609,23 @@ class MyCat extends BaseController
 		$theCat = $cat->doget($userHash,$catHash);
 		$userInfos = $user->doget($userHash);	
 
-		if($date !== NULL)
-		{
-			if($this->checkDate(str_replace('_','/',$date)))
-				$bloodDate = $date;
-			else
-				$bloodDate = date('m_d_Y');
-		}
-		else
-			$bloodDate=date('m_d_Y');
-
-		
-		$values = $blood->doloaddate($userHash,$catHash,$bloodDate);
+		$values = $blood->doloaddate($userHash, $catHash, $bloodDate);
 		
 		if($values===FALSE)
 			$values = $blood->defaultValues();
 
 		$pictures = [];
-		$images = $blood->doloaddatepics($userHash,$catHash,$bloodDate);
+		$images = $blood->doloaddatepics($userHash, $catHash, $bloodDate);
 
 		if($images !== FALSE)
 		{
 			foreach($images as $image)
 			{
-				array_push($pictures,['file'=>$image,'url'=>site_url('MyCat/bloodpic/'.$catHash.'/'.$bloodDate.'/'.$image),'date'=>str_replace('_','/',$date)]);
+				array_push($pictures,['file' => $image, 'url' => site_url('MyCat/bloodpic/'.$catHash.'/'.str_replace('/','_',$bloodDate).'/'.$image), 'date' => $bloodDate]);
 			}
 		}
 
-		$Blood = ['blood-date' => str_replace('_','/',$bloodDate),'blood-date-url' => $bloodDate,'values'=>$values,'pictures'=> $pictures];
+		$Blood = ['blood-date' => bloodDate, 'blood-date-url' => str_replace('/','_',$bloodDate), 'values' => $values, 'pictures' => $pictures];
 
 		$theCat['cat-hash'] = $catHash;
 
@@ -642,7 +634,7 @@ class MyCat extends BaseController
 		if($error)
 			$errors['cat-blood'] = $error;
 
-		return view('MyCat/my_new_blood',['infos'=>$userInfos,'cat'=>$theCat,'blood'=> $Blood,'errors'=>$errors]);
+		return view('MyCat/my_new_blood',['infos' => $userInfos, 'cat' => $theCat, 'blood' => $Blood, 'errors' => $errors]);
 	}
 
 	public function my_cat_blood($catHash)
@@ -667,18 +659,16 @@ class MyCat extends BaseController
 			$images= $blood->doloaddatepics($userHash,$catHash,$bloodDate);
 
 			$pictures=[];
-
 			foreach($images as $image)
 			{
-				array_push($pictures,['url'=>site_url('MyCat/bloodpic/'.$catHash.'/'.str_replace('/','_',$bloodDate).'/'.$image)]);
+				array_push($pictures, ['file' => $image, 'url' => site_url('MyCat/bloodpic/'.$catHash.'/'.str_replace('/','_',$bloodDate).'/'.$image)]);
 			}
-
-			array_push($Bloods,['blood-date' => $bloodDate,'blood-date-url' => str_replace("/","_",$bloodDate),'values'=>$values,'pictures'=> $pictures]);
+			array_push($Bloods, ['blood-date' => $bloodDate, 'blood-date-url' => str_replace("/","_",$bloodDate), 'values' => $values, 'pictures' => $pictures]);
 		}
 
 		$theCat['cat-hash'] = $catHash;
 
-		return view('MyCat/cat_bloods',['cat'=>$theCat,'bloods'=> $Bloods]);
+		return view('MyCat/cat_bloods', ['cat' => $theCat, 'bloods' => $Bloods]);
 	}
 
 	public function add_eyes_pic($catHash)
@@ -689,14 +679,12 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-		helper('form');
-
 		$date = $this->request->getPost('eyes-date');
 
 		if(!$this->checkDate($date))
-		{
 			return redirect()->to(site_url('MyCat/my_cat_eyes/'.$catHash.'/invalid+picture+date'));
-		}
+
+		helper('form');
 
 		if(!$this->validate(['cat-eyes' => 'is_image[cat-eyes]']))
 			return redirect()->to(site_url('MyCat/my_cat_eyes/'.$catHash.'/upload+a+valid+image'));
@@ -705,7 +693,7 @@ class MyCat extends BaseController
 
 		$model = new CatModel();
 		
-		$result = $model->dosaveeyespic($userHash,$catHash,$file,$date,$error);
+		$result = $model->dosaveeyespic($userHash, $catHash, $file, $date, $error);
 			
 		if($result === FALSE)
 			return redirect()->to(site_url('MyCat/my_cat_eyes/'.$catHash.'/'.$error));
@@ -746,18 +734,17 @@ class MyCat extends BaseController
 
 		foreach($EyesDates as $eyeDate)
 		{
-			$images = $cat->doloadeyespics($userHash,$catHash,$eyeDate);
+			$images = $cat->doloadeyespics($userHash, $catHash, $eyeDate);
 			$pictures = [];
 
 			foreach($images as $image)
 			{
 				array_push($pictures,['file'=>$image, 'url'=>site_url('MyCat/eyespic/'.$catHash.'/'.str_replace('/','_',$eyeDate).'/'.$image)]);
 			}
-
-			array_push($Eyes,['eye-date' => $eyeDate,'eye-date-url' => str_replace('/','_',$eyeDate),'pictures'=> $pictures]);
+			array_push($Eyes,['eye-date' => $eyeDate,'eye-date-url' => str_replace('/','_',$eyeDate), 'pictures' => $pictures]);
 		}
 		$theCat['cat-hash'] = $catHash;
-		return view('MyCat/cat_eyes',['cat'=>$theCat,'currentdate'=>date('m/d/Y'),'eyes'=> $Eyes,'error'=>urldecode($error)]);
+		return view('MyCat/cat_eyes',['cat' => $theCat,'currentdate'=>date('m/d/Y') ,'eyes' => $Eyes, 'error' => urldecode($error)]);
 	}
 
 
@@ -769,15 +756,13 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-		helper('form');
-
 		$date = $this->request->getPost('xray-date');
 
 		if(!$this->checkDate($date))
-		{
 			return redirect()->to(site_url('MyCat/my_cat_xrays/'.$catHash.'/invalid+picture+date'));
-		}
 
+		helper('form');
+	
 		if(!$this->validate(['cat-xray' => 'is_image[cat-xray]']))
 			return redirect()->to(site_url('MyCat/my_cat_xrays/'.$catHash.'/upload+a+valid+image'));
 
@@ -833,13 +818,12 @@ class MyCat extends BaseController
 			{
 				array_push($pictures,['file'=>$image,'url'=>site_url('MyCat/xrayspic/'.$catHash.'/'.str_replace('/','_',$XrayDate).'/'.$image)]);
 			}
-
-			array_push($Xrays,['xray-date' => $XrayDate,'xray-date-url' => str_replace('/','_',$XrayDate),'pictures'=> $pictures]);
+			array_push($Xrays,['xray-date' => $XrayDate, 'xray-date-url' => str_replace('/','_',$XrayDate), 'pictures' => $pictures]);
 		}
 
 		$theCat['cat-hash'] = $catHash;
 
-		return view('MyCat/cat_xrays',['cat'=>$theCat,'xrays'=> $Xrays,'xrayDate'=>date('m/d/Y'),'error'=>urldecode($error)]);
+		return view('MyCat/cat_xrays',['cat' => $theCat, 'xrays' => $Xrays, 'xrayDate' => date('m/d/Y'), 'error' => urldecode($error)]);
 	}
 
 	public function add_echo_pic($catHash)
@@ -850,14 +834,12 @@ class MyCat extends BaseController
 		if(($userHash === FALSE)||($userHash === NULL))
 			return redirect()->to(site_url('MyCat/signin'));
 
-		helper('form');
-
 		$date = $this->request->getPost('echography-date');
 
 		if(!$this->checkDate($date))
-		{
 			return redirect()->to(site_url('MyCat/my_cat_echographies/'.$catHash.'/invalid+picture+date'));
-		}
+
+		helper('form');
 
 		if(!$this->validate(['cat-echography' => 'is_image[cat-echography]']))
 			return redirect()->to(site_url('MyCat/my_cat_echographies/'.$catHash.'/upload+a+valid+image'));
@@ -912,14 +894,14 @@ class MyCat extends BaseController
 
 			foreach($images as $image)
 			{
-				array_push($pictures,['file'=>$image,'url'=>site_url('MyCat/echographypic/'.$catHash.'/'.str_replace('/','_',$EchoDate).'/'.$image)]);
+				array_push($pictures,['file' => $image, 'url' => site_url('MyCat/echographypic/'.$catHash.'/'.str_replace('/','_',$EchoDate).'/'.$image)]);
 			}
-			array_push($Echos,['echography-date' => $EchoDate,'echography-date-url' => str_replace('/','_',$EchoDate),'pictures'=> $pictures]);
+			array_push($Echos,['echography-date' => $EchoDate, 'echography-date-url' => str_replace('/','_',$EchoDate), 'pictures' => $pictures]);
 		}
 
 		$theCat['cat-hash'] = $catHash;
 
-		return view('MyCat/cat_echos',['cat'=>$theCat,'echographies'=> $Echos,'currentdate' => date('m/d/Y') , 'error'=>urldecode($error)]);
+		return view('MyCat/cat_echos',['cat' => $theCat, 'echographies' => $Echos, 'currentdate' => date('m/d/Y'), 'error' => urldecode($error)]);
 	}
 	//--------------------------------------------------------------------
 

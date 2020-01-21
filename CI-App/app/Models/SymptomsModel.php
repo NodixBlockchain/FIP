@@ -10,51 +10,31 @@ class SymptomsModel extends Model
 	protected $DATA_PATH =WRITEPATH.'/data';
 	protected $TEMP_PATH =WRITEPATH.'/data/tmp';
 
-	public function getHash($fields)
-	{
-		 return hash('ripemd160', $fields['date'].implode('/',$fields['symptoms-misc']).$fields['symptoms-misc-other'].implode('/',$fields['symptoms-wet']).implode('/',$fields['symptoms-neuro']).implode('/',$fields['symptoms-ocular']).implode('/',$fields['symptoms-FIP']).implode('/',$fields['symptoms-effusion']));
-	}
 
 	function array2fields($farray)
 	{
-
-		if(count($farray)==8)
-		{
-			$fields['date']=$farray[0];
-			$fields['symptoms-misc']=$farray[1]?explode('/',$farray[1]):[];
-			$fields['symptoms-misc-other']=$farray[2];
-			$fields['symptoms-wet']=$farray[3]?explode('/',$farray[3]):[];
-			$fields['symptoms-neuro']=$farray[4]?explode('/',$farray[4]):[];
-			$fields['symptoms-ocular']=$farray[5]?explode('/',$farray[5]):[];
-			$fields['symptoms-FIP']=$farray[6]?explode('/',$farray[6]):[];
-			$fields['symptoms-effusion']=$farray[7]?explode('/',$farray[7]):[];
-		}
-
-		if(count($farray)==9)
-		{
-			$fields['date']=$farray[1];
-			$fields['symptoms-misc']=$farray[2]?explode('/',$farray[2]):[];
-			$fields['symptoms-misc-other']=$farray[3];
-			$fields['symptoms-wet']=$farray[4]?explode('/',$farray[4]):[];
-			$fields['symptoms-neuro']=$farray[5]?explode('/',$farray[5]):[];
-			$fields['symptoms-ocular']=$farray[6]?explode('/',$farray[6]):[];
-			$fields['symptoms-FIP']=$farray[7]?explode('/',$farray[7]):[];
-			$fields['symptoms-effusion']=$farray[8]?explode('/',$farray[8]):[];
-		}
-
+		$fields['cat-hash']=$farray[0];
+		$fields['date']=$farray[1];
+		$fields['symptoms-misc']=$farray[2]?explode('/',$farray[2]):[];
+		$fields['symptoms-misc-other']=$farray[3];
+		$fields['symptoms-wet']=$farray[4]?explode('/',$farray[4]):[];
+		$fields['symptoms-neuro']=$farray[5]?explode('/',$farray[5]):[];
+		$fields['symptoms-ocular']=$farray[6]?explode('/',$farray[6]):[];
+		$fields['symptoms-FIP']=$farray[7]?explode('/',$farray[7]):[];
+		$fields['symptoms-effusion']=$farray[8]?explode('/',$farray[8]):[];
 		return $fields;
 	}
 
+	public function getHash($fields)
+	{
+		 return hash('ripemd160', $fields['cat_hash'].$fields['date'].implode('/',$fields['symptoms_misc']).$fields['symptoms_misc_other'].implode('/',$fields['symptoms_wet']).implode('/',$fields['symptoms_neuro']).implode('/',$fields['symptoms_ocular']).implode('/',$fields['symptoms_FIP']).implode('/',$fields['symptoms_effusion']));
+	}
 
 	public function dosavetmp($fields)
 	{
-		$symFile = $this->TEMP_PATH.'/'.$fields['cat_hash'].'_symptoms';
-
-		file_put_contents($symFile,  $fields['cat_hash'].';'.$fields['date'].';'.implode('/',$fields['symptoms_misc']).';'.$fields['symptoms_misc_other'].';'.implode('/',$fields['symptoms_wet']).';'.implode('/',$fields['symptoms_neuro']).';'.implode('/',$fields['symptoms_ocular']).';'.implode('/',$fields['symptoms_FIP']).';'.implode('/',$fields['symptoms_effusion'])."\n");
-
+		file_put_contents($this->TEMP_PATH.'/'.$fields['cat_hash'].'_symptoms',  $fields['cat_hash'].';'.$fields['date'].';'.implode('/',$fields['symptoms_misc']).';'.$fields['symptoms_misc_other'].';'.implode('/',$fields['symptoms_wet']).';'.implode('/',$fields['symptoms_neuro']).';'.implode('/',$fields['symptoms_ocular']).';'.implode('/',$fields['symptoms_FIP']).';'.implode('/',$fields['symptoms_effusion'])."\n");
 		return TRUE;
 	}
-
 
 	public function doloadtmp($catHash)
 	{
@@ -71,7 +51,7 @@ class SymptomsModel extends Model
 	}
 
 		
-	public function validate_tmp_cat($catHash, $userhash)
+	public function validate_tmp_cat($catHash, $newCatHash, $userhash)
 	{
 		$userDir=$this->DATA_PATH.'/users';
 
@@ -83,7 +63,7 @@ class SymptomsModel extends Model
 		if(!is_dir($myDir))
 			return FALSE;
 
-		$catDir = $myDir.'/'.$catHash;
+		$catDir = $myDir.'/'.$newCatHash;
 
 		if(!is_dir($catDir))
 			return FALSE;
@@ -106,12 +86,34 @@ class SymptomsModel extends Model
 		if(!$vals)
 			return FALSE;
 
-		$date = str_replace("/","_",$vals['date']);
-		$dst  = $symDir.'/'.$date.'.csv';
-
-		rename($src,$dst);
-
+		$this->dosave($userhash, [  'cat_hash' => $newCatHash,
+									'date' => $vals['date'],
+									'symptoms_misc' => $vals['symptoms-misc'],
+									'symptoms_misc_other' => $vals['symptoms-misc-other'],
+									'symptoms_wet' => $vals['symptoms-wet'],
+									'symptoms_neuro' => $vals['symptoms-neuro'],
+									'symptoms_ocular' => $vals['symptoms-ocular'],
+									'symptoms_FIP' => $vals['symptoms-FIP'],
+									'symptoms_effusion' => $vals['symptoms-effusion']]);
 	}
+
+
+	
+	public function dosave($userHash, $fields)
+	{
+		$symDir = $this->DATA_PATH.'/users/'.$userHash.'/'.$fields['cat_hash'].'/symptoms';
+
+		if(!is_dir($symDir))
+		{
+			if(!mkdir($symDir))
+				return FALSE;
+		}
+
+		file_put_contents($symDir.'/'.str_replace("/","_",$fields['date']).'.csv',  $fields['cat_hash'].';'.$fields['date'].';'.implode('/',$fields['symptoms_misc']).';'.$fields['symptoms_misc_other'].';'.implode('/',$fields['symptoms_wet']).';'.implode('/',$fields['symptoms_neuro']).';'.implode('/',$fields['symptoms_ocular']).';'.implode('/',$fields['symptoms_FIP']).';'.implode('/',$fields['symptoms_effusion'])."\n");
+
+		return TRUE;
+	}
+
 
 	public function doloaddate($userHash,$catHash,$date)
 	{
@@ -161,9 +163,6 @@ class SymptomsModel extends Model
 			}
 		}
 		return $Symptoms;
-
 	}
-
-	
 
 }

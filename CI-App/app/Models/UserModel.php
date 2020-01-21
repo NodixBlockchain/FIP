@@ -5,13 +5,13 @@ class UserModel extends Model
 {
     protected $table = 'user';
 
-    protected $allowedFields = ['email', 'pwhash', 'weight-unit', 'temp-unit', 'timezone', 'creation-time'];
+    protected $allowedFields = ['email', 'pwhash', 'weight_unit', 'temp_unit', 'timezone', 'creation_time'];
 
 	protected $DATA_PATH =WRITEPATH.'/data/users';
 
 	public function getHash($fields)
 	{
-		 return hash('ripemd160', $fields['email'].$fields['pwhash'].$fields['weight-unit'].$fields['temp-unit'].$fields['timezone'].$fields['creation-time']);
+		 return hash('ripemd160', $fields['email'].$fields['pwhash'].$fields['weight_unit'].$fields['temp_unit'].$fields['timezone'].$fields['creation_time']);
 	}
 
 	function array2fields($farray)
@@ -74,7 +74,7 @@ class UserModel extends Model
 
 		
 
-		file_put_contents($myDir.'/infos.csv', $fields['email'].';'.$fields['pwhash'].';'.$fields['weight-unit'].';'.$fields['temp-unit'].';'.$fields['timezone'].';'.$fields['creation-time']."\n");
+		file_put_contents($myDir.'/infos.csv', $fields['email'].';'.$fields['pwhash'].';'.$fields['weight_unit'].';'.$fields['temp_unit'].';'.$fields['timezone'].';'.$fields['creation_time']."\n");
 
 		return $hash;
 	}
@@ -91,7 +91,7 @@ class UserModel extends Model
 
 		$fields['email'] = strtolower ($fields['email']);
 
-		file_put_contents($myDir.'/infos.csv', $fields['email'].';'.$fields['pwhash'].';'.$fields['weight-unit'].';'.$fields['temp-unit'].';'.$fields['timezone'].';'.$fields['creation-time']."\n");
+		file_put_contents($myDir.'/infos.csv', $fields['email'].';'.$fields['pwhash'].';'.$fields['weight_unit'].';'.$fields['temp_unit'].';'.$fields['timezone'].';'.$fields['creation_time']."\n");
 
 		return TRUE;
 	}

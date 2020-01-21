@@ -5,38 +5,42 @@ class CatModel extends Model
 {
     protected $table = 'cat';
 
-    protected $allowedFields = ['created_time', 'parent_first_name', 'parent_last_name', 'fb_name','cat_name','cat_birthdate','cat_birthdate_exact','cat_gender','cat_fixed','cat_breed','cat_diagnosis','cat_diagnosis_date'];
+    protected $allowedFields = ['cat_hash','user_hash','created_time', 'parent_first_name', 'parent_last_name', 'fb_name','cat_name','cat_birthdate','cat_birthdate_exact','cat_gender','cat_fixed','cat_breed','cat_diagnosis','cat_diagnosis_date'];
 
 	protected $DATA_PATH =WRITEPATH.'/data';
 	protected $TEMP_PATH =WRITEPATH.'/data/tmp';
-
-	public function getHash($fields)
-	{
-		 return hash('ripemd160', $fields['created_time'].$fields['parent_first_name'].$fields['parent_last_name'].$fields['fb_name'].$fields['cat_name'].$fields['cat_birthdate'].$fields['cat_birthdate_exact'].$fields['cat_gender'].$fields['cat_fixed'].$fields['cat_breed'].implode('/',$fields['cat_FIP']).implode('/',$fields['cat_effusion']).nl2br(str_replace("\r","",$fields['cat_diagnosis'])).$fields['cat_diagnosis_date']);
-	}
-
-	function array2fields($farray)
-	{
-		$fields['created-time']=$farray[0];
-		$fields['parent-first-name']=$farray[1];
-		$fields['parent-last-name']=$farray[2];
-		$fields['fb-name']=$farray[3];
-		$fields['cat-name']=$farray[4];
-		$fields['cat-birthdate']=$farray[5];
-		$fields['cat-birthdate-exact']=$farray[6];
-		$fields['cat-gender']=$farray[7];
-		$fields['cat-fixed']=$farray[8];
-		$fields['cat-breed']=$farray[9];
-		$fields['cat-diagnosis']=$farray[10];
-		$fields['cat-diagnosis-date']=$farray[11];
-
-		return $fields;
-	}
 
 	function save_diag($diag)
 	{
 		return str_replace("\n","",nl2br(str_replace("\r","",$diag)));
 	}
+
+	public function getHash($fields)
+	{
+		 return hash('ripemd160', $fields['user_hash'].$fields['created_time'].$fields['parent_first_name'].$fields['parent_last_name'].$fields['fb_name'].$fields['cat_name'].$fields['cat_birthdate'].$fields['cat_birthdate_exact'].$fields['cat_gender'].$fields['cat_fixed'].$fields['cat_breed'].$this->save_diag($fields['cat_diagnosis']).$fields['cat_diagnosis_date']);
+	}
+
+	function array2fields($farray)
+	{
+		$fields['cat-hash']=$farray[0];
+		$fields['user-hash']=$farray[1];
+		$fields['created-time']=$farray[2];
+		$fields['parent-first-name']=$farray[3];
+		$fields['parent-last-name']=$farray[4];
+		$fields['fb-name']=$farray[5];
+		$fields['cat-name']=$farray[6];
+		$fields['cat-birthdate']=$farray[7];
+		$fields['cat-birthdate-exact']=$farray[8];
+		$fields['cat-gender']=$farray[9];
+		$fields['cat-fixed']=$farray[10];
+		$fields['cat-breed']=$farray[11];
+		$fields['cat-diagnosis']=$farray[12];
+		$fields['cat-diagnosis-date']=$farray[13];
+
+		return $fields;
+	}
+
+
 
 	public function dogetpics($userHash,$catHash)
 	{
@@ -343,30 +347,16 @@ class CatModel extends Model
 		return $Echos;
 	}
 
-
-	public function dosave($fields)
-	{
-		$hash=$this->getHash($fields);
-
-		file_put_contents($this->DATA_PATH.'/'.$hash, $fields['created_time'].';'.$fields['parent_first_name'].';'.$fields['parent_last_name'].';'.$fields['fb_name'].';'.$fields['cat_name'].';'.$fields['cat_birthdate'].';'.$fields['cat_birthdate_exact'].';'.$fields['cat_gender'].';'.$fields['cat_fixed'].';'.$fields['cat_breed'].';'.implode('/',$fields['cat_FIP']).';'.implode('/',$fields['cat_effusion']).';'.$this->save_diag($fields['cat_diagnosis']).';'.$fields['cat_diagnosis_date']."\n");
-
-		return $hash;
-	}
-
 	public function doget($userHash,$hash)
 	{
-		$catDir = $this->DATA_PATH.'/users/'.$userHash.'/'.$hash;
+		$catFile = $this->DATA_PATH.'/users/'.$userHash.'/'.$hash.'/catinfos.csv';
 
-		if(!is_dir($catDir))
+		if(!is_file($catFile))
 			return FALSE;
 		
-		$data = file_get_contents($catDir.'/catinfos.csv');
-
+		$data = file_get_contents($catFile);
 		$data = substr($data, 0, -1);
-
 		$farray = explode(';', $data);
-
-		return $this->array2fields($farray);
-	
+		return $this->array2fields($farray);	
 	}
 }

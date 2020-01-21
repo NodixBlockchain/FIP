@@ -5,13 +5,13 @@ class MetricsModel extends Model
 {
     protected $table = 'metrics';
 
-    protected $allowedFields = ['cat-hash','date','cat-weight', 'cat-temp','cat-activity','cat-appetite'];
+    protected $allowedFields = ['cat_hash','date','cat_weight', 'cat_temp','cat_activity','cat_appetite'];
 
 	protected $DATA_PATH =WRITEPATH.'/data/users';
 
 	public function getHash($fields)
 	{
-		 return hash('ripemd160', $fields['cat-hash'].$fields['date'].$fields['cat-weight'].$fields['cat-temperature'].$fields['cat-activity'].$fields['cat-appetite']);
+		 return hash('ripemd160', $fields['cat_hash'].$fields['date'].$fields['cat_weight'].$fields['cat_temperature'].$fields['cat_activity'].$fields['cat_appetite']);
 	}
 	
 	function array2fields($farray)
@@ -25,9 +25,9 @@ class MetricsModel extends Model
 		return $fields;
 	}
 
-	public function dosave($userHash,$catHash,$fields)
+	public function dosave($userHash,$fields)
 	{
-		$infosDir = $this->DATA_PATH.'/'.$userHash.'/'.$catHash.'/infos';
+		$infosDir = $this->DATA_PATH.'/'.$userHash.'/'. $fields['cat_hash'].'/infos';
 
 		if(!is_dir($infosDir))
 		{
@@ -37,7 +37,7 @@ class MetricsModel extends Model
 
 		$filePath = $infosDir.'/'.str_replace('/','_',$fields['date']).'.csv';
 
-		file_put_contents($filePath, $fields['cat-hash'].';'.$fields['date'].';'.$fields['cat-weight'].';'.$fields['cat-temperature'].';'.$fields['cat-activity'].';'.$fields['cat-appetite']."\n");
+		file_put_contents($filePath, $fields['cat_hash'].';'.$fields['date'].';'.$fields['cat_weight'].';'.$fields['cat_temperature'].';'.$fields['cat_activity'].';'.$fields['cat_appetite']."\n");
 		return TRUE;
 	}
 

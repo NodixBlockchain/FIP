@@ -10,9 +10,14 @@ class TmpCatModel extends Model
 	protected $DATA_PATH =WRITEPATH.'/data';
 	protected $TEMP_PATH =WRITEPATH.'/data/tmp';
 
-	public function getHash($fields)
+	public function getTmpHash($fields)
 	{
 		 return hash('ripemd160', $fields['created_time'].$fields['parent_first_name'].$fields['parent_last_name'].$fields['fb_name'].$fields['cat_name'].$fields['cat_birthdate'].$fields['cat_birthdate_exact'].$fields['cat_gender'].$fields['cat_fixed'].$fields['cat_breed'].nl2br(str_replace("\r","",$fields['cat_diagnosis'])).$fields['cat_diagnosis_date']);
+	}
+
+	public function getHash($fields)
+	{
+		 return hash('ripemd160', $fields['user_hash'].$fields['created_time'].$fields['parent_first_name'].$fields['parent_last_name'].$fields['fb_name'].$fields['cat_name'].$fields['cat_birthdate'].$fields['cat_birthdate_exact'].$fields['cat_gender'].$fields['cat_fixed'].$fields['cat_breed'].nl2br(str_replace("\r","",$fields['cat_diagnosis'])).$fields['cat_diagnosis_date']);
 	}
 
 	function array2fields($farray)
@@ -53,9 +58,9 @@ class TmpCatModel extends Model
 		if(array_key_exists('cat_hash',$fields))
 			$hash = $fields['cat_hash'];
 		else
-			$hash = $this->getHash($fields);
+			$hash = $this->getTmpHash($fields);
 
-		file_put_contents($this->TEMP_PATH.'/'.$hash,$fields['created_time'].';'.$fields['parent_first_name'].';'.$fields['parent_last_name'].';'.$fields['fb_name'].';'.$fields['cat_name'].';'.$fields['cat_birthdate'].';'.$fields['cat_birthdate_exact'].';'.$fields['cat_gender'].';'.$fields['cat_fixed'].';'.$fields['cat_breed'].';'.$this->save_diag($fields['cat_diagnosis']).';'.$fields['cat_diagnosis_date']."\n");
+		file_put_contents($this->TEMP_PATH.'/'.$hash, $fields['created_time'].';'.$fields['parent_first_name'].';'.$fields['parent_last_name'].';'.$fields['fb_name'].';'.$fields['cat_name'].';'.$fields['cat_birthdate'].';'.$fields['cat_birthdate_exact'].';'.$fields['cat_gender'].';'.$fields['cat_fixed'].';'.$fields['cat_breed'].';'.$this->save_diag($fields['cat_diagnosis']).';'.$fields['cat_diagnosis_date']."\n");
 
 		return $hash;
 	}
@@ -129,7 +134,7 @@ class TmpCatModel extends Model
 		}
 
 		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
-		$fileName = $fileHash.'_'.$date;
+		$fileName = $fileHash.'_'.str_replace('/','_',$date);
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
@@ -196,7 +201,7 @@ class TmpCatModel extends Model
 		}
 
 		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
-		$fileName = $fileHash.'_'.$date;
+		$fileName = $fileHash.'_'.str_replace('/','_',$date);
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
@@ -261,7 +266,7 @@ class TmpCatModel extends Model
 		}
 
 		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
-		$fileName = $fileHash.'_'.$date;
+		$fileName = $fileHash.'_'.str_replace('/','_',$date);
 
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
@@ -307,31 +312,8 @@ class TmpCatModel extends Model
 		}
 		return $images;
 	}
-	 
 
-	public function dosavebloodtmp($catHash, $file)
-	{
-		if(!$this->isValidCat($catHash))
-			return FALSE;
-
-		if(!$file->isValid())
-			return FALSE;
-
-		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
-
-		if(!is_dir($picDir))
-		{
-			if(!mkdir($picDir))
-				return FALSE;
-		}
-
-		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
-		$fileName = $fileHash.'_'.date("Y_m_d");
-
-		rename($file->getTempName(),$picDir.'/'.$fileName);
-
-		return $fileName;
-	}
+	
 
 	public function deltmpblood($catHash, $file)
 	{
@@ -359,8 +341,6 @@ class TmpCatModel extends Model
 	
 	public function hastmpBlood($catHash)
 	{
-
-
 		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
 
 		if(!is_dir($picDir))
@@ -420,11 +400,7 @@ class TmpCatModel extends Model
 		if($data === FALSE)
 			return FALSE;
 
-		/*
-		echo "user $userhash:$catHash<br/>";
-		echo "<br/>";
-		*/
-
+	
 		$userDir = $this->DATA_PATH.'/users';
 
 		if(!is_dir($userDir))
@@ -438,7 +414,22 @@ class TmpCatModel extends Model
 		if(!is_dir($myDir))
 			return FALSE;
 
-		$catDir = $myDir.'/'.$catHash;
+
+		$newCatHash = $this->getHash(	['user_hash' => $userhash,
+										 'created_time' => $data['created-time'],
+										 'parent_first_name' => $data['parent-first-name'],
+										 'parent_last_name' => $data['parent-last-name'],
+										 'fb_name' => $data['fb-name'],
+										 'cat_name' => $data['cat-name'],
+										 'cat_birthdate' => $data['cat-birthdate'],
+										 'cat_birthdate_exact' => $data['cat-birthdate-exact'],
+										 'cat_gender' => $data['cat-gender'],
+										 'cat_fixed' => $data['cat-fixed'],
+										 'cat_breed' => $data['cat-breed'],
+										 'cat_diagnosis' => $data['cat-diagnosis'],
+										 'cat_diagnosis_date' => $data['cat-diagnosis-date']]);
+
+		$catDir = $myDir.'/'.$newCatHash;
 
 		if(!is_dir($catDir))
 		{
@@ -486,33 +477,18 @@ class TmpCatModel extends Model
 		$src =	$catFile;
 		$dst =	$catDir.'/catinfos.csv';
 
-		/*echo "cat infos '$src' to '$dst' <br/><br/>";*/
-		
+		file_put_contents($dst, $newCatHash.';'.$userhash.';'.$data['created-time'].';'.$data['parent-first-name'].';'.$data['parent-last-name'].';'.$data['fb-name'].';'.$data['cat-name'].';'.$data['cat-birthdate'].';'.$data['cat-birthdate-exact'].';'.$data['cat-gender'].';'.$data['cat-fixed'].';'.$data['cat-breed'].';'.implode('/',$data['cat-FIP']).';'.implode('/',$data['cat-effusion']).';'.$this->save-diag($data['cat-diagnosis']).';'.$data['cat-diagnosis-date']."\n");
 
-		rename($src,$dst);
-
-
-		
-
-		/*
-		echo "data : ";
-		var_dump($data);
-		echo "<br/>";
-		echo "<br/>";
-		*/
 
 		$pics = $this->doloadpicstmp($catHash);
 
 		foreach($pics as $pic)
 		{
 			$src =	$this->TEMP_PATH.'/pic_'.$catHash.'/'.$pic;
-			$dst =	$picDir.'/'.$pic.'.jpg';
+			$dst =	$picDir.'/'.$pic;
 
-			rename($src, $dst );
-
-			/* echo "cat picture : '$src' to '$dst' <br/>"; */
+			rename($src, $dst);
 		}
-		/* echo "<br/>"; */
 
 		$pics = $this->doloadeyestmp($catHash);
 		foreach($pics as $pic)
@@ -530,9 +506,7 @@ class TmpCatModel extends Model
 			$dst = $ddir.'/'.$pic.'.jpg';
 
 			rename($src, $dst);
-			/*echo "cat eyes picture : '$src' to '$dst' <br/>";*/
 		}
-		/*echo "<br/>";*/
 
 		$pics = $this->doloadxraystmp($catHash);
 		foreach($pics as $pic)
@@ -550,9 +524,7 @@ class TmpCatModel extends Model
 			$dst = $ddir.'/'.$pic.'.jpg';
 
 			rename($src, $dst);
-			/*echo "cat xrays picture : '$src' to '$dst'  <br/>";*/
 		}
-		/*echo "<br/>";*/
 
 		$pics = $this->doloadechographytmp($catHash);
 		foreach($pics as $pic)
@@ -570,9 +542,7 @@ class TmpCatModel extends Model
 			$dst = $ddir.'/'.$pic.'.jpg';
 
 			rename($src, $dst);
-			/*echo "cat echography picture : '$src' to '$dst'  <br/>";*/
 		}
-		/*echo "<br/>";*/
 
 		$pics = $this->doloadbloodtmp($catHash);
 		foreach($pics as $pic)
@@ -590,11 +560,9 @@ class TmpCatModel extends Model
 			$dst = $ddir.'/'.$pic.'.jpg';;
 
 			rename($src, $dst);
-			/*echo "cat blood picture : '$src' to '$dst' <br/>";*/
 		}
-		/*echo "<br/>";*/
 			   
-		return TRUE;
+		return $newCatHash;
 	}
 
 }

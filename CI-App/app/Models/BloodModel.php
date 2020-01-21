@@ -5,57 +5,14 @@ class BloodModel extends Model
 {
     protected $table = 'blood';
 
-    protected $allowedFields = ['cat-hash','cat-blood-date', 'cat-red-cells','cat-hematocrit','cat-hemaglobin' ,'cat-white-cells' ,'cat-lymphocytes','cat-neutrophils','cat-total-protein','cat-albumin','cat-globulin','cat-ag-ratio','cat-total-bilirubin'];
+    protected $allowedFields = ['cat_hash','cat_blood_date', 'cat_red_cells','cat_hematocrit','cat_hemaglobin' ,'cat_white_cells' ,'cat_lymphocytes','cat_neutrophils','cat_total_protein','cat_albumin','cat_globulin','cat_ag_ratio','cat_total_bilirubin'];
 
 	protected $DATA_PATH =WRITEPATH.'/data';
 	protected $TEMP_PATH =WRITEPATH.'/data/tmp';
 
-	
-	public function dosavebloodtmp($catHash, $file,$date,&$error)
-	{
-		if(!$file->isValid()){
-			$error = $file->getErrorString().'('.$file->getError().')';
-			return FALSE;
-		}
-
-		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
-
-		if(!is_dir($picDir))
-		{
-			if(!mkdir($picDir))
-				return FALSE;
-		}
-
-		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
-		$fileName = $fileHash.'_'.$date;
-
-		rename($file->getTempName(),$picDir.'/'.$fileName);
-
-		return $fileName;
-	}
-
-	public function doloadbloodtmp($catHash)
-	{
-		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
-
-		$images = [];
-
-		if(is_dir($picDir))
-		{
-			$files = scandir($picDir);
-			foreach($files as $file)
-			{
-				if(($file!='.')&&($file!='..')&&(strlen($file)>41))
-					array_push($images,urlencode($file));
-			}
-		}
-		return $images;
-	}
-	
-
 	public function getHash($fields)
 	{
-		 return hash('ripemd160', $fields['cat-hash'].$fields['cat-blood-date'].$fields['cat-red-cells'].$fields['cat-hematocrit'].$fields['cat-hemaglobin'].$fields['cat-white-cells'].$fields['cat-lymphocytes'].$fields['cat-neutrophils'].$fields['cat-total-protein'].$fields['cat-albumin'].$fields['cat-globulin'].$fields['cat-ag-ratio'].$fields['cat-total-bilirubin']);
+		 return hash('ripemd160', $fields['cat_hash'].$fields['cat_blood_date'].$fields['cat_red_cells'].$fields['cat_hematocrit'].$fields['cat_hemaglobin'].$fields['cat_white_cells'].$fields['cat_lymphocytes'].$fields['cat_neutrophils'].$fields['cat_total_protein'].$fields['cat_albumin'].$fields['cat_globulin'].$fields['cat_ag_ratio'].$fields['cat_total_bilirubin']);
 	}
 	
 	function array2fields($farray)
@@ -104,10 +61,51 @@ class BloodModel extends Model
 			  return FALSE;
 		}
 
-		file_put_contents($path.'/blood', $fields['cat-hash'].';'.$fields['cat-blood-date'].';'.$fields['cat-red-cells'].';'.$fields['cat-hematocrit'].';'.$fields['cat-hemaglobin'].';'.$fields['cat-white-cells'].';'.$fields['cat-lymphocytes'].';'.$fields['cat-neutrophils'].';'.$fields['cat-total-protein'].';'.$fields['cat-albumin'].';'.$fields['cat-globulin'].';'.$fields['cat-ag-ratio'].';'.$fields['cat-total-bilirubin']."\n");
+		file_put_contents($path.'/blood', $fields['cat_hash'].';'.$fields['cat_blood_date'].';'.$fields['cat_red_cells'].';'.$fields['cat_hematocrit'].';'.$fields['cat_hemaglobin'].';'.$fields['cat_white_cells'].';'.$fields['cat_lymphocytes'].';'.$fields['cat_neutrophils'].';'.$fields['cat_total_protein'].';'.$fields['cat_albumin'].';'.$fields['cat_globulin'].';'.$fields['cat_ag_ratio'].';'.$fields['cat_total_bilirubin']."\n");
 		return $hash;
 	}
 
+		
+	public function doloadbloodtmp($catHash)
+	{
+		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
+
+		$images = [];
+
+		if(is_dir($picDir))
+		{
+			$files = scandir($picDir);
+			foreach($files as $file)
+			{
+				if(($file!='.')&&($file!='..')&&(strlen($file)>41))
+					array_push($images,urlencode($file));
+			}
+		}
+		return $images;
+	}
+
+	public function dosavebloodtmp($catHash, $file,$date,&$error)
+	{
+		if(!$file->isValid()){
+			$error = $file->getErrorString().'('.$file->getError().')';
+			return FALSE;
+		}
+
+		$picDir=$this->TEMP_PATH.'/blood_'.$catHash;
+
+		if(!is_dir($picDir))
+		{
+			if(!mkdir($picDir))
+				return FALSE;
+		}
+
+		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
+		$fileName = $fileHash.'_'.str_replace('/','_',$date);
+
+		rename($file->getTempName(),$picDir.'/'.$fileName);
+
+		return $fileName;
+	}
 
 
 
@@ -128,10 +126,10 @@ class BloodModel extends Model
 		return FALSE;
 	}
 
-	public function dosave($userHash,$catHash,$fields)
+	public function dosave($userHash,$fields)
 	{
 
-		$bloodDir = $this->DATA_PATH.'/users/'.$userHash.'/'.$catHash.'/bloods';
+		$bloodDir = $this->DATA_PATH.'/users/'.$userHash.'/'.$fields['cat_hash'].'/bloods';
 
 		if(!is_dir($bloodDir))
 		{
@@ -139,7 +137,7 @@ class BloodModel extends Model
 				return FALSE;
 		}
 
-		$bloodDate = str_replace('/','_',$fields['cat-blood-date']);
+		$bloodDate = str_replace('/','_',$fields['cat_blood_date']);
 
 		$bloodDateDir = $bloodDir.'/'.$bloodDate;
 
@@ -151,7 +149,7 @@ class BloodModel extends Model
 
 		$bloodPath = $bloodDateDir.'/values.csv';
 
-		file_put_contents($bloodPath, $fields['cat-hash'].';'.$fields['cat-blood-date'].';'.$fields['cat-red-cells'].';'.$fields['cat-hematocrit'].';'.$fields['cat-hemaglobin'].';'.$fields['cat-white-cells'].';'.$fields['cat-lymphocytes'].';'.$fields['cat-neutrophils'].';'.$fields['cat-total-protein'].';'.$fields['cat-albumin'].';'.$fields['cat-globulin'].';'.$fields['cat-ag-ratio'].';'.$fields['cat-total-bilirubin']."\n");
+		file_put_contents($bloodPath, $fields['cat_hash'].';'.$fields['cat_blood_date'].';'.$fields['cat_red_cells'].';'.$fields['cat_hematocrit'].';'.$fields['cat_hemaglobin'].';'.$fields['cat_white_cells'].';'.$fields['cat_lymphocytes'].';'.$fields['cat_neutrophils'].';'.$fields['cat_total_protein'].';'.$fields['cat_albumin'].';'.$fields['cat_globulin'].';'.$fields['cat_ag_ratio'].';'.$fields['cat_total_bilirubin']."\n");
 		return TRUE;
 	}
 
@@ -271,9 +269,8 @@ class BloodModel extends Model
 	}
 	
 
-	public function validate_tmp_cat($catHash,$userHash)
+	public function validate_tmp_cat($catHash,$newCatHash,$userHash)
 	{
-		
 		$userDir=$this->DATA_PATH.'/users';
 
 		if(!is_dir($userDir))
@@ -284,13 +281,11 @@ class BloodModel extends Model
 		if(!is_dir($myDir))
 			return FALSE;
 
-		$catDir = $myDir.'/'.$catHash;
+		$catDir = $myDir.'/'.$newCatHash;
 
 		if(!is_dir($catDir))
 			return FALSE;
 		
-		$bloodDir = $catDir.'/bloods';
-	
 		$src = $this->TEMP_PATH.'/blood_'.$catHash.'/blood';
 
 		if(!is_file($src))
@@ -301,10 +296,19 @@ class BloodModel extends Model
 		if(!$vals)
 			return FALSE;
 
-		$date = str_replace("/","_",$vals['cat-blood-date']);
-
-		$ddir = $bloodDir.'/'.$date;
-		$dst  = $ddir.'/values.csv';
+		$this->dosave($userHash,['cat_hash' => $newCatHash,
+								 'cat_blood_date' => $vals['cat-blood-date'],
+								 'cat_red_cells' => $vals['cat-red-cells'],
+								 'cat_hematocrit' => $vals['cat-hematocrit'],
+								 'cat_hemaglobin' => $vals['cat-hemaglobin'],
+								 'cat_white_cells' => $vals['cat-white-cells'],
+								 'cat_lymphocytes' => $vals['cat-lymphocytes'],
+								 'cat_neutrophils' => $vals['cat-neutrophils'],
+								 'cat_total_protein' => $vals['cat-total-protein'],
+								 'cat_albumin' => $vals['cat-albumin'],
+								 'cat_globulin' => $vals['cat-globulin'],
+								 'cat_ag_ratio' => $vals['cat-ag-ratio'],
+								 'cat_total_bilirubin' => $vals['cat-total-bilirubin']]);
 
 		rename($src,$dst);
 
