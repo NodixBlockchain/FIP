@@ -120,7 +120,7 @@ class Cat extends BaseController
 						 'symptoms-misc-other' => $this->request->getPost('symptoms-misc-other'),
 						 'symptoms-wet' => $symWet?$symWet:[],
 						 'symptoms-neuro' => $symNeuro?$symNeuro:[],
-						 'symptoms-ocular' = >$symOcular?$symOcular:[],
+						 'symptoms-ocular' => $symOcular?$symOcular:[],
 						 'symptoms-FIP' => $symFip?$symFip:[],
 						 'symptoms-effusion' => $symEffusion?$symEffusion:[]];
 
