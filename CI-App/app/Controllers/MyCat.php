@@ -545,19 +545,19 @@ class MyCat extends BaseController
 		}
 		else
 		{
-			$blood->dosave($userHash, $catHash,	[	'cat_hash' => $catHash,
-													'cat_blood_date' => $this->request->getPost('blood-date'),
-													'cat_red_cells' => $this->request->getPost('cat-red-cells'),
-													'cat_hematocrit' => $this->request->getPost('cat-hematocrit'),
-													'cat_hemaglobin' => $this->request->getPost('cat-hemaglobin'),
-													'cat_white_cells' => $this->request->getPost('cat-white-cells'),
-													'cat_lymphocytes' => $this->request->getPost('cat-lymphocytes'),
-													'cat_neutrophils' => $this->request->getPost('cat-neutrophils'),
-													'cat_total_protein' =>$this->request->getPost('cat-total-protein'),
-													'cat_albumin' => $this->request->getPost('cat-albumin'),
-													'cat_globulin' => $this->request->getPost('cat-globulin'),
-													'cat_ag_ratio' => $this->request->getPost('cat-ag-ratio'),
-													'cat_total_bilirubin' => $this->request->getPost('cat-total-bilirubin')]);
+			$blood->dosave($userHash, [ 'cat_hash' => $catHash,
+									   'cat_blood_date' => $this->request->getPost('blood-date'),
+										'cat_red_cells' => $this->request->getPost('cat-red-cells'),
+										'cat_hematocrit' => $this->request->getPost('cat-hematocrit'),
+										'cat_hemaglobin' => $this->request->getPost('cat-hemaglobin'),
+										'cat_white_cells' => $this->request->getPost('cat-white-cells'),
+										'cat_lymphocytes' => $this->request->getPost('cat-lymphocytes'),
+										'cat_neutrophils' => $this->request->getPost('cat-neutrophils'),
+										'cat_total_protein' =>$this->request->getPost('cat-total-protein'),
+										'cat_albumin' => $this->request->getPost('cat-albumin'),
+										'cat_globulin' => $this->request->getPost('cat-globulin'),
+										'cat_ag_ratio' => $this->request->getPost('cat-ag-ratio'),
+										'cat_total_bilirubin' => $this->request->getPost('cat-total-bilirubin')]);
 
 			return redirect()->to(site_url('MyCat/my_cat_blood/'.$catHash));
 		}
