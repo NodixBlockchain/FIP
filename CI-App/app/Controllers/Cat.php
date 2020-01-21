@@ -45,7 +45,7 @@ class Cat extends BaseController
 		else
 		{
 			$inputs	  = ['parent-first-name' => '','parent-last-name' => '','fb-name' => '','cat-name' => '','cat-birthdate' =>'','cat-birthdate-exact' => '', 'cat-gender' => '','cat-fixed' => '','cat-breed' => '','cat-diagnosis'=>'','cat-diagnosis-date' => $currentDate];
-			$syminfos = ['symptoms-misc' => [], 'symptoms-misc-other '=> '', 'symptoms-wet' => [], 'symptoms-neuro' => [], 'symptoms-ocular' => [], 'symptoms-FIP' => [], 'symptoms-effusion' => []];
+			$syminfos = ['symptoms-misc' => [], 'symptoms-misc-other' => '', 'symptoms-wet' => [], 'symptoms-neuro' => [], 'symptoms-ocular' => [], 'symptoms-FIP' => [], 'symptoms-effusion' => []];
 		}
 
 		return view('cat_form1',['errors'=>[],'inputs' => $inputs,'symptoms' => $syminfos]);
