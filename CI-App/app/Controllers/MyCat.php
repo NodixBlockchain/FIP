@@ -539,7 +539,7 @@ class MyCat extends BaseController
 
 			$errors = $this->validator->getErrors();
 
-			$Blood = ['blood-date' => $blood_vals['blood-date'], 'blood-date-url' =>  str_replace('/','_',$blood_vals['blood-date'], 'values' => $values, 'pictures' => $pictures];
+			$Blood = ['blood-date' => $blood_vals['blood-date'], 'blood-date-url' =>  str_replace('/','_',$blood_vals['blood-date']), 'values' => $values, 'pictures' => $pictures];
 
 			return view('MyCat/my_new_blood',['infos' => $userInfos, 'cat' => $theCat, 'blood' => $Blood, 'errors' => $errors]);
 		}
