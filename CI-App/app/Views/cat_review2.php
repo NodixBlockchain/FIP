@@ -191,7 +191,6 @@
 				
 				</div>
 			<?php } ?>
-			</div>
 			<div class="col text-center">
 				<h2>Pictures of your cat</h2>
 				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
