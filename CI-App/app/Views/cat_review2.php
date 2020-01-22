@@ -7,6 +7,11 @@
 
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/material-kit.min.css' ?>" />
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/jquery-ui.css' ?>" />
+
+
+		<script src="https://kit.fontawesome.com/ed9134ad17.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/fileinput.min.css' ?>" />
+
 		<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 
 		
@@ -199,14 +204,12 @@
 						<div class="form-group ">
 							<p>Date: <input type="text" name="xray-date" id="xray-date" value="<?= $xrayDate ?>"></p>
 						</div>
-						<div class="input-group mb-3">
-						  <div class="custom-file">
-							<input onchange=" upload_xray(); " type="file" class="custom-file-input" name="cat-xray" id="cat-xray">
-							<label for="cat-xray" class="custom-file-label">Select xray picture</label> 
-						  </div>
-						</div>
 
-		
+
+						<div class="btn btn-primary btn-file">
+							<span class="hidden-xs">Select cat picture</span>
+							<input  name="cat-xray" id="cat-xray" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
+						</div>
 
 					</div>
 					<input type="submit" class="btn btn-primary" value="upload" accept="image/*" id="xray-form-submit" />
@@ -234,11 +237,10 @@
 						<div class="form-group ">
 							<p>Date: <input type="text" name="echography-date" id="echography-date" value="<?= $echoDate ?>"></p>
 						</div>
-						<div class="form-group mb-3">
-						  <div class="custom-file">
-							<input onchange=" upload_echo(); " type="file" class="custom-file-input" name="cat-echography" id="cat-echography">
-							<label for="cat-echography" class="custom-file-label">Select echography picture</label> 
-						  </div>
+
+						<div class="btn btn-primary btn-file">
+							<span class="hidden-xs">Select cat picture</span>
+							<input name="cat-echography" id="cat-echography" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 					</div>
 					<input type="submit" class="btn btn-primary" value="upload" accept="image/*" id="echo-form-submit"/>
@@ -266,7 +268,21 @@
 		<script src="<?= base_url().'assets/js/core/bootstrap-material-design.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/material-kit.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/core/jquery-ui.js' ?>"></script>
+		<script src="<?= base_url().'assets/js/plugins/fileinput.min.js' ?>"></script>
+		<script src="<?= base_url().'assets/js/plugins/theme.min.js' ?>"></script>
 
-		<script>$( function() { $( "#xray-date" ).datepicker(); $( "#xray-date" ).datepicker("setDate", "<?= $xrayDate ?>"); $( "#echography-date" ).datepicker(); $( "#echography-date" ).datepicker("setDate", "<?= $echoDate ?>"); } );</script>
+		<script>
+				$(document).ready(function() {
+						$( "#xray-date" ).datepicker(); 
+						$( "#xray-date" ).datepicker("setDate", "<?= $xrayDate ?>"); 
+						$( "#echography-date" ).datepicker(); 
+						$( "#echography-date" ).datepicker("setDate", "<?= $echoDate ?>");
+
+						$("#cat-xray").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+						$("#cat-echography").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+				});
+		</script>
+
+		
 	</body>
 </html>

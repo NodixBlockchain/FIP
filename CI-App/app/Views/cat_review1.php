@@ -299,10 +299,6 @@
 		<script src="<?= base_url().'assets/js/plugins/fileinput.min.js' ?>"></script>
 		<script src="<?= base_url().'assets/js/plugins/theme.min.js' ?>"></script>
 		
-		
-
-		
-
 		<script>
 				$(document).ready(function() {
 						$( "#eye-date" ).datepicker(); 
