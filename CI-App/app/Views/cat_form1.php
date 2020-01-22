@@ -369,10 +369,10 @@
 								<div class="col">
 									<h3>FIP type</h3>
 									<div class="form-group">
-										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-wet"		value="wet"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('wet'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>  onclick="enable_effusion();" >wet</label><span id="wet-indicator"></span></div>
-										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-dry"		value="dry"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('dry'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>>	dry</label></div>
-										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-neuro"	value="neuro"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('neuro' ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>  >neuro</label><span id="neuro-indicator"></div>
-										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-ocular"	value="ocular"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('ocular',$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>  >ocular</label><span id="ocular-indicator"></span></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-wet"		value="wet"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('wet'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>  onclick="enable_effusion();" >wet</label><span id="wet-indicator"></span></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-dry"		value="dry"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('dry'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>	dry</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-neuro"	value="neuro"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('neuro' ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>  readonly>neuro</label><span id="neuro-indicator"></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-ocular"	value="ocular"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('ocular',$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>ocular</label><span id="ocular-indicator"></span></div>
 										<span class="bmd-help">Select your cat's FIP type.</span>													  
 									</div>
 								</div>
@@ -380,9 +380,9 @@
 									<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
 										<h3>Effusion type</h3>
 										<div class="form-group">
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-abdominal"	  value="abdominal"		<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('abdominal',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> readonly>abdominal</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-chest"		  value="chest"			<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('chest',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> readonly>chest</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-pericardial" value="pericardial"	<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('pericardial',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> readonly>pericardial</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-abdominal"	  value="abdominal"		<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('abdominal',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> >abdominal</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-chest"		  value="chest"			<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('chest',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> >chest</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-pericardial" value="pericardial"	<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('pericardial',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> >pericardial</label></div>
 											
 											<span class="bmd-help">For wet fip, select the type of effusion.</span>
 										</div>
