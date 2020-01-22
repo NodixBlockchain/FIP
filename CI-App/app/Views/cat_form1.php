@@ -104,7 +104,7 @@
 
 			if(checkedWet>0)
 			{
-				$('#fip-form-row').append('<div class="col"><div class="badge badge-pill badge-warning fip-type" id="wet-form" ><h4>wet form</h4></div></div>');
+				$('#fip-form-row').append('<div class="col"><div class="badge badge-pill badge-warning fip-type" id="wet-form" ><h4>wet</h4></div></div>');
 				$("#effusion-block").css('display','block');
 				
 			}
