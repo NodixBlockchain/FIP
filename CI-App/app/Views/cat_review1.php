@@ -267,7 +267,7 @@
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-							<div class="carousel-caption d-none d-md-block"><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+							<div class="carousel-caption d-none d-md-block"><p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></p></div>
 						</div>
 					<?php $active = ''; } ?>
 				</div>
@@ -329,7 +329,7 @@
 						$( "#eye-date" ).datepicker("setDate", "<?= $currentdate ?>");
 
 
-						$('.carousel').carousel()
+						$('.carousel').carousel('pause');
 
 						$("#cat-picture").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false });
 						$("#cat-eyes").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false});
