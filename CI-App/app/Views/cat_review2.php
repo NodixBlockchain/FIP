@@ -238,7 +238,7 @@
 		<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
 		<?php if(count($xrays)>0) { ?>
-		<div class="containe text-center">
+		<div class="container text-center">
 			<h2>Xray pictures</h2>
 			<div class="row">
 			<div class="col text-center">
