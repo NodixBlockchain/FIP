@@ -74,16 +74,13 @@
 				margin-left:8px;
 			}
 
-			#wet-form, #neuro-form, #ocular-form
+			#wet-form, #neuro-form, #ocular-form, #fip-dose
 			{
 				display:none;
 			}
 			.fip-type
 			{
-				background-color:666;
 				padding:12px;
-				border:1px #000 solid;
-				border-radius:6px;
 			}
 			#effusion-block div,label,input
 			{
@@ -388,7 +385,7 @@
 					<div class="jumbotron text-center">
 						<div class="row">
 						<div class="col">
-							<div class="badge badge-pill badge-danger fip-type"><h4 id="fip-dose">wet form</h4></div> 
+							<div class="badge badge-pill badge-danger fip-type"><h4 id="fip-dose"></h4></div> 
 						</div>
 						</div>
 
