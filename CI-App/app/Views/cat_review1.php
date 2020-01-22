@@ -256,6 +256,13 @@
 			<div class="col text-center">
 			
 			<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
+			  
+			  <ol class="carousel-indicators">
+				<?php $n=0; $active = 'active';  foreach($pictures as $picture) { ?>
+					<li data-target="#carousel-cat-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+				<?php $n++; $active = ''; } ?>
+			  </ol>
+
 			  <div class="carousel-inner">
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
