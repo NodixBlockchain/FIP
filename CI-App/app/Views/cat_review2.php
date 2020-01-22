@@ -163,7 +163,7 @@
 			<?php if(array_search('ocular',$symptoms['symptoms-FIP'] )) { ?>
 				<div class="col text-center">
 				<h2>Picture of your cat's eyes</h2>
-					<div id="carousel-eyes-pics" class="carousel slide" data-ride="carousel">
+					<div id="carousel-eyes-pics" class="carousel slide" data-ride="carousel"  data-interval="false">
 			  
 					  <ol class="carousel-indicators">
 						<?php $n=0; $active = 'active';  foreach($eyes as $picture) { ?>
@@ -193,7 +193,7 @@
 			<?php } ?>
 			<div class="col text-center">
 				<h2>Pictures of your cat</h2>
-				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
+				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
 				  <ol class="carousel-indicators">
 					<?php $n=0; $active = 'active';  foreach($pictures as $picture) { ?>
