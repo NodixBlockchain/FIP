@@ -301,6 +301,8 @@
 		<script src="<?= base_url().'assets/js/core/bootstrap-material-design.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/material-kit.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/core/jquery-ui.js' ?>"></script>
+		
+		<script src="<?= base_url().'assets/js/plugins/piexif.min.js' ?>"></script>
 		<script src="<?= base_url().'assets/js/plugins/fileinput.min.js' ?>"></script>
 		<script src="<?= base_url().'assets/js/plugins/theme.min.js' ?>"></script>
 		
