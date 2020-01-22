@@ -212,19 +212,38 @@
 
 			<h2>ocular FIP</h2>
 			<h3>picture of your cat's eyes, without flash</h3>
-			<div class="row">
-				<?php foreach($eyes as $picture) { ?>
-						<div class="col text-center">
-							<img width="256" src="<?= $picture['url'] ?>" alt="cat eyes">
-							<div class="date text-center">date : <?= $picture['date'] ?></div>
-							<form action="<?= site_url('Cat/del_tmp_eyes/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-								<input type="submit" value="del" class="btn btn-primary" />
-							</form>
-							
-						</div>;
-				<?php } ?>
-			</div>
 
+			<div class="row">
+			<div class="col text-center">
+				<div id="carousel-eyes-pics" class="carousel slide" data-ride="carousel">
+			  
+				  <ol class="carousel-indicators">
+					<?php $n=0; $active = 'active';  foreach($eyes as $picture) { ?>
+						<li data-target="#carousel-eyes-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+					<?php $n++; $active = ''; } ?>
+				  </ol>
+
+				  <div class="carousel-inner">
+					<?php $active = 'active';  foreach($eyes as $picture) { ?>
+						<div class="carousel-item <?= $active ?>">
+							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="eyes picture" />
+							<div class="carousel-caption"><p>date : <?= $picture['date'] ?></p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_eyes/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+						</div>
+					<?php $active = ''; } ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel-eyes-pics" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-eyes-pics" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
 			<form action="<?= site_url('Cat/add_tmp_eyes/'.$catHash) ?>" id="eyes-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>upload a picture of your cat's eyes</h3><br/><img id="eye-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
@@ -255,36 +274,36 @@
 
 			<div class="row">
 			<div class="col text-center">
-			
-			<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
+				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
 			  
-			  <ol class="carousel-indicators">
-				<?php $n=0; $active = 'active';  foreach($pictures as $picture) { ?>
-					<li data-target="#carousel-cat-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
-				<?php $n++; $active = ''; } ?>
-			  </ol>
+				  <ol class="carousel-indicators">
+					<?php $n=0; $active = 'active';  foreach($pictures as $picture) { ?>
+						<li data-target="#carousel-cat-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+					<?php $n++; $active = ''; } ?>
+				  </ol>
 
-			  <div class="carousel-inner">
+				  <div class="carousel-inner">
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-							<div class="carousel-caption"><p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></p></div>
+							<div class="carousel-caption"><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
 						</div>
 					<?php $active = ''; } ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel-cat-pics" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-cat-pics" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
 				</div>
-			 </div>
-			<a class="carousel-control-prev" href="#carousel-cat-pics" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carousel-cat-pics" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			  </a>
-			 </div>
-			 </div>
+			</div>
+			</div>
+		</div>
 
-
+		<div class="container">
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload a picture of your cat</h3><br/><img id="pic-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
