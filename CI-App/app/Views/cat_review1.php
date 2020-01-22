@@ -267,7 +267,7 @@
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-							<div class="carousel-caption d-none d-md-block"><p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></p></div>
+							<div class="carousel-caption"><p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></p></div>
 						</div>
 					<?php $active = ''; } ?>
 				</div>
