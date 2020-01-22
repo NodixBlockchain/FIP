@@ -253,17 +253,21 @@
 			<h2>Upload a picture of your cat.</h2>
 
 			<div class="row">
+			<div class="col text-center">
 			
 			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner">
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-							<a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a>
+							<div class="carousel-caption d-none d-md-block"><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
 						</div>
 					<?php $active = ''; } ?>
 				</div>
 			 </div>
+			 </div>
+			 </div>
+
 			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
