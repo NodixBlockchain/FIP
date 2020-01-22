@@ -73,11 +73,6 @@
 			{
 				margin-left:8px;
 			}
-
-			#wet-form, #neuro-form, #ocular-form, #fip-dose
-			{
-				display:none;
-			}
 			.fip-type
 			{
 				padding:12px;
