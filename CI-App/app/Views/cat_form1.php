@@ -117,9 +117,9 @@
 			var checked = $("#ocular-block input[type=checkbox]:checked").length;
 
 			if(checked>0)
-				('#ocular-form').css('display','block');
+				$('#ocular-form').css('display','block');
 			else
-				('#ocular-form').css('display','none');
+				$('#ocular-form').css('display','none');
 		}
 
 		
