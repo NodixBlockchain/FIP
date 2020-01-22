@@ -253,14 +253,22 @@
 			<h2>Upload a picture of your cat.</h2>
 
 			<div class="row">
-				<?php foreach($pictures as $picture) { ?>
-					<div class="col text-center">
-					<img width="256" src="<?= $picture['url'] ?>" alt="cat picture" />
-					<form action="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-						<input type="submit" value="del" class="btn btn-primary" />
-					</form>
-					</div>
-				<?php } ?>
+			
+			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+			  <div class="carousel-inner">
+				<div class="col text-center">
+					<?php foreach($pictures as $picture) { ?>
+						<div class="carousel-item">
+						<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
+						<form action="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" method="POST">
+							<input type="submit" value="del" class="btn btn-primary" />
+						</form>
+						</div>
+					<?php } ?>
+				</div>
+			 </div>
+			</div>
+
 			</div>
 
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
