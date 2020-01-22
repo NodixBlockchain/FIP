@@ -2,9 +2,6 @@
 use CodeIgniter\Model;
 
 
-
-include (APPPATH."Libraries/class.ExifCleaning.php");
-
 class TmpCatModel extends Model
 {
     protected $table = 'cat';

@@ -1,7 +1,6 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
-include (APPPATH."Libraries/class.ExifCleaning.php");
 
 class BloodModel extends Model
 {

@@ -8,6 +8,8 @@ use App\Models\BloodModel;
 use App\Models\ValidationModel;
 use App\Models\UserModel;
 
+include (APPPATH."Libraries/class.ExifCleaning.php");
+
 class Cat extends BaseController
 {
 
