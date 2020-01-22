@@ -170,7 +170,7 @@
 							<p>Date: <input type="text" name="blood-date" id="blood-date" value="<?= $bloodDate ?>"></p>
 						</div>
 
-						<div class="btn btn-primary btn-file">
+						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select blood panel picture</span>
 							<input  name="cat-blood" id="cat-blood" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>

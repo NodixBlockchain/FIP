@@ -206,7 +206,7 @@
 						</div>
 
 
-						<div class="btn btn-primary btn-file">
+						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select xray picture</span>
 							<input  name="cat-xray" id="cat-xray" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
@@ -238,7 +238,7 @@
 							<p>Date: <input type="text" name="echography-date" id="echography-date" value="<?= $echoDate ?>"></p>
 						</div>
 
-						<div class="btn btn-primary btn-file">
+						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select echography picture</span>
 							<input name="cat-echography" id="cat-echography" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
