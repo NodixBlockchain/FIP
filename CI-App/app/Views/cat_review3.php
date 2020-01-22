@@ -145,7 +145,7 @@
 		<hr/>
 
 		<div class="container">
-			<h2>Upload blood panel picture if you have them</h2>
+			<h2>Blood panel picture</h2>
 
 
 			<div class="row">
@@ -153,9 +153,7 @@
 				<div class="col text-center">
 					<a target="_blank" href="<?= $picture['url'] ?>"><img width="256" src="<?= $picture['url'] ?>" alt="cat blood"></a>
 					<div class="date">date : <?= $picture['date'] ?></div>
-					<form action="<?= site_url('Cat/del_tmp_blood/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-						<input type="submit" value="del" class="btn btn-primary" />
-					</form>
+					<a class="btn btn-primary"  href="<?= site_url('Cat/del_tmp_blood/'.$catHash.'/'.$picture['file']) ?>" >del</a>
 				</div>
 			<?php } ?>
 			</div>
@@ -182,6 +180,7 @@
 
 
 		<div class="container">
+			<h2>If you don't have blood panel picture click next</h2>
 			<div class="row">
 				<div class="col text-left"> <a class="btn btn-primary" href="<?= site_url('Cat/review_step3/'.$catHash) ?>">back</a></div>
 				<div class="col text-right"><a class="btn btn-primary" href="<?= site_url('Cat/review_step5/'.$catHash) ?>">next</a></div>
