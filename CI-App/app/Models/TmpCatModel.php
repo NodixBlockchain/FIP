@@ -2,7 +2,7 @@
 use CodeIgniter\Model;
 
 
-include ("../class.ExifCleaning.php");
+include ("../Libraries/class.ExifCleaning.php");
 
 class TmpCatModel extends Model
 {
