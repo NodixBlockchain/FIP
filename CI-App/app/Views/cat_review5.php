@@ -78,6 +78,10 @@
 				padding:12px;
 				min-width:96px;
 			}
+			.date
+			{
+				background-color:rgba(0,0,0,0.3);
+			}
 		</style>
 
 	</head>
