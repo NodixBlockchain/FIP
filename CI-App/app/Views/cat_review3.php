@@ -164,7 +164,7 @@
 			<form action="<?= site_url('Cat/add_tmp_blood/'.$catHash) ?>" method="POST" id="blood-form" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload blood panels</h3><br/><img id="blood-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body">
+					<div class="card-body text-center">
 						<div class="form-group ">
 							<p>Date: <input type="text" name="blood-date" id="blood-date" value="<?= $bloodDate ?>"></p>
 						</div>
