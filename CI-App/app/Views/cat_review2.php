@@ -179,7 +179,7 @@
 						<?php $active = 'active';  foreach($eyes as $picture) { ?>
 							<div class="carousel-item <?= $active ?>">
 								<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="eyes picture" />
-								<div class="carousel-caption"><p>date : <?= $picture['date'] ?></p></div>
+								<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?></p></div>
 							</div>
 						<?php $active = ''; } ?>
 					  </div>
@@ -264,7 +264,7 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container-fluid">
 			<form action="<?= site_url('Cat/add_tmp_xray/'.$catHash) ?> " id="xray-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload Xray if you have them</h3><br/><img id="xray-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
@@ -280,18 +280,39 @@
 		</div>
 
 		<div class="container">
-			<h2>Upload echography pictures if you have them</h2>
+			<h2>Echography pictures</h2>
 			<div class="row">
-				<?php foreach($echographies as $picture) { ?>
-					<div class="col text-center">
-						<img width="256" src="<?= $picture['url'] ?>" alt="cat echography" />
-						<div class="date">date : <?= $picture['date'] ?></div>
-						<form action="<?= site_url('Cat/del_tmp_echo/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-							<input type="submit" value="del" class="btn btn-primary" />
-						</form>
-					</div>
-				<?php } ?>
+			<div class="col text-center">
+			<div id="carousel-echo-pics" class="carousel slide" data-ride="carousel" data-interval="false">
+			  
+				  <ol class="carousel-indicators">
+					<?php $n=0; $active = 'active';  foreach($echographies as $picture) { ?>
+						<li data-target="#carousel-echo-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+					<?php $n++; $active = ''; } ?>
+				  </ol>
+
+				  <div class="carousel-inner">
+					<?php $active = 'active';  foreach($echographies as $picture) { ?>
+						<div class="carousel-item <?= $active ?>">
+							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat echography">
+							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?> </p><a class="btn btn-primary" href="<?= site_url('Cat/del_tmp_echo/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+						</div>
+					<?php $active = ''; } ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel-echo-pics" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-echo-pics" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
 			</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
 			<form action="<?= site_url('Cat/add_tmp_echography/'. $catHash) ?> " id="echo-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload echography picture if you have them</h3><br/><img id="echo-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
