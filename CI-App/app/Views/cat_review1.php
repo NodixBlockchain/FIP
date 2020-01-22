@@ -88,7 +88,7 @@
 				padding:12px;
 				min-width:96px;
 			}
-			.btn-kv
+			.btn-outline-secondary i
 			{
 				margin-top: 0px;
 				margin-bottom: 0px;
