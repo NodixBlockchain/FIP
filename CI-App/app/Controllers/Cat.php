@@ -108,12 +108,30 @@ class Cat extends BaseController
 			if($this->request->getPost('cat-hash'))
 				$inputs['cat-hash'] = $this->request->getPost('cat-hash');
 
-			$symFip = $this->request->getPost('symptoms-FIP');
+			
 			$symMisc = $this->request->getPost('symptoms-misc');
 			$symWet = $this->request->getPost('symptoms-wet');
 			$symNeuro = $this->request->getPost('symptoms-neuro');
 			$symOcular = $this->request->getPost('symptoms-ocular');
-			$symEffusion = $this->request->getPost('symptoms-effusion');
+			
+
+			$symFip = [];
+
+			if(count($symWet)>0)
+			{
+				$symEffusion = $this->request->getPost('symptoms-effusion');
+				array_push($symFip,'wet');
+			}
+			else
+				$symEffusion = [];
+				
+
+			if(count($symNeuro)>0)
+				array_push($symFip,'neuro');
+
+			if(count($symOcular)>0)
+				array_push($symFip,'ocular');
+
 
 			$syminfos = ['symptoms-misc' => $symMisc?$symMisc:[],
 						 'symptoms-misc-other' => $this->request->getPost('symptoms-misc-other'),
