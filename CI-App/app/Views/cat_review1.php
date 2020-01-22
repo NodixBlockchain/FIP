@@ -88,7 +88,10 @@
 				padding:12px;
 				min-width:96px;
 			}
-		
+			.date
+			{
+				background-color:rgba(0,0,0,0.3);
+			}
 	
 		</style>
 
@@ -227,7 +230,7 @@
 					<?php $active = 'active';  foreach($eyes as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="eyes picture" />
-							<div class="carousel-caption"><p>date : <?= $picture['date'] ?></p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_eyes/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?></p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_eyes/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
 						</div>
 					<?php $active = ''; } ?>
 				  </div>
