@@ -140,6 +140,8 @@
 				$('#fip-dose').css('display','block');
 				$('#fip-dose').html(dosage + ' mg/KG');
 			}
+			else
+				$('#fip-dose').css('display','none');
 			
 			
 		}
@@ -406,7 +408,9 @@
 						</div>
 						<div class="row">
 						<div class="col">
+							<h2>Recommended dose</h2>
 							<div class="badge badge-pill badge-danger"><h4 id="fip-dose">wet form</h4></div> 
+						</div>
 						</div>
 					</div>
 
