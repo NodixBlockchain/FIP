@@ -86,10 +86,6 @@
 			{
 				display:inline-block;
 			}
-			#fip-dose-badge
-			{
-				width:80%;
-			}
 		</style>
 
 	</head>
