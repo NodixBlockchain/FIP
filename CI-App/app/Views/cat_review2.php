@@ -202,7 +202,7 @@
 						<div class="input-group mb-3">
 						  <div class="custom-file">
 							<input onchange=" upload_xray(); " type="file" class="custom-file-input" name="cat-xray" id="cat-xray">
-							<label for="cat-xray" class="custom-file-label">Select a picture for cat's xray</label> 
+							<label for="cat-xray" class="custom-file-label">Select xray picture</label> 
 						  </div>
 						</div>
 
@@ -237,7 +237,7 @@
 						<div class="form-group mb-3">
 						  <div class="custom-file">
 							<input onchange=" upload_echo(); " type="file" class="custom-file-input" name="cat-echography" id="cat-echography">
-							<label for="cat-echography" class="custom-file-label">Select a picture for cat's echography</label> 
+							<label for="cat-echography" class="custom-file-label">Select echography picture</label> 
 						  </div>
 						</div>
 					</div>

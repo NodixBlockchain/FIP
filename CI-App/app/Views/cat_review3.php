@@ -167,7 +167,7 @@
 						<div class="input-group mb-3">
 						  <div class="custom-file">
 						   <input onchange=" upload_blood(); " type="file" class="custom-file-input" name="cat-blood" id="cat-blood">
-						   <label for="cat-blood" class="custom-file-label">Select a picture for cat's blood panels</label> 
+						   <label for="cat-blood" class="custom-file-label">Select blood panels picture</label> 
 						  </div>
 						</div>
 

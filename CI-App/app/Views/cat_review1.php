@@ -132,7 +132,7 @@
 
 		<hr/>
 
-		<div class="container">
+		<div class="container text-center">
 			<h2>symptoms</h2>
 				<div class="row">
 				<?php if(count($symptoms['symptoms-misc'])>0) { ?>
@@ -265,7 +265,7 @@
 						<div class="input-group mb-3">
 						  <div class="custom-file">
 							<input  onchange=" upload_pic(); " type="file" class="custom-file-input" name="cat-picture" id="cat-picture">
-							<label for="cat-picture" class="custom-file-label">Select a picture of your cat</label> 
+							<label for="cat-picture" class="custom-file-label">Select cat picture</label> 
 						  </div>
 						</div>
 					</div>

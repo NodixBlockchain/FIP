@@ -171,7 +171,7 @@
 							<div class="input-group mb-3">
 							  <div class="custom-file">
 								<input onchange=" upload_xray(); " type="file" class="custom-file-input" name="cat-xray" id="cat-xray">
-								<label for="cat-xray" class="custom-file-label">Select a picture for cat's xray</label> 
+								<label for="cat-xray" class="custom-file-label">Select xray picture</label> 
 							  </div>
 							</div>
 						</div>

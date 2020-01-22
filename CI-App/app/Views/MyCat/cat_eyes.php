@@ -170,7 +170,7 @@
 							<div class="input-group mb-3">
 							  <div class="custom-file">
 								<input onchange=" upload_eye(); " type="file" class="custom-file-input" name="cat-eyes" id="cat-eyes">
-								<label class="custom-file-label" for="cat-eyes">Select a picture of your cat's eyes</label>
+								<label class="custom-file-label" for="cat-eyes">Select eyes picture</label>
 							  </div>
 							</div>
 
