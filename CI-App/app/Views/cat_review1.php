@@ -256,13 +256,10 @@
 			
 			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner">
-				<div class="col text-center">
-					<?php foreach($pictures as $picture) { $active = 'active'; ?>
+					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
-						<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-						<form action="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-							<input type="submit" value="del" class="btn btn-primary" />
-						</form>
+							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
+							<a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a>
 						</div>
 					<?php $active = ''; } ?>
 				</div>
