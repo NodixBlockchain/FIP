@@ -386,7 +386,12 @@
 					</div>
 
 					<div class="jumbotron text-center">
-						
+						<div class="row">
+						<div class="col">
+							<div class="badge badge-pill badge-danger fip-type"><h4 id="fip-dose">wet form</h4></div> 
+						</div>
+						</div>
+
 						<h2>FIP form</h2>
 
 						<div class="row">
@@ -405,12 +410,6 @@
 						</div>
 						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
 						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
-						</div>
-						<div class="row">
-						<div class="col">
-							<h2>Recommended dose</h2>
-							<div class="badge badge-pill badge-danger"><h4 id="fip-dose">wet form</h4></div> 
-						</div>
 						</div>
 					</div>
 
