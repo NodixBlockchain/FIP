@@ -225,6 +225,9 @@
 			</div>
 		</div>
 
+
+		<hr/>
+
 		<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
 		<div class="container">
