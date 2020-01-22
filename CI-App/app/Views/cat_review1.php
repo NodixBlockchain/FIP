@@ -210,7 +210,8 @@
 		<?php if(array_search('ocular',$symptoms['symptoms-FIP'] )) { ?>
 		<div class="container">
 
-			<h2>For ocular FIP, you may upload a picture of your cat's eyes, without flash </h2>
+			<h2>ocular FIP</h2>
+			<h3>picture of your cat's eyes, without flash</h3>
 			<div class="row">
 				<?php foreach($eyes as $picture) { ?>
 						<div class="col text-center">
@@ -250,7 +251,7 @@
 		
 
 		<div class="container">
-			<h2>Upload a picture of your cat.</h2>
+			<h2>Pictures of your cat.</h2>
 
 			<div class="row">
 			<div class="col text-center">
