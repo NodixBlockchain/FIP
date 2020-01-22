@@ -165,7 +165,7 @@
 					</div>
 					<div class="row">
 					<?php if(count($symptomsDate['symptoms']['symptoms-wet'])>0) { ?>
-						<div class="col">
+						<div class="col text-left">
 							<div class="badge badge-pill badge-warning fip-type">
 							<h4>wet</h4>
 							<?php 
@@ -192,14 +192,14 @@
 					<?php } ?>
 
 					<?php if(count($symptomsDate['symptoms']['symptoms-ocular'])>0) { ?>
-						<div class="col">					
+						<div class="col text-left">					
 							<div class="badge badge-pill badge-warning fip-type"><h4>ocular</h4></div>
-							<ul class="text-left"><?php foreach($symptomsDate['symptoms']['symptoms-ocular'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+							<ul><?php foreach($symptomsDate['symptoms']['symptoms-ocular'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
 						</div>
 					<?php } ?>
 
 					<?php if(count($symptomsDate['symptoms']['symptoms-neuro'])>0) { ?>
-						<div class="col">
+						<div class="col text-left">
 							<div class="badge badge-pill badge-warning fip-type"><h4>neuro</h4></div>
 							<ul class="text-left" > <?php foreach($symptomsDate['symptoms']['symptoms-neuro'] as $symptom) { ?> <li ><?= $symptom ?></li> <?php } ?> </ul>
 						</div>
