@@ -216,7 +216,7 @@
 				</div>
 			<?php } ?>
 			<div class="col text-center">
-				<?php if(count($eyes)>0) { ?>
+				<?php if(count($pictures)>0) { ?>
 					<h2>Cat's pictures</h2>
 					<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
