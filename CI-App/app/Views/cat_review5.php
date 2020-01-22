@@ -268,7 +268,6 @@
 				  </a>
 				</div>
 			</div>
-			</div>
 		
 			<div class="col text-center">
 				<h2>echography</h2>
