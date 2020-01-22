@@ -230,7 +230,7 @@
 
 		<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
-		<div class="container">
+		<div class="containe text-center">
 			<h2>Xray pictures</h2>
 
 			<div class="row">
@@ -279,10 +279,10 @@
 			</form>
 		</div>
 
-		<div class="container">
+		<div class="container text-center">
 			<h2>Echography pictures</h2>
 			<div class="row">
-			<div class="col text-center">
+			<div class="col">
 			<div id="carousel-echo-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
 				  <ol class="carousel-indicators">
