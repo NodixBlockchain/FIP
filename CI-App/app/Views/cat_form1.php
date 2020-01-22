@@ -371,9 +371,9 @@
 
 						<div class="row">
 						<div class="col">
-							<div class="badge badge-pill badge-warning fip-type" id="wet-form">
+							<div class="fip-type" id="wet-form">
 						
-								<h4>wet form 5ml/kg</h4>
+								<div class="badge badge-pill badge-warning"><h4>wet form 5ml/kg</h4></div> 
 								<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
 									<h3>Effusion type</h3>
 									<div class="form-group">
