@@ -236,7 +236,7 @@
 							<p>Date: <input type="text" name="eye-date" id="eye-date" value="<?= $currentdate ?>"></p>
 						</div>
 
-						<div class="btn btn-primary btn-file">
+						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select eyes picture</span>
 							<input name="cat-eyes" id="cat-eyes" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
