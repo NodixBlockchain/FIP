@@ -270,7 +270,7 @@
 					<div class="card-header text-center"><h3>Upload Xray if you have them</h3><br/><img id="xray-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
 					<div class="card-body text-center" style="padding:0px">
 						<div class="form-group "><p>Date: <input type="text" name="xray-date" id="xray-date" autocomplete="off" value="<?= $xrayDate ?>"></p></div>
-						<div class="btn btn-primary btn-file" style="padding:0px">
+						<div class="btn btn-primary btn-file" style="padding:2px">
 							<span class="hidden-xs">Select xray picture</span>
 							<input  name="cat-xray" id="cat-xray" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
@@ -321,7 +321,7 @@
 							<p>Date: <input type="text" name="echography-date" id="echography-date" value="<?= $echoDate ?>"></p>
 						</div>
 
-						<div class="btn btn-primary btn-file" style="padding:0px">
+						<div class="btn btn-primary btn-file" style="padding:2px">
 							<span class="hidden-xs">Select echography picture</span>
 							<input name="cat-echography" id="cat-echography" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
