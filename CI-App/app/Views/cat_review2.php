@@ -237,13 +237,11 @@
 
 		<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
+		<?php if(count($xrays)>0) { ?>
 		<div class="containe text-center">
 			<h2>Xray pictures</h2>
-
 			<div class="row">
 			<div class="col text-center">
-
-			
 			<div id="carousel-xrays-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
 				  <ol class="carousel-indicators">
@@ -272,6 +270,7 @@
 			</div>
 			</div>
 		</div>
+		<?php } ?>
 
 		<div class="container-fluid">
 			<form action="<?= site_url('Cat/add_tmp_xray/'.$catHash) ?> " id="xray-form" method="POST" enctype="multipart/form-data">
@@ -288,6 +287,7 @@
 			</form>
 		</div>
 
+		<?php if(count($echographies)>0) { ?>
 		<div class="container text-center">
 			<h2>Echography pictures</h2>
 			<div class="row">
@@ -320,6 +320,7 @@
 			</div>
 			</div>
 		</div>
+		<?php } ?>
 
 		<div class="container-fluid">
 			<form action="<?= site_url('Cat/add_tmp_echography/'. $catHash) ?> " id="echo-form" method="POST" enctype="multipart/form-data">
