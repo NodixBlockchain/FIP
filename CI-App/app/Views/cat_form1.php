@@ -135,7 +135,7 @@
 			if(dosage>0)
 			{
 				$('#fip-dose').css('display','block');
-				$('#fip-dose').html(dosage + ' mg/KG');
+				$('fip-dose-badge').html(dosage + ' mg/KG');
 			}
 			else
 				$('#fip-dose').css('display','none');
@@ -385,7 +385,7 @@
 					<div class="jumbotron text-center">
 						<div class="row">
 						<div class="col">
-							<div class="badge badge-pill badge-danger fip-type"><h4 id="fip-dose"></h4></div> 
+							<div class="badge badge-pill badge-danger fip-type" id="fip-dose"><h4 id="fip-dose-badge"></h4></div> 
 						</div>
 						</div>
 
@@ -405,8 +405,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
 						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
+						
 						</div>
 					</div>
 
