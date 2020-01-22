@@ -302,6 +302,7 @@
 							<div class="container">
 								<div class="row">
 								<div class="col">
+									<h3>General symptoms</h3>
 									<?php if(array_key_exists('cat-misc',$errors)){ echo '<span id="cat-misc-error" class="error">'.$errors['cat-misc'].'</span>'; } ?>
 									<div class="form-group">
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-fever"			value="fever"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('fever',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>fever</label></div>
