@@ -238,14 +238,10 @@
 				  </a>
 				</div>
 			</div>
-			</div>
-
-
 		
-			<div class="row">
 			<div class="col text-center">
 				<h2>xrays</h2>
-			<div id="carousel-xrays-pics" class="carousel slide" data-ride="carousel" data-interval="false">
+				<div id="carousel-xrays-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
 				  <ol class="carousel-indicators">
 					<?php $n=0; $active = 'active';  foreach($xrays as $picture) { ?>
@@ -274,7 +270,7 @@
 		
 			<div class="col text-center">
 				<h2>echography</h2>
-			<div id="carousel-echo-pics" class="carousel slide" data-ride="carousel" data-interval="false">
+				<div id="carousel-echo-pics" class="carousel slide" data-ride="carousel" data-interval="false">
 			  
 				  <ol class="carousel-indicators">
 					<?php $n=0; $active = 'active';  foreach($echographies as $picture) { ?>
