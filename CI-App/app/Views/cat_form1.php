@@ -78,6 +78,13 @@
 			{
 				display:none;
 			}
+			.fip-type
+			{
+				background-color:666;
+				padding:12px;
+				border:1px #000 solid;
+				border-radius:6px;
+			}
 		</style>
 
 	</head>
@@ -358,13 +365,13 @@
 					</div>
 					</div>
 
-					<div class="jumbotron">
+					<div class="jumbotron text-center">
 						
 						<h2>FIP form</h2>
 
 						<div class="row">
 						<div class="col">
-							<div class="fip-type" id="wet-form">
+							<div class="badge badge-pill badge-warning fip-type" id="wet-form">
 						
 								<h4>wet form 5ml/kg</h4>
 								<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
@@ -379,8 +386,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col"><div class="fip-type" id="neuro-form"><h4>neuro</h4></div></div>
-						<div class="col"><div class="fip-type" id="ocular-form"><h4>ocular</h4></div></div>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
 						</div>
 					</div>
 
