@@ -144,7 +144,7 @@
 
 		<hr/>
 
-		<div class="container">
+		<div class="container-fluid text-center">
 			<h2>Blood panel picture</h2>
 
 
