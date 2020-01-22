@@ -179,7 +179,7 @@
 		</div>
 
 
-		<div class="container">
+		<div class="container text-center">
 			<h2>If you don't have blood panel picture click next</h2>
 			<div class="row">
 				<div class="col text-left"> <a class="btn btn-primary" href="<?= site_url('Cat/review_step3/'.$catHash) ?>">back</a></div>
