@@ -212,7 +212,7 @@
 						</div>
 
 					</div>
-					<input type="submit" class="btn btn-primary" value="upload" accept="image/*" id="xray-form-submit" />
+					
 				 </div>
 			</form>
 		</div>
@@ -243,7 +243,7 @@
 							<input name="cat-echography" id="cat-echography" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 					</div>
-					<input type="submit" class="btn btn-primary" value="upload" accept="image/*" id="echo-form-submit"/>
+					
 				 </div>
 			</form>
 		</div>

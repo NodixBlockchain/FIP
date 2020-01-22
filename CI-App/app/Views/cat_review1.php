@@ -237,7 +237,7 @@
 						</div>
 
 					</div>
-					<input type="submit" id="eye-form-submit" class="btn btn-primary" value="upload cat's eye picture" accept="image/*"/>
+					
 				 </div>
 				 
 			</form>
