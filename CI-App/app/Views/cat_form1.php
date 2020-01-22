@@ -282,6 +282,9 @@
 					<div class="card">
 					<div class="card-header">type of FIP</div>
 					<div class="card-body">
+
+						<?php if(array_key_exists('cat-symptoms',$errors)){ echo '<div class="row"><div class="col text-center"><span id="cat-symptoms-error" class="error">'.$errors['cat-symptoms'].'</span></div></div>'; } ?>
+						
 						<div class="row">
 						<div class="col">
 							<div class="container">

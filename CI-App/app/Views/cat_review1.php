@@ -78,7 +78,11 @@
 			{
 				display:none;
 			}
-
+			.fip-type
+			{
+				padding:12px;
+				min-width:96px;
+			}
 	
 		</style>
 
@@ -130,77 +134,64 @@
 
 		<div class="container">
 			<h2>symptoms</h2>
-			<div class="row"><div class="col">type of FIP</div>
-			<div class="col">
-				<ul>
-				<?php foreach($symptoms['symptoms-FIP'] as $FIP) { ?>
-					<li><?= $FIP ?>
-					<?php 
-					if($FIP=='wet'){
+				<div class="row">
+				<?php if(count($symptoms['symptoms-misc'])>0) { ?>
+					<div class="col text-left">
+						<h3>general</h3>
+						<ul>
+						<?php foreach($symptoms['symptoms-misc'] as $symptom) { ?>
+							<li><?= $symptom ?></li>
+						<?php } ?>
 
-						if(count($symptoms['symptoms-effusion'])>0)
-						{
-							$first=1;
-							echo '(';
-							foreach($symptoms['symptoms-effusion'] as $effusion)
-							{
-								if($first==0)
-									echo ',';
-
-								echo $effusion;
-								$first=0;
-							}
-							echo ')';
-						}
-						else
-						{
-							echo "(unspecified)";
-						}
-					}
-					?>
-					</li>
+						<?php if($symptoms['symptoms-misc-other']) { ?>
+								<li><?= $symptoms['symptoms-misc-other'] ?></li>
+						<?php } ?>
+						</ul>
+					</div>
 				<?php } ?>
-			
-				</ul>
-			</div>
-			</div>
-			<div class="row">
-				<div class="col text-left">
-					<h3>general</h3>
-					<ul>
-					<?php foreach($symptoms['symptoms-misc'] as $symptom) { ?>
-						<li><?= $symptom ?></li>
-					<?php } ?>
+				</div>
+				<div class="row">
+				<?php if(count($symptoms['symptoms-wet'])>0) { ?>
+					<div class="col text-left">
+						<div class="badge badge-pill badge-warning fip-type">
+						<h4>wet</h4>
+						<?php 
+							if(count($symptoms['symptoms-effusion'])>0)
+							{
+								$first = 1;
+								foreach($symptoms['symptoms-effusion'] as $effusion)
+								{
+									if($first==0)
+										echo '<br/>';
 
-					<?php if($symptoms['symptoms-misc-other']) { ?>
-							<li><?= $symptoms['symptoms-misc-other'] ?></li>
-					<?php } ?>
-					</ul>
-				</div>
-				<div class="col text-left">
-					<h3>wet</h3>
-					<ul>
-					<?php foreach($symptoms['symptoms-wet'] as $symptom) { ?>
-						<li><?= $symptom ?></li>
-					<?php } ?>
-					</ul>
-				</div>
-				<div class="col text-left">
-					<h3>neuro</h3>
-					<ul>
-					<?php foreach($symptoms['symptoms-neuro'] as $symptom) { ?>
-						<li><?= $symptom ?></li>
-					<?php } ?>
-					</ul>
-				</div>
-				<div class="col text-left">					
-					<h3>ocular</h3>
-					<ul>
-					<?php foreach($symptoms['symptoms-ocular'] as $symptom) { ?>
-						<li><?= $symptom ?></li>
-					<?php } ?>
-					</ul>
-				</div>
+									echo $effusion;
+									$first=0;
+								}
+							}
+							else
+							{
+								echo "unspecified";
+							}
+						?>						
+						
+						</div>
+						<ul> <?php foreach($symptoms['symptoms-wet'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+					</div>
+				<?php } ?>
+
+				<?php if(count($symptoms['symptoms-ocular'])>0) { ?>
+					<div class="col text-left">					
+						<div class="badge badge-pill badge-warning fip-type"><h4>ocular</h4></div>
+						<ul><?php foreach($symptoms['symptoms-ocular'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+					</div>
+				<?php } ?>
+
+				<?php if(count($symptoms['symptoms-neuro'])>0) { ?>
+					<div class="col text-left">
+						<div class="badge badge-pill badge-warning fip-type"><h4>neuro</h4></div>
+						<ul> <?php foreach($symptoms['symptoms-neuro'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 
@@ -237,7 +228,7 @@
 						<div class="input-group mb-3">
 						  <div class="custom-file">
 							<input onchange=" upload_eye(); " type="file" class="custom-file-input" name="cat-eyes" id="cat-eyes">
-							<label class="custom-file-label" for="cat-eyes">Select a picture of your cat's eyes</label>
+							<label class="custom-file-label" for="cat-eyes">Select eyes picture</label>
 						  </div>
 						</div>
 

@@ -76,6 +76,11 @@
 			.blood-pic{
 				max-width:800px;
 			}
+			.fip-type
+			{
+				padding:12px;
+				min-width:96px;
+			}
 		</style>
 
 	</head>
@@ -104,45 +109,23 @@
 			<div class="row"><div class="col">Cat gender</div><div class="col"><?= $inputs['cat-gender'] ?> </div></div>
 			<div class="row"><div class="col">Cat Fixed</div><div class="col"><?= $inputs['cat-fixed'] ?> </div></div>
 			<div class="row"><div class="col">Cat Breed</div><div class="col"><?= $inputs['cat-breed'] ?> </div></div>
-			<div class="row"><div class="col">type of FIP</div><div class="col">
-
-				<ul>
-				<?php
-					foreach($symptoms['symptoms-FIP'] as $FIP)
-					{
-						echo '<li>';
-						echo $FIP;
-
-						if($FIP=='wet'){
-
-							if(count($symptoms['symptoms-effusion'])>0)
-							{
-								$first=1;
-								echo '(';
-
-								foreach($symptoms['symptoms-effusion'] as $effusion)
-								{
-									if($first==0)
-										echo ',';
-
-									echo $effusion;
-									$first=0;
-								}
-
-								echo ')';
-							}
-							else
-							{
-								echo "(unspecified)";
-							}
-						}
-						echo '</li>';
-					}
-				?>
-				</ul>
-			</div></div>
 			<div class="row"><div class="col">diagnosis</div><div class="col"><?= $inputs['cat-diagnosis'] ?> </div></div>
 			<div class="row"><div class="col">diagnosis date</div><div class="col"><?= $inputs['cat-diagnosis-date'] ?> </div></div>
+		</div>
+
+		<div class="container text-center">
+			<h2>symptoms</h2>
+			<div class="row">
+				<?php if(count($symptoms['symptoms-wet'])>0) { ?>
+					<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>wet</h4></div></div>
+				<?php } ?>
+				<?php if(count($symptoms['symptoms-ocular'])>0) { ?>
+					<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>ocular</h4></div></div>
+				<?php } ?>
+				<?php if(count($symptoms['symptoms-neuro'])>0) { ?>
+					<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>neuro</h4></div></div>
+				<?php } ?>
+			</div>
 		</div>
 
 		<hr/>

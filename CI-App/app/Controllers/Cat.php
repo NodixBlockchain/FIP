@@ -61,6 +61,7 @@ class Cat extends BaseController
 
 		$birthError = FALSE;
 		$diagDateError = FALSE;
+		$symptomsError = FALSE;
 
 		$isValid = $this->validate(['parent-first-name' => 'alpha_numeric_space|max_length[64]',
 									'parent-last-name' => 'alpha_numeric_space|max_length[64]',
@@ -90,6 +91,42 @@ class Cat extends BaseController
 				$isValid = FALSE;
 			}
 		}
+
+	
+		$symMisc = $this->request->getPost('symptoms-misc');
+		$symWet = $this->request->getPost('symptoms-wet');
+		$symOcular = $this->request->getPost('symptoms-ocular');
+		$symNeuro = $this->request->getPost('symptoms-neuro');
+		
+		$symMisc=$symMisc?$symMisc:[];
+		$symWet=$symWet?$symWet:[];
+		$symOcular=$symOcular?$symOcular:[];
+		$symNeuro=$symNeuro?$symNeuro:[];
+		
+		
+		$symFip = [];
+
+		if(count($symWet)>0)
+		{
+			$symEffusion = $this->request->getPost('symptoms-effusion');
+			$symEffusion = $symEffusion?$symEffusion:[];
+			array_push($symFip,'wet');
+		}
+		else
+			$symEffusion = [];
+
+		if(count($symNeuro)>0)
+			array_push($symFip,'neuro');
+
+		if(count($symOcular)>0)
+			array_push($symFip,'ocular');
+
+		if(count($symFip)<=0)
+		{
+			$symptomsError = TRUE;
+			$isValid = FALSE;
+		}
+
 		
 		if (!$isValid )
 		{
@@ -109,37 +146,13 @@ class Cat extends BaseController
 				$inputs['cat-hash'] = $this->request->getPost('cat-hash');
 
 			
-			$symMisc = $this->request->getPost('symptoms-misc');
-			$symWet = $this->request->getPost('symptoms-wet');
-			$symNeuro = $this->request->getPost('symptoms-neuro');
-			$symOcular = $this->request->getPost('symptoms-ocular');
-			
-
-			$symFip = [];
-
-			if(count($symWet)>0)
-			{
-				$symEffusion = $this->request->getPost('symptoms-effusion');
-				array_push($symFip,'wet');
-			}
-			else
-				$symEffusion = [];
-				
-
-			if(count($symNeuro)>0)
-				array_push($symFip,'neuro');
-
-			if(count($symOcular)>0)
-				array_push($symFip,'ocular');
-
-
-			$syminfos = ['symptoms-misc' => $symMisc?$symMisc:[],
+			$syminfos = ['symptoms-misc' => $symMisc,
 						 'symptoms-misc-other' => $this->request->getPost('symptoms-misc-other'),
-						 'symptoms-wet' => $symWet?$symWet:[],
-						 'symptoms-neuro' => $symNeuro?$symNeuro:[],
-						 'symptoms-ocular' => $symOcular?$symOcular:[],
-						 'symptoms-FIP' => $symFip?$symFip:[],
-						 'symptoms-effusion' => $symEffusion?$symEffusion:[]];
+						 'symptoms-wet' => $symWet,
+						 'symptoms-ocular' => $symOcular,
+						 'symptoms-neuro' => $symNeuro,
+						 'symptoms-FIP' => $symFip,
+						 'symptoms-effusion' => $symEffusion];
 
 
 			$errors = $this->validator->getErrors();
@@ -149,9 +162,11 @@ class Cat extends BaseController
 
 			if($diagDateError)
 				$errors['cat-diagnosis-date'] = 'invalid date';
-				
 
-			return view('cat_form1', ['inputs' => $inputs,'symptoms' => $syminfos, 'errors' => $errors]);
+			if($symptomsError)
+				$errors['cat-symptoms'] = 'select at least a symptoms<br/>indicative of a FIP form';
+
+			return view('cat_form1', ['inputs' => $inputs, 'symptoms' => $syminfos, 'errors' => $errors]);
 		}
 		else
 		{
@@ -176,22 +191,15 @@ class Cat extends BaseController
 			if(!array_key_exists('cat_hash', $catFields))
 				$catFields['cat_hash'] = $newHash;
 
-			$symFip = $this->request->getPost('symptoms-FIP');
-			$symMisc = $this->request->getPost('symptoms-misc');
-			$symWet = $this->request->getPost('symptoms-wet');
-			$symNeuro = $this->request->getPost('symptoms-neuro');
-			$symOcular = $this->request->getPost('symptoms-ocular');
-			$symEffusion = $this->request->getPost('symptoms-effusion');
-
 			$symptoms->dosavetmp(['cat_hash'=> $catFields['cat_hash'],
 								  'date' => date("m/d/Y"),
-								  'symptoms_misc' => $symMisc?$symMisc:[],
+								  'symptoms_misc' => $symMisc,
 								  'symptoms_misc_other' => $this->request->getPost('symptoms-misc-other'),
-								  'symptoms_wet' => $symWet?$symWet:[],
-								  'symptoms_neuro' => $symNeuro?$symNeuro:[],
-								  'symptoms_ocular' => $symOcular?$symOcular:[],
-								  'symptoms_FIP' => $symFip?$symFip:[],
-								  'symptoms_effusion' => $symEffusion?$symEffusion:[]]);
+								  'symptoms_wet' => $symWet,
+								  'symptoms_ocular' => $symOcular,
+								  'symptoms_neuro' => $symNeuro,
+								  'symptoms_FIP' => $symFip,
+								  'symptoms_effusion' => $symEffusion]);
 
 			return redirect()->to(site_url('cat/review_step2/'.$catFields['cat_hash']));
 		}

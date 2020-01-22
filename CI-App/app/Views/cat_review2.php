@@ -82,6 +82,11 @@
 			{
 				display:none;
 			}
+			.fip-type
+			{
+				padding:12px;
+				min-width:96px;
+			}
 		</style>
 
 	</head>
@@ -103,68 +108,46 @@
 		</script>
 
 		<div class="wrapper">
-			<div class="container">
-			<div class="logo">
-				<img src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/82226910_10158057008452856_9021406031598583808_o.jpg?_nc_cat=110&_nc_oc=AQlUoMl5XBrtucjkDdzdEtuIfbiu_uRPBfVPwnTxxoFqJU3aZaZYptXIl88d_-2vbTQ&_nc_ht=scontent-cdg2-1.xx&oh=0a0830f5e9aaab4a11c094903888ad52&oe=5EA0C7BE" alt="header" />
-			</div>
-			</div>
+				<div class="container">
+				<div class="logo">
+					<img src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/82226910_10158057008452856_9021406031598583808_o.jpg?_nc_cat=110&_nc_oc=AQlUoMl5XBrtucjkDdzdEtuIfbiu_uRPBfVPwnTxxoFqJU3aZaZYptXIl88d_-2vbTQ&_nc_ht=scontent-cdg2-1.xx&oh=0a0830f5e9aaab4a11c094903888ad52&oe=5EA0C7BE" alt="header" />
+				</div>
+				</div>
+
+				<div class="container">
+					<div class="jumbotron text-left"><a href="<?= site_url('cat/index/'.$catHash) ?>" >home</a> / upload xray and echographies</div>
+				</div>
 
 			<div class="container">
-				<div class="jumbotron text-left"><a href="<?= site_url('cat/index/'.$catHash) ?>" >home</a> / upload xray and echographies</div>
+
+				<h2>below is your cat information</h2>
+
+				<div class="row"><div class="col">first name</div><div class="col"><?= $inputs['parent-first-name'] ?></div></div>
+				<div class="row"><div class="col">last name</div><div class="col"><?= $inputs['parent-last-name'] ?></div></div>
+				<div class="row"><div class="col">Facebook name</div><div class="col"><?= $inputs['fb-name'] ?></div></div>
+				<div class="row"><div class="col">Cat name</div><div class="col"><?= $inputs['cat-name'] ?></div></div>
+				<div class="row"><div class="col">Cat's birth date</div><div class="col"><?= $inputs['cat-birthdate'] ?> <?php if($inputs['cat-birthdate-exact'] == 'approx'){ echo " (approximate) "; } ?></div></div>
+				<div class="row"><div class="col">Cat gender</div><div class="col"><?= $inputs['cat-gender'] ?> </div></div>
+				<div class="row"><div class="col">Cat Fixed</div><div class="col"><?= $inputs['cat-fixed'] ?> </div></div>
+				<div class="row"><div class="col">Cat Breed</div><div class="col"><?= $inputs['cat-breed'] ?> </div></div>
+				<div class="row"><div class="col">diagnosis</div><div class="col"><?= $inputs['cat-diagnosis'] ?> </div></div>
+				<div class="row"><div class="col">diagnosis date</div><div class="col"><?= $inputs['cat-diagnosis-date'] ?> </div></div>
 			</div>
 
-			<div class="container">
-
-			<h2>below is your cat information</h2>
-
-			<div class="row"><div class="col">first name</div><div class="col"><?= $inputs['parent-first-name'] ?></div></div>
-			<div class="row"><div class="col">last name</div><div class="col"><?= $inputs['parent-last-name'] ?></div></div>
-			<div class="row"><div class="col">Facebook name</div><div class="col"><?= $inputs['fb-name'] ?></div></div>
-			<div class="row"><div class="col">Cat name</div><div class="col"><?= $inputs['cat-name'] ?></div></div>
-			<div class="row"><div class="col">Cat's birth date</div><div class="col"><?= $inputs['cat-birthdate'] ?> <?php if($inputs['cat-birthdate-exact'] == 'approx'){ echo " (approximate) "; } ?></div></div>
-			<div class="row"><div class="col">Cat gender</div><div class="col"><?= $inputs['cat-gender'] ?> </div></div>
-			<div class="row"><div class="col">Cat Fixed</div><div class="col"><?= $inputs['cat-fixed'] ?> </div></div>
-			<div class="row"><div class="col">Cat Breed</div><div class="col"><?= $inputs['cat-breed'] ?> </div></div>
-			<div class="row"><div class="col">type of FIP</div><div class="col">
-
-				<ul>
-				<?php
-					foreach($symptoms['symptoms-FIP'] as $FIP)
-					{
-						echo '<li>';
-						echo $FIP;
-
-						if($FIP=='wet'){
-
-							if(count($symptoms['symptoms-effusion'])>0)
-							{
-								$first=1;
-								echo '(';
-
-								foreach($symptoms['symptoms-effusion'] as $effusion)
-								{
-									if($first==0)
-										echo ',';
-
-									echo $effusion;
-									$first=0;
-								}
-
-								echo ')';
-							}
-							else
-							{
-								echo "(unspecified)";
-							}
-						}
-						echo '</li>';
-					}
-				?>
-				</ul>
-			</div></div>
-			<div class="row"><div class="col">diagnosis</div><div class="col"><?= $inputs['cat-diagnosis'] ?> </div></div>
-			<div class="row"><div class="col">diagnosis date</div><div class="col"><?= $inputs['cat-diagnosis-date'] ?> </div></div>
-		</div>
+			<div class="container text-center">
+				<h2>symptoms</h2>
+				<div class="row">
+					<?php if(count($symptoms['symptoms-wet'])>0) { ?>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>wet</h4></div></div>
+					<?php } ?>
+					<?php if(count($symptoms['symptoms-ocular'])>0) { ?>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>ocular</h4></div></div>
+					<?php } ?>
+					<?php if(count($symptoms['symptoms-neuro'])>0) { ?>
+						<div class="col"><div class="badge badge-pill badge-warning fip-type"><h4>neuro</h4></div></div>
+					<?php } ?>
+				</div>
+			</div>
 
 		<hr/>
 

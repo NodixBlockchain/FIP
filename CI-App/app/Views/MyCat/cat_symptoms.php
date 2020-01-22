@@ -79,6 +79,11 @@
 			{
 				margin-top: 64px;
 			}
+			.fip-type
+			{
+				padding:12px;
+				min-width:96px;
+			}
 		</style>
 
 	</head>
@@ -141,51 +146,12 @@
 			<div class="container text-center">
 				<h2>symptoms</h2>
 				<?php foreach($symptomsDates as $symptomsDate) { ?>
-					
 					<h3><?= $symptomsDate['symptoms-date'] ?></h3>
-
-					<div class="row"><div class="col text-left">
-					<ul>
-					<?php
-						foreach($symptomsDate['symptoms']['symptoms-FIP'] as $FIP)
-						{
-							echo '<li>';
-							echo $FIP;
-
-							if($FIP=='wet'){
-
-								if(count($symptomsDate['symptoms']['symptoms-effusion'])>0)
-								{
-									$first=1;
-									echo '(';
-
-									foreach($symptomsDate['symptoms']['symptoms-effusion'] as $effusion)
-									{
-										if($first==0)
-											echo ',';
-
-										echo $effusion;
-										$first=0;
-									}
-
-									echo ')';
-								}
-								else
-								{
-									echo "(unspecified)";
-								}
-							}
-							echo '</li>';
-						}
-					?>
-					</ul>
-					</div></div>
-
-
 					<div class="row">
-						<div class="col text-left">
+					<?php if(count($symptomsDate['symptoms']['symptoms-misc'])>0) { ?>
+						<div class="col">
 							<h3>general</h3>
-							<ul>
+							<ul class="text-left">
 							<?php foreach($symptomsDate['symptoms']['symptoms-misc'] as $symptom) { ?>
 								<li><?= $symptom ?></li>
 							<?php } ?>
@@ -193,38 +159,56 @@
 							<?php if($symptomsDate['symptoms']['symptoms-misc-other']) { ?>
 									<li><?= $symptomsDate['symptoms']['symptoms-misc-other'] ?></li>
 							<?php } ?>
-
-
 							</ul>
 						</div>
-						<div class="col text-left">
-							<h3>wet</h3>
-							<ul>
-							<?php foreach($symptomsDate['symptoms']['symptoms-wet'] as $symptom) { ?>
-								<li><?= $symptom ?></li>
-							<?php } ?>
-							</ul>
-						</div>
-						<div class="col text-left">
-							<h3>neuro</h3>
-							<ul>
-							<?php foreach($symptomsDate['symptoms']['symptoms-neuro'] as $symptom) { ?>
-								<li><?= $symptom ?></li>
-							<?php } ?>
-							</ul>
-						</div>
-						<div class="col text-left">					
-							<h3>ocular</h3>
-							<ul>
-							<?php foreach($symptomsDate['symptoms']['symptoms-ocular'] as $symptom) { ?>
-								<li><?= $symptom ?></li>
-							<?php } ?>
-							</ul>
-						</div>
+					<?php } ?>
 					</div>
-					<hr/>
+					<div class="row">
+					<?php if(count($symptomsDate['symptoms']['symptoms-wet'])>0) { ?>
+						<div class="col">
+							<div class="badge badge-pill badge-warning fip-type">
+							<h4>wet</h4>
+							<?php 
+								if(count($symptomsDate['symptoms']['symptoms-effusion'])>0)
+								{
+									$first = 1;
+									foreach($symptomsDate['symptoms']['symptoms-effusion'] as $effusion)
+									{
+										if($first==0)
+											echo '<br/>';
+
+										echo $effusion;
+										$first=0;
+									}
+								}
+								else
+								{
+									echo "unspecified";
+								}
+							?>						
+							</div>
+							<ul class="text-left"><?php foreach($symptomsDate['symptoms']['symptoms-wet'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+						</div>
+					<?php } ?>
+
+					<?php if(count($symptomsDate['symptoms']['symptoms-ocular'])>0) { ?>
+						<div class="col">					
+							<div class="badge badge-pill badge-warning fip-type"><h4>ocular</h4></div>
+							<ul class="text-left"><?php foreach($symptomsDate['symptoms']['symptoms-ocular'] as $symptom) { ?> <li><?= $symptom ?></li> <?php } ?> </ul>
+						</div>
+					<?php } ?>
+
+					<?php if(count($symptomsDate['symptoms']['symptoms-neuro'])>0) { ?>
+						<div class="col">
+							<div class="badge badge-pill badge-warning fip-type"><h4>neuro</h4></div>
+							<ul class="text-left" > <?php foreach($symptomsDate['symptoms']['symptoms-neuro'] as $symptom) { ?> <li ><?= $symptom ?></li> <?php } ?> </ul>
+						</div>
 					<?php } ?>
 				</div>
+				<?php } ?>
+			</div>
+
+
 
 	   
 		<div class="footer">
