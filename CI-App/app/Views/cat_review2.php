@@ -224,38 +224,50 @@
 		<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
 		<div class="container">
-			<h2>Upload xray pictures if you have them</h2>
+			<h2>Xray pictures</h2>
 
 			<div class="row">
-				<?php foreach($xrays as $picture) { ?>
-					<div class="col text-center">
-						<img width="256" src="<?= $picture['url'] ?>" alt="cat xray">
-						<div class="date">date : <?= $picture['date'] ?> </div>
-						<form action="<?= site_url('Cat/del_tmp_xray/'.$catHash.'/'.$picture['file']) ?>" method="POST">
-							<input type="submit" value="del" class="btn btn-primary" />
-						</form>
-					</div>
+			<div class="col text-center">
+			<div id="carousel-xrays-pics" class="carousel slide" data-ride="carousel" data-interval="false">
+			  
+				  <ol class="carousel-indicators">
+					<?php $n=0; $active = 'active';  foreach($xrays as $picture) { ?>
+						<li data-target="#carousel-xrays-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+					<?php $n++; $active = ''; } ?>
+				  </ol>
 
-
-				<?php } ?>
+				  <div class="carousel-inner">
+					<?php $active = 'active';  foreach($xrays as $picture) { ?>
+						<div class="carousel-item <?= $active ?>">
+							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat xray">
+							<div class="carousel-caption"><p>date : <?= $picture['date'] ?> </p><a class="btn btn-primary" href="<?= site_url('Cat/del_tmp_xray/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+						</div>
+					<?php $active = ''; } ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel-xrays-pics" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-xrays-pics" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
 			</div>
+			</div>
+		</div>
 
+		<div class="container">
 			<form action="<?= site_url('Cat/add_tmp_xray/'.$catHash) ?> " id="xray-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload Xray if you have them</h3><br/><img id="xray-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
 					<div class="card-body text-center" style="padding:0px">
-						<div class="form-group ">
-							<p>Date: <input type="text" name="xray-date" id="xray-date" value="<?= $xrayDate ?>"></p>
-						</div>
-
-
+						<div class="form-group "><p>Date: <input type="text" name="xray-date" id="xray-date" autocomplete="off" value="<?= $xrayDate ?>"></p></div>
 						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select xray picture</span>
 							<input  name="cat-xray" id="cat-xray" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
-
 					</div>
-					
 				 </div>
 			</form>
 		</div>
