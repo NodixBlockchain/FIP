@@ -79,74 +79,42 @@
 	<body>
 
 	<script>
-		function enable_effusion()
+		function update_wet_indicator()
 		{
-			if($("#FIP-wet").is(':checked'))
+			var checked = $("#wet-block input[type=checkbox]:checked").length;
+			if(checked>0)
 			{
-				 $("#effusion-block").css('display','block');
-				 $("#cat-effusion-potbellied").prop("disabled","");
-				 $("#cat-effusion-labored").prop("disabled","");
-				 $("#cat-effusion-abdominal").prop("disabled","");
-				 $("#cat-effusion-chest").prop("disabled","");
-				 $("#cat-effusion-pericardial").prop("disabled","");
+				$("#effusion-block").css('display','block');
+				$('#wet-form').css('display','block');
 			}
+				
 			else
 			{
 				 $("#effusion-block").css('display','none');
-				 $("#cat-effusion-potbellied").prop("disabled","disabled");
-				 $("#cat-effusion-labored").prop("disabled","disabled");
-				 $("#cat-effusion-abdominal").prop("disabled","disabled");
-				 $("#cat-effusion-chest").prop("disabled","disabled");
-				 $("#cat-effusion-pericardial").prop("disabled","disabled");
-
+				 $('#wet-form').css('display','block');
 			}
 		}
 
+
 		function update_neuro_indicator()
 		{
-			var total = $("#neuro-block input[type=checkbox]").length;
 			var checked = $("#neuro-block input[type=checkbox]:checked").length;
 
-
-			$('#neuro-indicator').html(Math.ceil(checked * 100/ total) + '%');
-
-			var ratio = checked / total;
-			var r = Math.ceil(ratio*255);
-			var g = Math.ceil(255-ratio*255);
-			var color='rgb('+r+','+g+',0)';
-
-			$('#neuro-indicator').css('color',color);
+			if(checked>0)
+				('#neuro-form').css('display','block');
+			else
+				('#neuro-form').css('display','none');
 		}
 
-		function update_wet_indicator()
-		{
-			var total = $("#wet-block input[type=checkbox]").length;
-			var checked = $("#wet-block input[type=checkbox]:checked").length;
-
-			$('#wet-indicator').html(Math.ceil(checked * 100/ total) + '%');
-
-			var ratio = checked / total;
-			var r = Math.ceil(ratio*255);
-			var g = Math.ceil(255-ratio*255);
-			var color='rgb('+r+','+g+',0)';
-
-			$('#wet-indicator').css('color',color);
-		}
 
 		function update_ocular_indicator()
 		{
-			var total = $("#ocular-block input[type=checkbox]").length;
 			var checked = $("#ocular-block input[type=checkbox]:checked").length;
 
-			
-
-			$('#ocular-indicator').html(Math.ceil(checked * 100/ total) + '%');
-			var ratio = checked / total;
-			var r = Math.ceil(ratio*255);
-			var g = Math.ceil(255-ratio*255);
-			var color='rgb('+r+','+g+',0)';
-
-			$('#ocular-indicator').css('color',color);
+			if(checked>0)
+				('#ocular-form').css('display','block');
+			else
+				('#ocular-form').css('display','none');
 		}
 
 		
@@ -363,19 +331,26 @@
 
 								
 								</div>
+								<div class="row">
+									<div class="col"><div class="fip-type" id="wet-form"><h4>wet form 5ml/kg</h4></div></div>
+									<div class="col"><div class="fip-type" id="neuro-form"><h4>wet form 10ml/kg</h4></div></div>
+									<div class="col"><div class="fip-type" id="ocular-form"><h4>wet form 8ml/kg</h4></div></div>
+								</div>
 
+								<!--
 								<?php if(array_key_exists('symptoms-FIP',$errors)){ echo '<span id="symptoms-FIP-error" class="error">'.$errors['symptoms-FIP'].'</span>'; } ?>
 								<div class="row">
 								<div class="col">
 									<h3>FIP type</h3>
 									<div class="form-group">
-										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-wet"		value="wet"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('wet'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>  onclick="enable_effusion();" >wet</label><span id="wet-indicator"></span></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-wet"		value="wet"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('wet'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> onclick="enable_effusion();" readonly>wet</label><span id="wet-indicator"></span></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-dry"		value="dry"		<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('dry'   ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>	dry</label></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-neuro"	value="neuro"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('neuro' ,$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?>  readonly>neuro</label><span id="neuro-indicator"></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-FIP[]" id="FIP-ocular"	value="ocular"	<?php if((array_key_exists('symptoms-FIP',$symptoms))&&(array_search('ocular',$symptoms['symptoms-FIP'])!==FALSE)){ echo 'checked'; } ?> readonly>ocular</label><span id="ocular-indicator"></span></div>
 										<span class="bmd-help">Select your cat's FIP type.</span>													  
 									</div>
 								</div>
+								-->
 								<div class="col">
 									<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
 										<h3>Effusion type</h3>
