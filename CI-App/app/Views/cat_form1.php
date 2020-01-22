@@ -330,7 +330,20 @@
 										</div>
 									</div>
 								</div>
-								
+								<div class="col">
+									<div id="ocular-block">
+										<h3>Ocular form indicators</h3>
+										<div class="form-group">
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-uveitis"			value="uveitis"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('uveitis',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>uveitis</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-keratic"			value="keratic"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('keratic',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>keratic precipitates</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-aqueous"			value="aqueous"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('aqueous',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>aqueous flare</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-eye-change"			value="one-eye-change"		<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('one-eye-change',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>change in color of 1 eye</label></div>
+											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-retinal"			value="retinal-cuffing"		<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('retinal-cuffing',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>retinal vessel cuffing</label></div>
+											<span class="bmd-help">For ocular fip, select the eyes symptoms.</span>
+										</div>
+									</div>
+								</div>
+
 								<div class="col">
 									<div id="neuro-block">
 										<h3>Neuro form indicators</h3>
@@ -347,20 +360,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col">
-									<div id="ocular-block">
-										<h3>Ocular form indicators</h3>
-										<div class="form-group">
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-uveitis"			value="uveitis"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('uveitis',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>uveitis</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-keratic"			value="keratic"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('keratic',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>keratic precipitates</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-aqueous"			value="aqueous"				<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('aqueous',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>aqueous flare</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-eye-change"			value="one-eye-change"		<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('one-eye-change',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>change in color of 1 eye</label></div>
-											<div class="checkbox"><label><input type="checkbox" name="symptoms-ocular[]"	id="symptoms-ocular-retinal"			value="retinal-cuffing"		<?php if((array_key_exists('symptoms-ocular',$symptoms))&&(array_search('retinal-cuffing',$symptoms['symptoms-ocular'])!==FALSE)){ echo 'checked'; } ?>>retinal vessel cuffing</label></div>
-											<span class="bmd-help">For ocular fip, select the eyes symptoms.</span>
-										</div>
-									</div>
-								</div>
-
+								
 								
 								</div>
 								
