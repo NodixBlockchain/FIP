@@ -252,7 +252,7 @@
 							<p>Date: <input type="text" name="eye-date" id="eye-date" autocomplete="off" value="<?= $currentdate ?>"></p>
 						</div>
 
-						<div class="btn btn-primary btn-file" style="padding:0px">
+						<div class="btn btn-primary btn-file" style="padding:4px">
 							<span class="hidden-xs">Select eyes picture</span>
 							<input name="cat-eyes" id="cat-eyes" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
@@ -309,7 +309,7 @@
 					<div class="card-header text-center"><h3>Upload a picture of your cat</h3><br/><img id="pic-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
 					<div class="card-body text-center" style="padding:0px">
 
-						<div class="btn btn-primary btn-file" style="padding:0px">
+						<div class="btn btn-primary btn-file" style="padding:4px">
 							<span class="hidden-xs">Select cat picture</span>
 							<input id="cat-picture" name="cat-picture" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
