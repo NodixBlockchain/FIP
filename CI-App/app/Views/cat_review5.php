@@ -246,6 +246,7 @@
 					<h2>No cat picture</h2>
 				<?php } ?>
 			</div>
+			</div>
 			<hr/>
 			<div class="row">
 			<div class="col text-center">
