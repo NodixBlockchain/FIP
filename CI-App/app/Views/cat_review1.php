@@ -88,7 +88,7 @@
 				padding:12px;
 				min-width:96px;
 			}
-			.btn-outline-secondary i
+			.kv-preview-thumb
 			{
 				margin-top: 0px;
 				margin-bottom: 0px;
