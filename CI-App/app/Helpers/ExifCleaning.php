@@ -18,6 +18,10 @@
 	}
 	 
 	function adjustImageOrientation($ficheroDeImagen) {
+
+		if (!extension_loaded('gd') || !function_exists('gd_info'))
+			return FALSE;
+
 		$codificacionExif = exif_read_data($ficheroDeImagen);
 		/* Determinamos el formato de imagen a través del propio Exif. */
 		$formatoDeLaImagen = exif_imagetype($ficheroDeImagen);
