@@ -403,7 +403,7 @@
 						<div class="row">
 							<div class="col">
 									<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
-									<h3>Effusion type</h3>
+									<h3>Wet form type of effusion</h3>
 									<div class="form-group">
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-abdominal"	  value="abdominal"		<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('abdominal',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> >abdominal</label></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-effusion[]" id="symptoms-effusion-chest"		  value="chest"			<?php if((array_key_exists('symptoms-effusion',$symptoms))&&(array_search('chest',$symptoms['symptoms-effusion'])!==FALSE)){ echo 'checked'; } ?> >chest</label></div>
