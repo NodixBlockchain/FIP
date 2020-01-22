@@ -271,12 +271,14 @@
 
 		<?php } ?>
 		
+		<?php if(count($pictures)>0) { ?>
+		<div class="container text-center">
 
-		<div class="container">
+
 			<h2>Pictures of your cat.</h2>
 
 			<div class="row">
-			<div class="col text-center">
+			<div class="col">
 				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
 			  
 				  <ol class="carousel-indicators">
@@ -305,6 +307,7 @@
 			</div>
 			</div>
 		</div>
+		<?php } ?>
 
 		<div class="container">
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
