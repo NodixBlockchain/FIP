@@ -1,6 +1,9 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
+
+include ("../class.ExifCleaning.php");
+
 class TmpCatModel extends Model
 {
     protected $table = 'cat';
@@ -86,6 +89,8 @@ class TmpCatModel extends Model
 		}
 		rename($file->getTempName(),$picDir.'/'.$file->getClientName());
 
+		ExifCleaning::adjustImageOrientation($picDir.'/'.$file->getClientName()); 
+
 		return $file->getClientName();
 	}
 
@@ -136,7 +141,11 @@ class TmpCatModel extends Model
 		$fileHash = hash('ripemd160', file_get_contents($file->getTempName()));
 		$fileName = $fileHash.'_'.str_replace('/','_',$date);
 
+
+
 		rename($file->getTempName(),$picDir.'/'.$fileName);
+
+		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}
@@ -205,6 +214,8 @@ class TmpCatModel extends Model
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
+		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
+
 		return $fileName;
 	}
 
@@ -270,6 +281,8 @@ class TmpCatModel extends Model
 
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
+
+		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}

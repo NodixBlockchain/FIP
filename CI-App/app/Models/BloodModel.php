@@ -1,6 +1,8 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
+include ("../class.ExifCleaning.php");
+
 class BloodModel extends Model
 {
     protected $table = 'blood';
@@ -103,6 +105,8 @@ class BloodModel extends Model
 		$fileName = $fileHash.'_'.str_replace('/','_',$date);
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
+
+		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}
