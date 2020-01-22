@@ -88,7 +88,7 @@ class TmpCatModel extends Model
 		}
 		rename($file->getTempName(),$picDir.'/'.$file->getClientName());
 
-		ExifCleaning::adjustImageOrientation($picDir.'/'.$file->getClientName()); 
+		adjustImageOrientation($picDir.'/'.$file->getClientName()); 
 
 		return $file->getClientName();
 	}
@@ -144,7 +144,7 @@ class TmpCatModel extends Model
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
-		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
+		adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}
@@ -213,7 +213,7 @@ class TmpCatModel extends Model
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
-		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
+		adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}
@@ -281,7 +281,7 @@ class TmpCatModel extends Model
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
-		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
+		adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}

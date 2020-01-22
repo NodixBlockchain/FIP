@@ -106,7 +106,7 @@ class BloodModel extends Model
 
 		rename($file->getTempName(),$picDir.'/'.$fileName);
 
-		ExifCleaning::adjustImageOrientation($picDir.'/'.$fileName); 
+		adjustImageOrientation($picDir.'/'.$fileName); 
 
 		return $fileName;
 	}
