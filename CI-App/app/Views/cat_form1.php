@@ -73,6 +73,11 @@
 			{
 				margin-left:8px;
 			}
+
+			#wet-form, #neuro-form, #ocular-form
+			{
+				display:none;
+			}
 		</style>
 
 	</head>
@@ -101,9 +106,9 @@
 			var checked = $("#neuro-block input[type=checkbox]:checked").length;
 
 			if(checked>0)
-				('#neuro-form').css('display','block');
+				$('#neuro-form').css('display','block');
 			else
-				('#neuro-form').css('display','none');
+				$('#neuro-form').css('display','none');
 		}
 
 
