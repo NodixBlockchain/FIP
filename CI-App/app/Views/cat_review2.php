@@ -158,10 +158,11 @@
 
 
 		<div class="container text-center">
+			<div class="row">
+			
 			<?php if(array_search('ocular',$symptoms['symptoms-FIP'] )) { ?>
-				<h2>Picture of your cat's eyes</h2>
-				<div class="row">
 				<div class="col text-center">
+				<h2>Picture of your cat's eyes</h2>
 					<div id="carousel-eyes-pics" class="carousel slide" data-ride="carousel">
 			  
 					  <ol class="carousel-indicators">
@@ -187,14 +188,12 @@
 						<span class="sr-only">Next</span>
 					  </a>
 					</div>
-				</div>
+				
 				</div>
 			<?php } ?>
-
-
-			<h2>Pictures of your cat</h2>
-			<div class="row">
+			</div>
 			<div class="col text-center">
+				<h2>Pictures of your cat</h2>
 				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel">
 			  
 				  <ol class="carousel-indicators">
