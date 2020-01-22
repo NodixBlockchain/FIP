@@ -138,7 +138,7 @@
 			if(dosage>0)
 			{
 				$('#fip-dose').css('display','block');
-				$('#fip-dose').html(dosage.' mg/KG');
+				$('#fip-dose').html(dosage + ' mg/KG');
 			}
 			
 			
