@@ -71,8 +71,7 @@ class Cat extends BaseController
 									'cat-fixed' => 'in_list[fixed,intact]',
 									'cat-breed' => 'alpha_numeric_space|max_length[32]',
 									'symptoms-misc-other' => 'alpha_numeric_space|max_length[64]',
-									'cat-diagnosis'=> 'max_length[256]',
-									'symptoms-FIP'  => "required"]);
+									'cat-diagnosis'=> 'max_length[256]']);
 
 		if($this->request->getPost('cat-birthdate'))
 		{
