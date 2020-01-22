@@ -177,20 +177,68 @@
 
 		<div class="container">
 			<h2>Pictures of your cat</h2>
+
 			<div class="row">
-				<?php foreach($pictures as $picture) { ?>
-						<div class="col"><img width="256" src="<?= $picture['url'] ?>" alt="cat picture"></div>';
-				<?php } ?>
-			</div>
 
 			<?php if(array_search('ocular',$symptoms['symptoms-FIP'] )) { ?>
-				<h2>Picture of your cat's eyes for ocular FIP</h2>
-				<div class="row">
-					<?php foreach($eyes as $picture) { ?>
-							<div class="col"><img width="256" src="<?= $picture['url'] ?>" alt="cat eyes"><div class="date">date : <?= $picture['date'] ?></div></div>
-					<?php } ?>
+				<div class="col text-center">
+				<h2>Eyes picture</h2>
+					<div id="carousel-eyes-pics" class="carousel slide" data-ride="carousel"  data-interval="false">
+			  
+					  <ol class="carousel-indicators">
+						<?php $n=0; $active = 'active';  foreach($eyes as $picture) { ?>
+							<li data-target="#carousel-eyes-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+						<?php $n++; $active = ''; } ?>
+					  </ol>
+
+					  <div class="carousel-inner">
+						<?php $active = 'active';  foreach($eyes as $picture) { ?>
+							<div class="carousel-item <?= $active ?>">
+								<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="eyes picture" />
+								<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?></p></div>
+							</div>
+						<?php $active = ''; } ?>
+					  </div>
+					  <a class="carousel-control-prev" href="#carousel-eyes-pics" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carousel-eyes-pics" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					  </a>
+					</div>
 				</div>
 			<?php } ?>
+			<div class="col text-center">
+				<h2>Cat's pictures</h2>
+				<div id="carousel-cat-pics" class="carousel slide" data-ride="carousel" data-interval="false">
+			  
+				  <ol class="carousel-indicators">
+					<?php $n=0; $active = 'active';  foreach($pictures as $picture) { ?>
+						<li data-target="#carousel-cat-pics" data-slide-to="<?= $n ?>" class="<?= $active ?>"></li>
+					<?php $n++; $active = ''; } ?>
+				  </ol>
+
+				  <div class="carousel-inner">
+					<?php $active = 'active';  foreach($pictures as $picture) { ?>
+						<div class="carousel-item <?= $active ?>">
+							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
+						</div>
+					<?php $active = ''; } ?>
+				  </div>
+				  <a class="carousel-control-prev" href="#carousel-cat-pics" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-cat-pics" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
+			</div>
+
 
 			<h2>xrays</h2>
 			<div class="row">
