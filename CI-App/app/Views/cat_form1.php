@@ -95,43 +95,57 @@
 	<body>
 
 	<script>
-		function update_wet_indicator()
+
+		function update_dose_indicator()
 		{
-			var checked = $("#wet-block input[type=checkbox]:checked").length;
-			if(checked>0)
+			
+			var checkedWet = $("#wet-block input[type=checkbox]:checked").length;
+			var checkedNeuro = $("#neuro-block input[type=checkbox]:checked").length;
+			var checkedOcular = $("#ocular-block input[type=checkbox]:checked").length;
+			var dosage = 0;
+
+			if(checkedWet>0)
 			{
 				$("#effusion-block").css('display','block');
 				$('#wet-form').css('display','block');
 			}
-				
 			else
 			{
 				 $("#effusion-block").css('display','none');
 				 $('#wet-form').css('display','none');
 			}
-		}
 
 
-		function update_neuro_indicator()
-		{
-			var checked = $("#neuro-block input[type=checkbox]:checked").length;
-
-			if(checked>0)
+			if(checkedNeuro>0)
 				$('#neuro-form').css('display','block');
 			else
 				$('#neuro-form').css('display','none');
-		}
 
 
-		function update_ocular_indicator()
-		{
-			var checked = $("#ocular-block input[type=checkbox]:checked").length;
-
-			if(checked>0)
+			if(checkedOcular>0)
 				$('#ocular-form').css('display','block');
 			else
 				$('#ocular-form').css('display','none');
+
+
+			if(checkedNeuro>0)
+				dosage = 10;
+			else if(checkedOcular>0)
+				dosage = 8;
+			else if(checkedWet>0)
+				dosage = 5;
+
+			if(dosage>0)
+			{
+				$('#fip-dose').css('display','block');
+				$('#fip-dose').html(dosage.' mg/KG');
+			}
+			
+			
 		}
+
+		
+
 
 		
 
@@ -375,7 +389,7 @@
 
 						<div class="row">
 						<div class="col">
-							<div id="wet-form" class="badge badge-pill badge-warning fip-type"><h4>wet form 5ml/kg</h4></div> 
+							<div id="wet-form" class="badge badge-pill badge-warning fip-type"><h4>wet form</h4></div> 
 							<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
 								<h3>Effusion type</h3>
 								<div class="form-group">
@@ -389,6 +403,10 @@
 						</div>
 						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
 						<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
+						</div>
+						<div class="row">
+						<div class="col">
+							<div class="badge badge-pill badge-danger"><h4 id="fip-dose">wet form</h4></div> 
 						</div>
 					</div>
 
@@ -438,13 +456,12 @@
 			$("#cat-birthdate").datetimepicker({format: 'M/D/Y'});
 			$("#cat-diagnosis-date").datetimepicker({format: 'M/D/Y'});
 
-			update_neuro_indicator();
-			update_ocular_indicator();
-			update_wet_indicator();
+			update_dose_indicator();
+		
 
-			$('#neuro-block input').click(function(){update_neuro_indicator()});
-			$('#ocular-block input').click(function(){update_ocular_indicator()});
-			$('#wet-block input').click(function(){update_wet_indicator()});
+			$('#neuro-block input').click(function(){update_dose_indicator()});
+			$('#ocular-block input').click(function(){update_dose_indicator()});
+			$('#wet-block input').click(function(){update_dose_indicator()});
   } );</script>
 
 	</body>
