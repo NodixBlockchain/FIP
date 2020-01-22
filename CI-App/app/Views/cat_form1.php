@@ -76,7 +76,7 @@
 			.fip-type
 			{
 				padding:12px;
-				min-width:64px;
+				min-width:96px;
 			}
 			#effusion-block div,label,input
 			{
