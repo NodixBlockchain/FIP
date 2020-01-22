@@ -85,6 +85,10 @@
 				border:1px #000 solid;
 				border-radius:6px;
 			}
+			#effusion-block div,label,input
+			{
+				display:inline-block;
+			}
 		</style>
 
 	</head>
