@@ -7,6 +7,11 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/material-kit.min.css' ?>" />
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/jquery-ui.css' ?>">
+
+		<script src="https://kit.fontawesome.com/ed9134ad17.js" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/fileinput.min.css' ?>" />
+
 		<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 
 		
@@ -221,15 +226,14 @@
 			<form action="<?= site_url('Cat/add_tmp_eyes/'.$catHash) ?>" id="eyes-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>upload a picture of your cat's eyes</h3><br/><img id="eye-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body">
+					<div class="card-body text-center">
 						<div class="form-group ">
 							<p>Date: <input type="text" name="eye-date" id="eye-date" value="<?= $currentdate ?>"></p>
 						</div>
-						<div class="input-group mb-3">
-						  <div class="custom-file">
-							<input onchange=" upload_eye(); " type="file" class="custom-file-input" name="cat-eyes" id="cat-eyes">
-							<label class="custom-file-label" for="cat-eyes">Select eyes picture</label>
-						  </div>
+
+						<div class="btn btn-primary btn-file">
+							<span class="hidden-xs">Select eyes picture</span>
+							<input name="cat-eyes" id="cat-eyes" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 
 					</div>
@@ -261,15 +265,13 @@
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload a picture of your cat</h3><br/><img id="pic-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body">
-						<div class="input-group mb-3">
-						  <div class="custom-file">
-							<input  onchange=" upload_pic(); " type="file" class="custom-file-input" name="cat-picture" id="cat-picture">
-							<label for="cat-picture" class="custom-file-label">Select cat picture</label> 
-						  </div>
+					<div class="card-body text-center">
+
+						<div class="btn btn-primary btn-file">
+							<span class="hidden-xs">Select cat picture</span>
+							<input id="cat-picture" name="cat-picture" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 					</div>
-					<input type="submit" class="btn btn-primary" value="upload cat picture" id="pic-form-submit" accept="image/*"/>
 				 </div>
 				 
 			</form>
@@ -294,6 +296,21 @@
 		<script src="<?= base_url().'assets/js/core/bootstrap-material-design.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/material-kit.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/core/jquery-ui.js' ?>"></script>
-		<script>$( function() { $( "#eye-date" ).datepicker(); $( "#eye-date" ).datepicker("setDate", "<?= $currentdate ?>"); } );</script>
+		<script src="<?= base_url().'assets/js/plugins/fileinput.min.js' ?>"></script>
+		<script src="<?= base_url().'assets/js/plugins/theme.min.js' ?>"></script>
+		
+		
+
+		
+
+		<script>
+				$(document).ready(function() {
+						$( "#eye-date" ).datepicker(); 
+						$( "#eye-date" ).datepicker("setDate", "<?= $currentdate ?>");
+
+						$("#cat-picture").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+						$("#cat-eyes").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+				});
+		</script>
 	</body>
 </html>
