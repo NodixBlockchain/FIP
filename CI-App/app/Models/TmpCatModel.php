@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 use CodeIgniter\Model;
 
+require_once (APPPATH."Libraries/class.ExifCleaning.php");
 
 class TmpCatModel extends Model
 {
