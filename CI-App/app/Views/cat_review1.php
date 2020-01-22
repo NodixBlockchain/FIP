@@ -88,6 +88,11 @@
 				padding:12px;
 				min-width:96px;
 			}
+			.btn-kv
+			{
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
 	
 		</style>
 
