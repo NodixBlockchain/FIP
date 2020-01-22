@@ -344,7 +344,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col text-left"> <a class="btn btn-info" href="<?= site_url('Cat/review_step2/'.$catHash) ?>">back</a></div>
+				<div class="col text-left"> <a class="btn btn-dark" href="<?= site_url('Cat/review_step2/'.$catHash) ?>">back</a></div>
 				<div class="col text-right"><a class="btn btn-primary" href="<?= site_url('Cat/review_step4/'.$catHash) ?>">next</a></div>
 			</div>
 		</div>

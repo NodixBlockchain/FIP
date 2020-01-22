@@ -241,7 +241,7 @@
 				</div>
 				
 				<div class="row">
-				<div class="col text-left"><a class="btn btn-info" href="<?= site_url('Cat/review_step4/'.$catHash) ?>">back</a></div>
+				<div class="col text-left"><a class="btn btn-dark" href="<?= site_url('Cat/review_step4/'.$catHash) ?>">back</a></div>
 				<div class="col text-right"><input type="submit" class="btn btn-primary" value="next"></div>
 				</div>
 

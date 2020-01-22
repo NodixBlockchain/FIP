@@ -354,9 +354,9 @@
 		<div class="container">
 			<div class="row">
 				<?php if($has_blood) { ?>
-					<div class="col text-left"><a class="btn btn-info" href="<?= site_url('Cat/review_step5/'.$catHash) ?>">back</a></div>
+					<div class="col text-left"><a class="btn btn-dark" href="<?= site_url('Cat/review_step5/'.$catHash) ?>">back</a></div>
 				<?php } else { ?>	
-					<div class="col text-left"><a class="btn btn-info" href="<?= site_url('Cat/review_step4/'.$catHash) ?>">back</a></div>
+					<div class="col text-left"><a class="btn btn-dark" href="<?= site_url('Cat/review_step4/'.$catHash) ?>">back</a></div>
 				<?php } ?>
 
 				<div class="col text-right"><a class="btn btn-primary" href="<?= site_url('Cat/register/'.$catHash) ?>">next</a></div>
