@@ -265,9 +265,6 @@
 					<?php $active = ''; } ?>
 				</div>
 			 </div>
-			 </div>
-			 </div>
-
 			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
@@ -276,9 +273,9 @@
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			  </a>
-			</div>
+			 </div>
+			 </div>
 
-			</div>
 
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
