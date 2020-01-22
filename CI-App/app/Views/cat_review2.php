@@ -207,7 +207,7 @@
 
 
 						<div class="btn btn-primary btn-file">
-							<span class="hidden-xs">Select cat picture</span>
+							<span class="hidden-xs">Select xray picture</span>
 							<input  name="cat-xray" id="cat-xray" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 
@@ -239,7 +239,7 @@
 						</div>
 
 						<div class="btn btn-primary btn-file">
-							<span class="hidden-xs">Select cat picture</span>
+							<span class="hidden-xs">Select echography picture</span>
 							<input name="cat-echography" id="cat-echography" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
 						</div>
 					</div>

@@ -7,6 +7,10 @@
 			
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/material-kit.min.css' ?>" />
 		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/jquery-ui.css' ?>" />
+
+		<script src="https://kit.fontawesome.com/ed9134ad17.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/fileinput.min.css' ?>" />
+
 		<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 
 		
@@ -164,15 +168,13 @@
 						<div class="form-group ">
 							<p>Date: <input type="text" name="blood-date" id="blood-date" value="<?= $bloodDate ?>"></p>
 						</div>
-						<div class="input-group mb-3">
-						  <div class="custom-file">
-						   <input onchange=" upload_blood(); " type="file" class="custom-file-input" name="cat-blood" id="cat-blood">
-						   <label for="cat-blood" class="custom-file-label">Select blood panels picture</label> 
-						  </div>
-						</div>
 
+						<div class="btn btn-primary btn-file">
+							<span class="hidden-xs">Select blood panel picture</span>
+							<input  name="cat-blood" id="cat-blood" type="file" data-allowed-file-extensions='["jpg", "jpeg"]'>
+						</div>
 					</div>
-					<input type="submit" class="btn btn-primary" value="upload" accept="image/*" id="blood-form-submit"/>
+					
 				 </div>
 			</form>
 		</div>
@@ -197,8 +199,20 @@
 		<script src="<?= base_url().'assets/js/core/bootstrap-material-design.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/material-kit.min.js' ?>" ></script>
 		<script src="<?= base_url().'assets/js/core/jquery-ui.js' ?>"></script>
+		<script src="<?= base_url().'assets/js/plugins/fileinput.min.js' ?>"></script>
+		<script src="<?= base_url().'assets/js/plugins/theme.min.js' ?>"></script>
 
-		<script>$( function() { $( "#blood-date" ).datepicker(); $( "#blood-date" ).datepicker("setDate", "<?= $bloodDate ?>"); } );</script>
+		<script>
+				$(document).ready(function() {
+						$( "#blood-date" ).datepicker(); 
+						$( "#blood-date" ).datepicker("setDate", "<?= $bloodDate ?>"); 
+
+						$("#cat-blood").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+				});
+		</script>
+
+
+		<script>$( function() {} );</script>
 
 	</body>
 </html>
