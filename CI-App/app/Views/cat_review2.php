@@ -174,7 +174,7 @@
 						<?php $active = 'active';  foreach($eyes as $picture) { ?>
 							<div class="carousel-item <?= $active ?>">
 								<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="eyes picture" />
-								<div class="carousel-caption"><p>date : <?= $picture['date'] ?></p><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_eyes/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+								<div class="carousel-caption"><p>date : <?= $picture['date'] ?></p></div>
 							</div>
 						<?php $active = ''; } ?>
 					  </div>
@@ -207,7 +207,6 @@
 					<?php $active = 'active';  foreach($pictures as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat picture" />
-							<div class="carousel-caption"><a class="btn btn-primary" href="<?= site_url('/Cat/del_tmp_pic/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
 						</div>
 					<?php $active = ''; } ?>
 				  </div>
