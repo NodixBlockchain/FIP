@@ -249,7 +249,7 @@
 					<div class="card-header text-center"><h3>upload a picture of your cat's eyes</h3><br/><img id="eye-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
 					<div class="card-body text-center" style="padding:0px">
 						<div class="form-group ">
-							<p>Date: <input type="text" name="eye-date" id="eye-date" value="<?= $currentdate ?>"></p>
+							<p>Date: <input type="text" name="eye-date" id="eye-date" autocomplete="off" value="<?= $currentdate ?>"></p>
 						</div>
 
 						<div class="btn btn-primary btn-file" style="padding:0px">
