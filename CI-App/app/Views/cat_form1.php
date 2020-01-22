@@ -86,6 +86,10 @@
 			{
 				display:inline-block;
 			}
+			#fip-dose-badge
+			{
+				width:80%;
+			}
 		</style>
 
 	</head>
@@ -135,7 +139,7 @@
 			if(dosage>0)
 			{
 				$('#fip-dose').css('display','block');
-				$('fip-dose-badge').html(dosage + ' mg/KG');
+				$('#fip-dose-badge').html(dosage + ' mg/KG');
 			}
 			else
 				$('#fip-dose').css('display','none');
