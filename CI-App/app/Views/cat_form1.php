@@ -107,6 +107,7 @@
 			var total = $("#neuro-block input[type=checkbox]").length;
 			var checked = $("#neuro-block input[type=checkbox]:checked").length;
 
+
 			$('#neuro-indicator').html(Math.ceil(checked * 100/ total) + '%');
 
 			var ratio = checked / total;
@@ -289,29 +290,7 @@
 					<div class="card">
 					<div class="card-header"><h3>General symptoms</h3></div>
 					<div class="card-body">
-						<?php if(array_key_exists('cat-misc',$errors)){ echo '<span id="cat-misc-error" class="error">'.$errors['cat-misc'].'</span>'; } ?>
-						<div class="form-group">
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-fever"			value="fever"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('fever',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>fever</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-inappetence"	value="inappetence"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('inappetence',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>inappetence</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-lethargy"		value="lethargy"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('lethargy',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>lethargy</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-weight-loss"	value="weight-loss"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('weight-loss',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>weight loss</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-diarrhea"		value="diarrhea"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('diarrhea',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>diarrhea</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-constipation"	value="constipation"	<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('constipation',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>constipation</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-3rd-eyelid"		value="third-eyelid"	<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('third-eyelid',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>3rd eyelid protrusion</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-anemia"			value="anemia"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('anemia',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>anemia</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-PICA"			value="PICA"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('PICA',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>PICA (licking unusual objects)</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-jaundice"		value="jaundice"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('jaundice',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>jaundice</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-dark-urine"		value="dark-urine"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('dark-urine',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>dark/thick urine</label></div>
-							<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-eyes-change"	value="eyes-change"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('eyes-change',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>change in eye color affecting both eyes </label></div>
-							<span class="bmd-help">Check box for your cat's additional symptoms.</span>
-						</div>
-						<h3>Other</h3>
-
-						<?php if(array_key_exists('symptoms-misc-other',$errors)){ echo '<span class="error">'.$errors['symptoms-misc-other'].'</span>'; } ?>
-						<div class="form-group ">
-							<label for="symptoms-misc-other" class="bmd-label-floating">Other symptoms</label>
-							<input type="text" class="form-control" name="symptoms-misc-other" id="symptoms-misc-other" value="<?= $symptoms['symptoms-misc-other'] ?>">
-						</div>
+					
 					</div>
 					</div>
 									
@@ -322,6 +301,31 @@
 						<div class="col">
 							<div class="container">
 								<div class="row">
+								<div class="col">
+									<?php if(array_key_exists('cat-misc',$errors)){ echo '<span id="cat-misc-error" class="error">'.$errors['cat-misc'].'</span>'; } ?>
+									<div class="form-group">
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-fever"			value="fever"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('fever',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>fever</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-inappetence"	value="inappetence"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('inappetence',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>inappetence</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-lethargy"		value="lethargy"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('lethargy',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>lethargy</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-weight-loss"	value="weight-loss"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('weight-loss',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>weight loss</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-diarrhea"		value="diarrhea"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('diarrhea',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>diarrhea</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-constipation"	value="constipation"	<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('constipation',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>constipation</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-3rd-eyelid"		value="third-eyelid"	<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('third-eyelid',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>3rd eyelid protrusion</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-anemia"			value="anemia"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('anemia',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>anemia</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-PICA"			value="PICA"			<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('PICA',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>PICA (licking unusual objects)</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-jaundice"		value="jaundice"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('jaundice',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>jaundice</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-dark-urine"		value="dark-urine"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('dark-urine',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>dark/thick urine</label></div>
+										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-eyes-change"	value="eyes-change"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('eyes-change',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>change in eye color affecting both eyes </label></div>
+										<span class="bmd-help">Check box for your cat's additional symptoms.</span>
+									</div>
+									<h3>Other</h3>
+
+									<?php if(array_key_exists('symptoms-misc-other',$errors)){ echo '<span class="error">'.$errors['symptoms-misc-other'].'</span>'; } ?>
+									<div class="form-group ">
+										<label for="symptoms-misc-other" class="bmd-label-floating">Other symptoms</label>
+										<input type="text" class="form-control" name="symptoms-misc-other" id="symptoms-misc-other" value="<?= $symptoms['symptoms-misc-other'] ?>">
+									</div>
+								</div>
 								<div class="col">
 									<div id="wet-block">
 										<h3>Wet form indicators</h3>
