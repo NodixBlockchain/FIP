@@ -238,7 +238,8 @@
 				  </a>
 				</div>
 			</div>
-		
+			<hr/>
+			<div class="row">
 			<div class="col text-center">
 				<h2>xrays</h2>
 				<div id="carousel-xrays-pics" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -266,6 +267,7 @@
 					<span class="sr-only">Next</span>
 				  </a>
 				</div>
+			</div>
 			</div>
 		
 			<div class="col text-center">
@@ -297,6 +299,7 @@
 				</div>
 			</div>
 			</div>
+			<hr/>
 
 			<h2>blood</h2>
 			<?php if($has_blood) { ?>
