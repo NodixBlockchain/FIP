@@ -105,29 +105,25 @@
 			var checkedOcular = $("#ocular-block input[type=checkbox]:checked").length;
 			var dosage = 0;
 
+			$('#fip-form-row').empty();
+
 			if(checkedWet>0)
 			{
-				$('#wet-form').css('display','inline-block');
+				$('#fip-form-row').append('<div class="col"><div class="badge badge-pill badge-warning fip-type" id="wet-form" ><h4>wet form</h4></div></div>');
 				$("#effusion-block").css('display','block');
 				
 			}
 			else
 			{
-				$('#wet-form').css('display','none');
 				$("#effusion-block").css('display','none');
 			}
 
 
 			if(checkedNeuro>0)
-				$('#neuro-form').css('display','inline-block');
-			else
-				$('#neuro-form').css('display','none');
-
+				$('#fip-form-row').append('<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>');
 
 			if(checkedOcular>0)
-				$('#ocular-form').css('display','inline-block');
-			else
-				$('#ocular-form').css('display','none');
+				$('#fip-form-row').append('<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>');
 
 
 			if(checkedNeuro>0)
@@ -394,11 +390,9 @@
 
 						<h2>FIP form</h2>
 
-						<div class="row">
-							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="wet-form" ><h4>wet form</h4></div></div>
-							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
-							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
+						<div class="row" id="fip-form-row">
 						</div>
+
 						<div class="row">
 							<div class="col">
 									<div id="effusion-block" <?php if((!array_key_exists('symptoms-FIP',$symptoms))||(array_search('wet',$symptoms['symptoms-FIP'])===FALSE)){ echo 'class="hidden"'; } ?>>
