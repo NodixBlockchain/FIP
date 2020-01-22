@@ -286,14 +286,7 @@
 						</div>
 					</div>
 					</div>
-
-					<div class="card">
-					<div class="card-header"><h3>General symptoms</h3></div>
-					<div class="card-body">
-					
-					</div>
-					</div>
-									
+			
 					<div class="card">
 					<div class="card-header">type of FIP</div>
 					<div class="card-body">
