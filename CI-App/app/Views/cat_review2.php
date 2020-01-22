@@ -200,7 +200,7 @@
 			<form action="<?= site_url('Cat/add_tmp_xray/'.$catHash) ?> " id="xray-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload Xray if you have them</h3><br/><img id="xray-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-bod text-center">
+					<div class="card-body text-center" style="padding:0px">
 						<div class="form-group ">
 							<p>Date: <input type="text" name="xray-date" id="xray-date" value="<?= $xrayDate ?>"></p>
 						</div>
@@ -233,7 +233,7 @@
 			<form action="<?= site_url('Cat/add_tmp_echography/'. $catHash) ?> " id="echo-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload echography picture if you have them</h3><br/><img id="echo-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body text-center">
+					<div class="card-body text-center" style="padding:0px">
 						<div class="form-group ">
 							<p>Date: <input type="text" name="echography-date" id="echography-date" value="<?= $echoDate ?>"></p>
 						</div>
