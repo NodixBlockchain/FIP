@@ -86,6 +86,7 @@
 				padding:12px;
 				min-width:96px;
 			}
+
 		</style>
 
 	</head>
@@ -207,7 +208,7 @@
 						$( "#blood-date" ).datepicker(); 
 						$( "#blood-date" ).datepicker("setDate", "<?= $bloodDate ?>"); 
 
-						$("#cat-blood").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+						$("#cat-blood").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false});
 				});
 		</script>
 

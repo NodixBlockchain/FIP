@@ -278,8 +278,8 @@
 						$( "#echography-date" ).datepicker(); 
 						$( "#echography-date" ).datepicker("setDate", "<?= $echoDate ?>");
 
-						$("#cat-xray").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
-						$("#cat-echography").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false});
+						$("#cat-xray").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false});
+						$("#cat-echography").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false});
 				});
 		</script>
 
