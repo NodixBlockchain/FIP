@@ -96,7 +96,7 @@
 			else
 			{
 				 $("#effusion-block").css('display','none');
-				 $('#wet-form').css('display','block');
+				 $('#wet-form').css('display','none');
 			}
 		}
 
@@ -379,8 +379,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col"><div class="fip-type" id="neuro-form"><h4>neuro form 10ml/kg</h4></div></div>
-						<div class="col"><div class="fip-type" id="ocular-form"><h4>ocular form 8ml/kg</h4></div></div>
+						<div class="col"><div class="fip-type" id="neuro-form"><h4>neuro</h4></div></div>
+						<div class="col"><div class="fip-type" id="ocular-form"><h4>ocular</h4></div></div>
 						</div>
 					</div>
 
