@@ -88,11 +88,7 @@
 				padding:12px;
 				min-width:96px;
 			}
-			.kv-preview-thumb
-			{
-				margin-top: 0px;
-				margin-bottom: 0px;
-			}
+		
 	
 		</style>
 
@@ -231,7 +227,7 @@
 			<form action="<?= site_url('Cat/add_tmp_eyes/'.$catHash) ?>" id="eyes-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>upload a picture of your cat's eyes</h3><br/><img id="eye-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body text-center">
+					<div class="card-body no-padding text-center">
 						<div class="form-group ">
 							<p>Date: <input type="text" name="eye-date" id="eye-date" value="<?= $currentdate ?>"></p>
 						</div>
@@ -270,7 +266,7 @@
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload a picture of your cat</h3><br/><img id="pic-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
-					<div class="card-body text-center">
+					<div class="card-body no-padding text-center">
 
 						<div class="btn btn-primary btn-file" style="padding:0px">
 							<span class="hidden-xs">Select cat picture</span>
