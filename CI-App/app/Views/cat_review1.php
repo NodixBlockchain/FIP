@@ -309,7 +309,7 @@
 		</div>
 		<?php } ?>
 
-		<div class="container">
+		<div class="container-fluid">
 			<form action="<?= site_url('Cat/add_tmp_pic/'.$catHash) ?>" id="pic-form" method="POST" enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header text-center"><h3>Upload a picture of your cat</h3><br/><img id="pic-form-load" width="64" src="<?= base_url().'assets/img/loading.gif' ?>" alt="loading" /></div>
