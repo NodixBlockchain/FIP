@@ -145,9 +145,9 @@
 		<hr/>
 
 		<div class="container-fluid text-center">
-			<h2>Blood panel picture</h2>
 
-
+			<?php if(count($blood)>0) { ?>
+			<h2>Blood panel pictures</h2>
 			<div class="row">
 			<?php foreach($blood as $picture) { ?>
 				<div class="col text-center">
@@ -157,6 +157,7 @@
 				</div>
 			<?php } ?>
 			</div>
+			<?php } ?>
 			
 			<?php if($error) { echo '<div class="container"><span class="error text-center">'.$error.'</span></div>'; } ?>
 
