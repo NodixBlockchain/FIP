@@ -323,6 +323,9 @@
 						$( "#eye-date" ).datepicker(); 
 						$( "#eye-date" ).datepicker("setDate", "<?= $currentdate ?>");
 
+
+						$('.carousel').carousel()
+
 						$("#cat-picture").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false });
 						$("#cat-eyes").fileinput({ theme: "fa",showCaption: false, dropZoneEnabled: false,showRemove: false});
 				});
