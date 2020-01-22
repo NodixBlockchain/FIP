@@ -107,24 +107,25 @@
 
 			if(checkedWet>0)
 			{
+				$('#wet-form').css('display','inline-block');
 				$("#effusion-block").css('display','block');
-				$('#wet-form').css('display','block');
+				
 			}
 			else
 			{
-				 $("#effusion-block").css('display','none');
-				 $('#wet-form').css('display','none');
+				$('#wet-form').css('display','none');
+				$("#effusion-block").css('display','none');
 			}
 
 
 			if(checkedNeuro>0)
-				$('#neuro-form').css('display','block');
+				$('#neuro-form').css('display','inline-block');
 			else
 				$('#neuro-form').css('display','none');
 
 
 			if(checkedOcular>0)
-				$('#ocular-form').css('display','block');
+				$('#ocular-form').css('display','inline-block');
 			else
 				$('#ocular-form').css('display','none');
 
@@ -143,8 +144,6 @@
 			}
 			else
 				$('#fip-dose').css('display','none');
-			
-			
 		}
 
 		
@@ -396,7 +395,7 @@
 						<h2>FIP form</h2>
 
 						<div class="row">
-							<div class="col"><div id="wet-form" class="badge badge-pill badge-warning fip-type"><h4>wet form</h4></div></div>
+							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="wet-form" ><h4>wet form</h4></div></div>
 							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="ocular-form"><h4>ocular</h4></div></div>
 							<div class="col"><div class="badge badge-pill badge-warning fip-type" id="neuro-form"><h4>neuro</h4></div></div>
 						</div>
