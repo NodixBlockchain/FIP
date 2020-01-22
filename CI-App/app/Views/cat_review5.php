@@ -253,7 +253,7 @@
 					<?php $active = 'active';  foreach($xrays as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat xray">
-							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?> </p><a class="btn btn-primary" href="<?= site_url('Cat/del_tmp_xray/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?> </p></div>
 						</div>
 					<?php $active = ''; } ?>
 				  </div>
@@ -282,7 +282,7 @@
 					<?php $active = 'active';  foreach($echographies as $picture) { ?>
 						<div class="carousel-item <?= $active ?>">
 							<img class="d-block w-100" src="<?= $picture['url'] ?>" alt="cat echography">
-							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?> </p><a class="btn btn-primary" href="<?= site_url('Cat/del_tmp_echo/'.$catHash.'/'.$picture['file']) ?>" >del</a></div>
+							<div class="carousel-caption"><p class="date">date : <?= $picture['date'] ?> </p></div>
 						</div>
 					<?php $active = ''; } ?>
 				  </div>
