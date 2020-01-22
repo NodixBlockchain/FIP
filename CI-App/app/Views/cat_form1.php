@@ -86,6 +86,10 @@
 			{
 				display:inline-block;
 			}
+			#submit-btn
+			{
+				width:80%;
+			}
 		</style>
 
 	</head>
@@ -433,7 +437,7 @@
 					</div>
 					</div>
 
-				<input type="submit" class="btn btn-primary" value="next"/>
+					<div class="text-right"><input type="submit" name="submit" id="submit-btn" class="btn btn-primary" value="next"/></div>
 			</form>
 			</div>
 
