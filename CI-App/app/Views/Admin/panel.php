@@ -104,7 +104,7 @@
 				<div class="row">
 				<div class="col">
 					<div class="card">
-						<div class="card-header">users</div>
+						<div class="card-header"><h2>users</h2></div>
 						<div class="card-body">users</div>
 					</div>	
 				</div>
@@ -116,7 +116,7 @@
 				</div>
 				<div class="col">
 					<div class="card">
-						<div class="card-header">admins</div>
+						<div class="card-header"><h2>admins</h2></div>
 						<div class="card-body">admins</div>
 					</div>	
 				</div>
