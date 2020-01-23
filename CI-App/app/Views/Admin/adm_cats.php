@@ -89,9 +89,8 @@
 			</button>
   			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-				  <li class="nav-item"><a class="nav-link"  href="<?= site_url('MyCat/my_infos') ?>">My infos</a></a></li>
-				  <li class="nav-item active"><a class="nav-link" href="<?= site_url('MyCat/index') ?>">My cats</a></li>
-				  <li class="nav-item"><a class="nav-link" href="<?= site_url('MyCat/signout') ?>">Sign out</a></a></li>
+				  <li class="nav-item active"><a class="nav-link" href="<?= site_url('Admin/cats') ?>">cats</a></li>
+				  <li class="nav-item"><a class="nav-link" href="<?= site_url('Admin/signout') ?>">Sign out</a></a></li>
 				</ul>
 			</div>
 		</nav>

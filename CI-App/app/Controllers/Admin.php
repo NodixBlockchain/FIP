@@ -102,6 +102,14 @@ class Admin extends BaseController
 		return view("Admin/adm_login", ['infos' => $infos, 'loginError' => FALSE, 'errors' => []]);
 	}
 
+
+	public function signout()
+	{
+		$session = \Config\Services::session();
+		$session->destroy();
+		return redirect()->to(site_url('Admin/signin'));
+	}
+
 	public function do_login()
 	{
 		$session = \Config\Services::session();
