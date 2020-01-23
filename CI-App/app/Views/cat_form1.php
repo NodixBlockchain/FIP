@@ -305,7 +305,7 @@
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-jaundice"		value="jaundice"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('jaundice',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>jaundice</label></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-dark-urine"		value="dark-urine"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('dark-urine',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>dark/thick urine</label></div>
 										<div class="checkbox"><label><input type="checkbox" name="symptoms-misc[]" id="misc-eyes-change"	value="eyes-change"		<?php  if((array_key_exists('symptoms-misc',$symptoms))&&(array_search('eyes-change',$symptoms['symptoms-misc'])!==FALSE)){ echo 'checked'; } ?>>change in eye color affecting both eyes </label></div>
-										<span class="bmd-help">Check box for your cat's additional symptoms.</span>
+										<span class="bmd-help">Check boxes for general symptoms.</span>
 									</div>
 									<h3>Other</h3>
 
