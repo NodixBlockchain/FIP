@@ -87,8 +87,8 @@
 				<form action="<?= site_url('Admin/do_login') ?>" method="POST">
 
 				<div class="form-group ">
-					<?php if(array_key_exists('adm-email',$errors)){ echo '<span id="adm-email-error" class="error">'.$errors['adm-email'].'</span>'; } ?>
-					<label for="adm-email" class="bmd-label-floating">username</label><input type="text" class="form-control" name="adm-email" id="adm-email" value="<?= $infos['adm-email'] ?>">
+					<?php if(array_key_exists('adm-username',$errors)){ echo '<span id="adm-username-error" class="error">'.$errors['adm-username'].'</span>'; } ?>
+					<label for="adm-email" class="bmd-label-floating">username</label><input type="text" class="form-control" name="adm-username" id="adm-username" value="<?= $infos['adm-username'] ?>">
 					<span class="bmd-help">Enter your admin identifier.</span>
 				</div>
 				<div class="form-group ">
