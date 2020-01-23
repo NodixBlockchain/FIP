@@ -22,7 +22,10 @@ class Admin extends BaseController
 		if(($admHash === FALSE)||($admHash === NULL))
 			return redirect()->to(site_url('Admin/signin'));
 
-		return view("Admin/panel");
+		$admin = new AdminModel();
+		$admInfos = $admin->doget($admHash);
+
+		return view("Admin/panel",['infos'=>$admInfos]);
 	}
 
 	public function signin()
