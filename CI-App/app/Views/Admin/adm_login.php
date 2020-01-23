@@ -81,19 +81,19 @@
 			</div>
 			</div>
 			<div class="container">
-				<?php if($loginError) { echo '<span class="error">invalid email or password</span>'; } ?>
+				<?php if($loginError) { echo '<span class="error">invalid username or password</span>'; } ?>
 
 				<h2>Enter your admin identifier</h2>
-				<form action="<?= site_url('MyCat/do_login') ?>" method="POST">
+				<form action="<?= site_url('Admin/do_login') ?>" method="POST">
 
 				<div class="form-group ">
-					<?php if(array_key_exists('user-email',$errors)){ echo '<span id="user-email-error" class="error">'.$errors['user-email'].'</span>'; } ?>
-					<label for="user-email" class="bmd-label-floating">email</label><input type="text" class="form-control" name="user-email" id="user-email" value="<?= $infos['user-email'] ?>">
+					<?php if(array_key_exists('adm-email',$errors)){ echo '<span id="adm-email-error" class="error">'.$errors['adm-email'].'</span>'; } ?>
+					<label for="adm-email" class="bmd-label-floating">username</label><input type="text" class="form-control" name="adm-email" id="adm-email" value="<?= $infos['adm-email'] ?>">
 					<span class="bmd-help">Enter your admin identifier.</span>
 				</div>
 				<div class="form-group ">
-					<?php if(array_key_exists('user-pw',$errors)){ echo '<span id="user-pw-error" class="error">'.$errors['user-pw'].'</span>'; } ?>
-					<label for="user-pw" class="bmd-label-floating">password</label><input type="password" class="form-control" name="user-pw" id="user-pw" value="<?= $infos['user-pw'] ?>">
+					<?php if(array_key_exists('adm-pw',$errors)){ echo '<span id="adm-pw-error" class="error">'.$errors['adm-pw'].'</span>'; } ?>
+					<label for="adm-pw" class="bmd-label-floating">password</label><input type="password" class="form-control" name="adm-pw" id="adm-pw" value="<?= $infos['adm-pw'] ?>">
 					<span class="bmd-help">Enter your password.</span>
 				</div>
 				
