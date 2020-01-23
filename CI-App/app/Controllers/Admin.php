@@ -34,6 +34,7 @@ class Admin extends BaseController
 
 	public function do_login()
 	{
+		$session = \Config\Services::session();
 		$admin = new AdminModel();
 
 		$username = $this->request->getPost('adm-username');
