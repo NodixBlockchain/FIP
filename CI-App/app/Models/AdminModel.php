@@ -46,9 +46,7 @@ class AdminModel extends Model
 			}
 		}
 
-		$pwhash = hash('sha256', $fields['pw']);
-
-		return $this->dosave(['username' => $fields['username'], 'pwhash' => $pwhash, 'creation_time' => $fields['creation-time']]);
+		return $this->dosave(['username' => $fields['username'], 'pw' => $fields['pw'], 'creation_time' => $fields['creation-time']]);
 	}
 	
 
