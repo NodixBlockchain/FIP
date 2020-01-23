@@ -39,7 +39,7 @@ class UserModel extends Model
 
 		foreach($admins as $admin)
 		{
-			if((is_dir($admin)&&(strlen($admin)>=40))
+			if((is_dir($admin))&&(strlen($admin)>=40))
 			{
 				if(is_file($admDir.'/'.$admin.'/infos.csv'))
 					return FALSE;
