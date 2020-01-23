@@ -97,7 +97,7 @@
 			</div>
 			</div>
 
-			<h1>logged as <?= $infos['username'] ?></h1>
+			<h1>logged as <?= $infos['adm-username'] ?></h1>
 
 
 			<div class="container">
