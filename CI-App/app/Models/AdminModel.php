@@ -52,10 +52,12 @@ class AdminModel extends Model
 
 	public function dosave($fields)
 	{
+		$fields['pwhash'] = hash('sha256', $fields['pw']);
+
 		$hash  = $this->getHash($fields);
 		$myDir = $this->DATA_PATH.'/'.$hash;
 
-		$fields['pwhash'] = hash('sha256', $fields['pw']);
+	
 
 		if(is_dir($myDir))
 			return FALSE;
