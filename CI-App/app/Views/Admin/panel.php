@@ -96,11 +96,11 @@
 				<img src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/82226910_10158057008452856_9021406031598583808_o.jpg?_nc_cat=110&_nc_oc=AQlUoMl5XBrtucjkDdzdEtuIfbiu_uRPBfVPwnTxxoFqJU3aZaZYptXIl88d_-2vbTQ&_nc_ht=scontent-cdg2-1.xx&oh=0a0830f5e9aaab4a11c094903888ad52&oe=5EA0C7BE" alt="header" />
 			</div>
 			</div>
-
+			<div class="container text-center">
 			<h1>logged as <?= $infos['adm-username'] ?></h1>
+			</div>
 
-
-			<div class="container">
+			<div class="container-fluid text-center">
 				<div class="row">
 				<div class="col">
 					<div class="card">
