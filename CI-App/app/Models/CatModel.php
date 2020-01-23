@@ -359,4 +359,38 @@ class CatModel extends Model
 		$farray = explode(';', $data);
 		return $this->array2fields($farray);	
 	}
+
+	public function dogetAll($first = 0, $count = 10)
+	{
+		$userDir = $this->DATA_PATH.'/users';
+
+		if(!is_dir($userDir))
+			return FALSE;
+
+		$users = scandir($userDir);
+
+		$allCats = [];
+
+		foreach($users as $user)
+		{
+			if(strlen($user)>=40)
+			{
+				$cats = scandir($userDir.'/'.$user);
+				foreach($cats as $cat)
+				{
+					if(strlen($cat)>=40)
+					{
+						$theCat = $this->doget($user, $cat);
+						
+
+						array_push($allCats, $theCat);
+					}
+
+				
+
+				}
+			}
+		}
+		return $allCats;
+	}
 }
